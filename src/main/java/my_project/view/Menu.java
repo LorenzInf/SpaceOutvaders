@@ -53,15 +53,23 @@ public class Menu extends GraphicalObject {
     }
     // Ende der inneren Klassen
 
+    private int buttonIndex;
+
     public Menu(ViewController viewController){
+        buttonIndex = 1;
         viewController.draw(this, 0);
+        this.viewController = viewController;
         options = new Options(viewController);
         tutorial = new Tutorial(viewController);
+        viewController.createScene();
+        viewController.createScene();
+        viewController.createScene();
+        viewController.createScene();
     }
 
     private ViewController viewController;
-    Options options;
-    Tutorial tutorial;
+    private Options options;
+    private Tutorial tutorial;
 
     @Override
     public void draw(DrawTool drawTool){
@@ -76,4 +84,20 @@ public class Menu extends GraphicalObject {
         drawTool.drawRectangle(750,200,150,100);
     }
 
+     public void switchScene(){
+        switch(getButtonIndex()){
+            case 1 -> viewController.showScene(1);
+            case 2 -> viewController.showScene(2);
+            case 3 -> viewController.showScene(3);
+            case 4 -> viewController.showScene(4);
+        }
+     }
+
+     public int getButtonIndex(){
+        return buttonIndex;
+     }
+
+    public void setButtonIndex(int buttonIndex) {
+        this.buttonIndex = buttonIndex;
+    }
 }

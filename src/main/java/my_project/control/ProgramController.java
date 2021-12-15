@@ -4,6 +4,7 @@ import KAGO_framework.control.ViewController;
 import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
 import my_project.Config;
+import my_project.view.InputManager;
 import my_project.view.Menu;
 
 import java.awt.*;
@@ -19,6 +20,7 @@ public class ProgramController {
 
     // Referenzen
     private ViewController viewController;  // diese Referenz soll auf ein Objekt der Klasse viewController zeigen. Über dieses Objekt wird das Fenster gesteuert.
+    private Menu menu;
 
     /**
      * Konstruktor
@@ -36,6 +38,8 @@ public class ProgramController {
      * Sie erstellt die leeren Datenstrukturen, zu Beginn nur eine Queue
      */
     public void startProgram() {
+        new InputManager(this, viewController);
+
         // Setzt den Hintergrund auf Schwarz
         viewController.draw(new GraphicalObject() {
             @Override
@@ -44,7 +48,8 @@ public class ProgramController {
                 drawTool.drawFilledRectangle(0,0, Config.WINDOW_WIDTH,Config.WINDOW_HEIGHT);
             }
         });
-        Menu newMenue = new Menu(viewController);
+
+        menu = new Menu(viewController);
 
     }
 
@@ -54,5 +59,9 @@ public class ProgramController {
      */
     public void updateProgram(double dt){
 
+    }
+
+    public Menu getMenu(){
+        return menu;
     }
 }
