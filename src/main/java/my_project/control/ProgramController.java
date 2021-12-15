@@ -39,7 +39,6 @@ public class ProgramController {
      */
     public void startProgram() {
         new InputManager(this, viewController);
-
         // Setzt den Hintergrund auf Schwarz
         viewController.draw(new GraphicalObject() {
             @Override
@@ -48,9 +47,7 @@ public class ProgramController {
                 drawTool.drawFilledRectangle(0,0, Config.WINDOW_WIDTH,Config.WINDOW_HEIGHT);
             }
         });
-
-        menu = new Menu(viewController);
-
+        menu = new Menu(viewController, this);
     }
 
     /**

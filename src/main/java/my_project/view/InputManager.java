@@ -35,14 +35,26 @@ public class InputManager extends InteractiveGraphicalObject {
 
     @Override
     public void keyPressed(int key){
+
         if(key == KeyEvent.VK_SPACE){
             programController.getMenu().switchScene();
         }
+
         if(key == KeyEvent.VK_A){
-            menu.setButtonIndex(menu.getButtonIndex() - 1);
+            if(programController.getMenu().getButtonIndex() != 1){
+                programController.getMenu().setButtonIndex(programController.getMenu().getButtonIndex() - 1);
+            }else{
+                programController.getMenu().setButtonIndex(4);
+            }
         }
+
         if(key == KeyEvent.VK_D){
-            menu.setButtonIndex(menu.getButtonIndex() + 1);
+            if(programController.getMenu().getButtonIndex() != 4){
+                programController.getMenu().setButtonIndex(programController.getMenu().getButtonIndex() + 1);
+            }else{
+                programController.getMenu().setButtonIndex(1);
+            }
         }
+
     }
 }

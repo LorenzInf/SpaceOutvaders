@@ -3,6 +3,9 @@ package my_project.view;
 import KAGO_framework.control.ViewController;
 import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
+import my_project.Config;
+import my_project.control.ProgramController;
+
 import java.awt.*;
 
 public class Menu extends GraphicalObject {
@@ -15,7 +18,8 @@ public class Menu extends GraphicalObject {
 
         @Override
         public void draw(DrawTool drawTool){
-            //Optionen Zeug
+            drawTool.setCurrentColor(Color.BLACK);
+            drawTool.drawFilledRectangle(0,0, Config.WINDOW_WIDTH,Config.WINDOW_HEIGHT);
         }
     }
 
@@ -26,7 +30,8 @@ public class Menu extends GraphicalObject {
 
         @Override
         public void draw(DrawTool drawTool) {
-            //Tutorial Zeug
+            drawTool.setCurrentColor(Color.BLACK);
+            drawTool.drawFilledRectangle(0,0, Config.WINDOW_WIDTH,Config.WINDOW_HEIGHT);
         }
     }
 
@@ -37,7 +42,8 @@ public class Menu extends GraphicalObject {
 
         @Override
         public void draw(DrawTool drawTool) {
-            //Game zeug
+            drawTool.setCurrentColor(Color.BLACK);
+            drawTool.drawFilledRectangle(0,0, Config.WINDOW_WIDTH,Config.WINDOW_HEIGHT);
         }
     }
 
@@ -48,30 +54,33 @@ public class Menu extends GraphicalObject {
 
         @Override
         public void draw(DrawTool drawTool) {
-            //Leaderboard zeug
+            drawTool.setCurrentColor(Color.BLACK);
+            drawTool.drawFilledRectangle(0,0, Config.WINDOW_WIDTH,Config.WINDOW_HEIGHT);
         }
     }
     // Ende der inneren Klassen
 
     private ViewController viewController;
+    private ProgramController programController;
     private Options options;
     private Tutorial tutorial;
     private Game game;
     private Leaderboard leaderboard;
     private int buttonIndex;
 
-    public Menu(ViewController viewController){
-        buttonIndex = 1; //temp
+    public Menu(ViewController viewController, ProgramController programController){
         viewController.draw(this, 0);
+        buttonIndex = 1;
         this.viewController = viewController;
+        this.programController = programController;
         options = new Options(viewController);
         tutorial = new Tutorial(viewController);
-        viewController.createScene();
-        viewController.createScene();
-        viewController.createScene();
-        viewController.createScene();
         game = new Game(viewController);
         leaderboard = new Leaderboard(viewController);
+        viewController.createScene();
+        viewController.createScene();
+        viewController.createScene();
+        viewController.createScene();
     }
 
     @Override
@@ -88,12 +97,7 @@ public class Menu extends GraphicalObject {
     }
 
      public void switchScene(){
-        switch(getButtonIndex()){
-            case 1 -> viewController.showScene(1);
-            case 2 -> viewController.showScene(2);
-            case 3 -> viewController.showScene(3);
-            case 4 -> viewController.showScene(4);
-        }
+        viewController.showScene(getButtonIndex());
      }
 
      public int getButtonIndex(){
