@@ -61,7 +61,7 @@ public class Menu extends GraphicalObject {
     private int buttonIndex;
 
     public Menu(ViewController viewController){
-        buttonIndex = 1;
+        buttonIndex = 1; //temp
         viewController.draw(this, 0);
         this.viewController = viewController;
         options = new Options(viewController);
