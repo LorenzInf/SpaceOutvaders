@@ -3,7 +3,6 @@ package my_project.view;
 import KAGO_framework.control.ViewController;
 import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
-
 import java.awt.*;
 
 public class Menu extends GraphicalObject {
@@ -31,6 +30,27 @@ public class Menu extends GraphicalObject {
         }
     }
 
+    private static class Game extends GraphicalObject {
+        public Game(ViewController viewController) {
+            viewController.draw(this,3);
+        }
+
+        @Override
+        public void draw(DrawTool drawTool) {
+            //Game zeug
+        }
+    }
+
+    private static class Leaderboard extends GraphicalObject {
+        public Leaderboard(ViewController viewController) {
+            viewController.draw(this,4);
+        }
+
+        @Override
+        public void draw(DrawTool drawTool) {
+            //Leaderboard zeug
+        }
+    }
     // Ende der inneren Klassen
 
     public Menu(ViewController viewController){
