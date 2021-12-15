@@ -26,12 +26,9 @@ public class InputManager extends InteractiveGraphicalObject {
 
     @Override
     public void mouseReleased(MouseEvent e) {
-
     }
-    public void keyPressed(int key){
-        switch(key){
 
-        }
+    public void keyPressed(int key){
 
     }
 
