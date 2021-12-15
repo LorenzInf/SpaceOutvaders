@@ -53,20 +53,24 @@ public class Menu extends GraphicalObject {
     }
     // Ende der inneren Klassen
 
+    private ViewController viewController;
+    Options options;
+    Tutorial tutorial;
+    Game game;
+    Leaderboard leaderboard;
+
     public Menu(ViewController viewController){
         viewController.draw(this, 0);
         options = new Options(viewController);
         tutorial = new Tutorial(viewController);
+        game = new Game(viewController);
+        leaderboard = new Leaderboard(viewController);
     }
-
-    private ViewController viewController;
-    Options options;
-    Tutorial tutorial;
 
     @Override
     public void draw(DrawTool drawTool){
         drawTool.setCurrentColor(Color.white);
-        drawTool.formatText("Comic Sans",Font.BOLD,20);
+        drawTool.formatText("Comic Sans MS",Font.BOLD,20);
         drawTool.drawText(540,900,"OMG DAS BESTE SPIEL DER WELT: SPACE OUTVADERS");
         drawTool.drawText(150,220, "Start");
         drawTool.drawRectangle(125,200,150,100);
@@ -75,5 +79,4 @@ public class Menu extends GraphicalObject {
         drawTool.drawText(775,220, "Optionen");
         drawTool.drawRectangle(750,200,150,100);
     }
-
 }
