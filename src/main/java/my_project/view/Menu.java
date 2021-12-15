@@ -53,20 +53,31 @@ public class Menu extends GraphicalObject {
     }
     // Ende der inneren Klassen
 
+    private ViewController viewController;
+    private Options options;
+    private Tutorial tutorial;
+    private Game game;
+    private Leaderboard leaderboard;
+    private int buttonIndex;
+
     public Menu(ViewController viewController){
+        buttonIndex = 1; //temp
         viewController.draw(this, 0);
+        this.viewController = viewController;
         options = new Options(viewController);
         tutorial = new Tutorial(viewController);
+        viewController.createScene();
+        viewController.createScene();
+        viewController.createScene();
+        viewController.createScene();
+        game = new Game(viewController);
+        leaderboard = new Leaderboard(viewController);
     }
-
-    private ViewController viewController;
-    Options options;
-    Tutorial tutorial;
 
     @Override
     public void draw(DrawTool drawTool){
         drawTool.setCurrentColor(Color.white);
-        drawTool.formatText("Comic Sans",Font.BOLD,20);
+        drawTool.formatText("Comic Sans MS",Font.BOLD,20);
         drawTool.drawText(540,900,"OMG DAS BESTE SPIEL DER WELT: SPACE OUTVADERS");
         drawTool.drawText(150,220, "Start");
         drawTool.drawRectangle(125,200,150,100);
@@ -76,4 +87,20 @@ public class Menu extends GraphicalObject {
         drawTool.drawRectangle(750,200,150,100);
     }
 
+     public void switchScene(){
+        switch(getButtonIndex()){
+            case 1 -> viewController.showScene(1);
+            case 2 -> viewController.showScene(2);
+            case 3 -> viewController.showScene(3);
+            case 4 -> viewController.showScene(4);
+        }
+     }
+
+     public int getButtonIndex(){
+        return buttonIndex;
+     }
+
+    public void setButtonIndex(int buttonIndex) {
+        this.buttonIndex = buttonIndex;
+    }
 }

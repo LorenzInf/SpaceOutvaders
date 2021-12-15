@@ -2,6 +2,8 @@ package my_project.view;
 
 import KAGO_framework.model.InteractiveGraphicalObject;
 import my_project.control.ProgramController;
+
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import KAGO_framework.control.ViewController;
 
@@ -12,6 +14,8 @@ import KAGO_framework.control.ViewController;
 public class InputManager extends InteractiveGraphicalObject {
 
     private ProgramController programController;
+    private ViewController viewController;
+    private Menu menu;
 
     /**
      * Objekterzeugung
@@ -20,6 +24,7 @@ public class InputManager extends InteractiveGraphicalObject {
      */
     public InputManager(ProgramController programController, ViewController viewController){
         this.programController = programController;
+        this.viewController = viewController;
         viewController.register(this);
 
     }
@@ -28,8 +33,16 @@ public class InputManager extends InteractiveGraphicalObject {
     public void mouseReleased(MouseEvent e) {
     }
 
+    @Override
     public void keyPressed(int key){
-
+        if(key == KeyEvent.VK_SPACE){
+            programController.getMenu().switchScene();
+        }
+        if(key == KeyEvent.VK_A){
+            menu.setButtonIndex(menu.getButtonIndex() - 1);
+        }
+        if(key == KeyEvent.VK_D){
+            menu.setButtonIndex(menu.getButtonIndex() + 1);
+        }
     }
-
 }
