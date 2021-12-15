@@ -10,7 +10,7 @@ public class PowerUp extends GraphicalObject {
     private int addLife;
     private int temporaryAddLife;
 
-    public PowerUp(int speedBuff, int increaseShootSpeedBuff){
+    public PowerUp(int speedBuff, int increaseShootSpeedBuff, int increaseShootDamage, boolean invincible){
         
     }
 }
