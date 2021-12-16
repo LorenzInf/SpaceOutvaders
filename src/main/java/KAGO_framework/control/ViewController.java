@@ -143,6 +143,13 @@ public class ViewController implements ActionListener, KeyListener, MouseListene
     }
 
     /**
+     * @return Index der Aktiven Szene
+     */
+    public int getCurrentSceneIndex(){
+        return currentScene;
+    }
+
+    /**
      * Erzeugt ein neue, leere Szene. Diese wird nicht sofort angezeigt.
      */
     public void createScene(){
@@ -198,7 +205,7 @@ public class ViewController implements ActionListener, KeyListener, MouseListene
      * @param i das gewünschte Objekt
      */
     public void register(Interactable i, int sceneIndex){
-        if (sceneIndex < scenes.size() && i!=null){
+        if (sceneIndex < scenes.size() && i != null){
             SwingUtilities.invokeLater(() -> scenes.get(sceneIndex).interactables.add(i));
         }
     }

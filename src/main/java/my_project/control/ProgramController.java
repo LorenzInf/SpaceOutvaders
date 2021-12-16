@@ -1,10 +1,13 @@
 package my_project.control;
 
+import my_project.model.Enemy;
+import my_project.model.Player;
 import KAGO_framework.control.ViewController;
 import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
 import my_project.Config;
 import my_project.view.InputManager;
+import my_project.control.GraphicalWindow;
 
 import java.awt.*;
 
@@ -19,6 +22,9 @@ public class ProgramController {
 
     // Referenzen
     private ViewController viewController;  // diese Referenz soll auf ein Objekt der Klasse viewController zeigen. Über dieses Objekt wird das Fenster gesteuert.
+    private Menu menu;
+    private Player player;
+    private Enemy enemy;
     private GraphicalWindow window;
 
     /**
@@ -37,7 +43,6 @@ public class ProgramController {
      * Sie erstellt die leeren Datenstrukturen, zu Beginn nur eine Queue
      */
     public void startProgram() {
-        new InputManager(this, viewController);
         // Setzt den Hintergrund auf Schwarz
         viewController.draw(new GraphicalObject() {
             @Override
@@ -47,7 +52,24 @@ public class ProgramController {
             }
         });
         window = new GraphicalWindow(viewController, this);
+        new InputManager(this, viewController);
     }
+    public void createPlayer(){
+        Player player = new Player(10, 3,false,0,viewController);
+    }
+    public void createEnemyWave(){
+
+            Enemy enemy = new Enemy(100,100,2,1,20,viewController); //Platzhalterzahlen, nicht wundern
+    }
+
+    /**
+     * Wenn ein Gegner getroffen wurde -> Enemy verliert ein Leben
+     * Wenn Enemy kein Leben mehr hat soll der enemy verschwinden
+     */
+    /*public boolean enemyGotHit() {
+
+    }*/
+
 
     /**
      * Aufruf mit jeder Frame
@@ -60,4 +82,5 @@ public class ProgramController {
     public GraphicalWindow getWindow(){
         return window;
     }
+
 }
