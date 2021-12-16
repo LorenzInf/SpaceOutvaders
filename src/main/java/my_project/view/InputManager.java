@@ -25,8 +25,10 @@ public class InputManager extends InteractiveGraphicalObject {
     public InputManager(ProgramController programController, ViewController viewController){
         this.programController = programController;
         this.viewController = viewController;
-        viewController.register(this);
 
+        for (int i = 0; i < 4; i++) {
+            viewController.register(this, i);
+        }
     }
 
     @Override
@@ -35,34 +37,19 @@ public class InputManager extends InteractiveGraphicalObject {
 
     @Override
     public void keyPressed(int key){
-
-        if(key == KeyEvent.VK_SPACE){
-            programController.getWindow().switchScene();
-        }
+        if(key == KeyEvent.VK_SPACE) programController.getWindow().switchScene(1/*temp*/);
+        if(key == KeyEvent.VK_ESCAPE) programController.getWindow().escape();
 
         if(key == KeyEvent.VK_A){
-            if(programController.getWindow().getButtonIndex() != 1){
-                programController.getWindow().setButtonIndex(programController.getWindow().getButtonIndex() - 1);
-            }else{
-                programController.getWindow().setButtonIndex(4);
-            }
-        }
-
-        if(key == KeyEvent.VK_D){
-            if(programController.getWindow().getButtonIndex() != 4){
-                programController.getWindow().setButtonIndex(programController.getWindow().getButtonIndex() + 1);
-            }else{
-                programController.getWindow().setButtonIndex(1);
-            }
-        }
-
-        if(key == KeyEvent.VK_LEFT){
+            if(programController.getWindow().getButtonIndex() != 1) programController.getWindow().setButtonIndex(programController.getWindow().getButtonIndex() - 1);
+            else programController.getWindow().setButtonIndex(4);
             // ToDo: Bewege Raumschiff nach links
         }
 
-        if(key == KeyEvent.VK_RIGHT){
+        if(key == KeyEvent.VK_D){
+            if(programController.getWindow().getButtonIndex() != 4) programController.getWindow().setButtonIndex(programController.getWindow().getButtonIndex() + 1);
+            else programController.getWindow().setButtonIndex(1);
             // ToDo: Bewege Raumschiff nach rechts
         }
-
     }
 }

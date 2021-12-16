@@ -37,7 +37,6 @@ public class ProgramController {
      * Sie erstellt die leeren Datenstrukturen, zu Beginn nur eine Queue
      */
     public void startProgram() {
-        new InputManager(this, viewController);
         // Setzt den Hintergrund auf Schwarz
         viewController.draw(new GraphicalObject() {
             @Override
@@ -47,6 +46,7 @@ public class ProgramController {
             }
         });
         window = new GraphicalWindow(viewController, this);
+        new InputManager(this, viewController);
     }
 
     /**

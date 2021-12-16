@@ -8,15 +8,13 @@ public class GraphicalWindow extends GraphicalObject {
     protected int buttonIndex;
     protected ViewController viewController;
     protected ProgramController programController;
-    Game game;
-    Guide guide;
-    Leaderboard leaderboard;
-    MainMenu mainMenu;
-    Options options;
+    private Game game;
+    private Guide guide;
+    private Leaderboard leaderboard;
+    private MainMenu mainMenu;
+    private Options options;
 
-    public GraphicalWindow(){
-
-    }
+    public GraphicalWindow(){}
 
     public GraphicalWindow(ViewController viewController, ProgramController programController) {
         this.viewController = viewController;
@@ -31,11 +29,11 @@ public class GraphicalWindow extends GraphicalObject {
         viewController.draw(guide,2);
         viewController.draw(game,3);
         viewController.draw(leaderboard,4);
-        buttonIndex = 1;
+        buttonIndex = 1; //temp
     }
 
-    public void switchScene(){
-        viewController.showScene(1);
+    public void switchScene(int index){
+        viewController.showScene(index);
     }
 
     public int getButtonIndex(){
@@ -44,6 +42,15 @@ public class GraphicalWindow extends GraphicalObject {
 
     public void setButtonIndex(int buttonIndex) {
         this.buttonIndex = buttonIndex;
+    }
+
+    public void escape(){
+        int index = viewController.getCurrentSceneIndex();
+        switch (index) {
+            case 0 -> System.exit(0);
+            //case 3 -> /* todo*/
+            default -> switchScene(0);
+        }
     }
 }
 
