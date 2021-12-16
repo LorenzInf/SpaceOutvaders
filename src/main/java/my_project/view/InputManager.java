@@ -57,5 +57,13 @@ public class InputManager extends InteractiveGraphicalObject {
             }
         }
 
+        if(key == KeyEvent.VK_LEFT){
+            // ToDo: Bewege Raumschiff nach links
+        }
+
+        if(key == KeyEvent.VK_RIGHT){
+            // ToDo: Bewege Raumschiff nach rechts
+        }
+
     }
 }

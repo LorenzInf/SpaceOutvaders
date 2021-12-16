@@ -104,7 +104,7 @@ public class Menu extends GraphicalObject {
         return buttonIndex;
      }
 
-    public void setButtonIndex(int buttonIndex) {
+     public void setButtonIndex(int buttonIndex) {
         this.buttonIndex = buttonIndex;
     }
 }
