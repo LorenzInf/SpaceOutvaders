@@ -23,8 +23,6 @@ public class Enemy extends GraphicalObject {
     public void shoot(){
 
     }
-
-
     //Jedes mal wenn er sich bewegt und kein Gegner unter ihm ist hat er eine x Prozent chance nach unten zu schießen (würde 0.5% oder so vorschlagen, muss man ausprobieren)
 
     @Override

@@ -58,8 +58,17 @@ public class ProgramController {
         Player player = new Player(10, 3,false,0,viewController);
     }
     public void createEnemyWave(){
-        Enemy enemy = new Enemy(100,100,2,1,20,viewController); //Platzhalterzahlen, nicht wundern
+
+            Enemy enemy = new Enemy(100,100,2,1,20,viewController); //Platzhalterzahlen, nicht wundern
     }
+
+    /**
+     * Wenn ein Gegner getroffen wurde -> Enemy verliert ein Leben
+     * Wenn Enemy kein Leben mehr hat soll der enemy verschwinden
+     */
+    /*public boolean enemyGotHit() {
+
+    }*/
 
 
     /**
