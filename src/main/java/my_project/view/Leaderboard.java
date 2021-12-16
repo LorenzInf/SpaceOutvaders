@@ -17,5 +17,7 @@ public class Leaderboard extends GraphicalWindow {
     public void draw(DrawTool drawTool) {
         drawTool.setCurrentColor(Color.BLACK);
         drawTool.drawFilledRectangle(0,0, Config.WINDOW_WIDTH,Config.WINDOW_HEIGHT);
+        drawTool.setCurrentColor(Color.WHITE);
+        drawTool.drawRectangle(10,10,1900,1070);
     }
 }

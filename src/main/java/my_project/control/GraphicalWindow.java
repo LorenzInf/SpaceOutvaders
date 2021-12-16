@@ -45,6 +45,7 @@ public class GraphicalWindow extends GraphicalObject {
     public void setButtonIndex(int buttonIndex) {
         this.buttonIndex = buttonIndex;
     }
+
 }
 
 // sceneIndex 0 = MainMenu

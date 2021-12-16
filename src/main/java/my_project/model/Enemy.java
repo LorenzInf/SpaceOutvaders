@@ -7,8 +7,7 @@ public class Enemy extends GraphicalObject {
     private int damage;
     private int speed;
 
-    public Enemy(ViewController viewController){
-
+    public Enemy(){
     }
 
     //Jedes mal wenn er sich bewegt und kein Gegner unter ihm ist hat er eine x Prozent chance nach unten zu schießen (würde 0.5% oder so vorschlagen, muss man ausprobieren)
