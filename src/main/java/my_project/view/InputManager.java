@@ -6,7 +6,6 @@ import my_project.control.ProgramController;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-import KAGO_framework.control.ViewController;
 
 /**
  * Realisiert ein Objekt, dass alle Eingaben empfängt und dann danach passende Methoden
@@ -16,7 +15,7 @@ public class InputManager extends InteractiveGraphicalObject {
 
     private ProgramController programController;
     private ViewController viewController;
-    private Menu menu;
+    private MainMenu menu;
 
     /**
      * Objekterzeugung
@@ -38,22 +37,22 @@ public class InputManager extends InteractiveGraphicalObject {
     public void keyPressed(int key){
 
         if(key == KeyEvent.VK_SPACE){
-            programController.getMenu().switchScene();
+            programController.getWindow().switchScene();
         }
 
         if(key == KeyEvent.VK_A){
-            if(programController.getMenu().getButtonIndex() != 1){
-                programController.getMenu().setButtonIndex(programController.getMenu().getButtonIndex() - 1);
+            if(programController.getWindow().getButtonIndex() != 1){
+                programController.getWindow().setButtonIndex(programController.getWindow().getButtonIndex() - 1);
             }else{
-                programController.getMenu().setButtonIndex(4);
+                programController.getWindow().setButtonIndex(4);
             }
         }
 
         if(key == KeyEvent.VK_D){
-            if(programController.getMenu().getButtonIndex() != 4){
-                programController.getMenu().setButtonIndex(programController.getMenu().getButtonIndex() + 1);
+            if(programController.getWindow().getButtonIndex() != 4){
+                programController.getWindow().setButtonIndex(programController.getWindow().getButtonIndex() + 1);
             }else{
-                programController.getMenu().setButtonIndex(1);
+                programController.getWindow().setButtonIndex(1);
             }
         }
 

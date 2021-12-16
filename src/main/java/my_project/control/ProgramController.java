@@ -5,7 +5,6 @@ import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
 import my_project.Config;
 import my_project.view.InputManager;
-import my_project.view.Menu;
 
 import java.awt.*;
 
@@ -20,7 +19,7 @@ public class ProgramController {
 
     // Referenzen
     private ViewController viewController;  // diese Referenz soll auf ein Objekt der Klasse viewController zeigen. Über dieses Objekt wird das Fenster gesteuert.
-    private Menu menu;
+    private GraphicalWindow window;
 
     /**
      * Konstruktor
@@ -47,7 +46,7 @@ public class ProgramController {
                 drawTool.drawFilledRectangle(0,0, Config.WINDOW_WIDTH,Config.WINDOW_HEIGHT);
             }
         });
-        menu = new Menu(viewController, this);
+        window = new GraphicalWindow(viewController, this);
     }
 
     /**
@@ -58,7 +57,7 @@ public class ProgramController {
 
     }
 
-    public Menu getMenu(){
-        return menu;
+    public GraphicalWindow getWindow(){
+        return window;
     }
 }
