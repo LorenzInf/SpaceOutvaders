@@ -1,11 +1,15 @@
 package my_project.control;
 
+import my_project.model.Enemy;
+import my_project.model.Player;
 import KAGO_framework.control.ViewController;
-import KAGO_framework.model.abitur.datenstrukturen.Queue;
-import my_project.model.Ball;
+import KAGO_framework.model.GraphicalObject;
+import KAGO_framework.view.DrawTool;
+import my_project.Config;
 import my_project.view.InputManager;
+import my_project.control.GraphicalWindow;
 
-import java.awt.event.MouseEvent;
+import java.awt.*;
 
 /**
  * Ein Objekt der Klasse ProgramController dient dazu das Programm zu steuern. Die updateProgram - Methode wird
@@ -18,6 +22,10 @@ public class ProgramController {
 
     // Referenzen
     private ViewController viewController;  // diese Referenz soll auf ein Objekt der Klasse viewController zeigen. Über dieses Objekt wird das Fenster gesteuert.
+    private Menu menu;
+    private Player player;
+    private Enemy enemy;
+    private GraphicalWindow window;
 
     /**
      * Konstruktor
@@ -35,11 +43,33 @@ public class ProgramController {
      * Sie erstellt die leeren Datenstrukturen, zu Beginn nur eine Queue
      */
     public void startProgram() {
-        // Erstelle ein Objekt der Klasse Ball und lasse es zeichnen
-        Ball ball1 = new Ball(150,150);
-        viewController.draw(ball1);
-
+        // Setzt den Hintergrund auf Schwarz
+        viewController.draw(new GraphicalObject() {
+            @Override
+            public void draw(DrawTool drawTool) {
+                drawTool.setCurrentColor(Color.BLACK);
+                drawTool.drawFilledRectangle(0,0, Config.WINDOW_WIDTH,Config.WINDOW_HEIGHT);
+            }
+        });
+        window = new GraphicalWindow(viewController, this);
+        new InputManager(this, viewController);
     }
+    public void createPlayer(){
+        Player player = new Player(10, 3,false,0,viewController);
+    }
+    public void createEnemyWave(){
+
+            Enemy enemy = new Enemy(100,100,2,1,20,viewController); //Platzhalterzahlen, nicht wundern
+    }
+
+    /**
+     * Wenn ein Gegner getroffen wurde -> Enemy verliert ein Leben
+     * Wenn Enemy kein Leben mehr hat soll der enemy verschwinden
+     */
+    /*public boolean enemyGotHit() {
+
+    }*/
+
 
     /**
      * Aufruf mit jeder Frame
@@ -48,4 +78,9 @@ public class ProgramController {
     public void updateProgram(double dt){
 
     }
+
+    public GraphicalWindow getWindow(){
+        return window;
+    }
+
 }
