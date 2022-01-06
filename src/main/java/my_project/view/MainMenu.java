@@ -5,7 +5,12 @@ import KAGO_framework.model.abitur.datenstrukturen.Graph;
 import KAGO_framework.view.DrawTool;
 import my_project.control.GraphicalWindow;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
 
 public class MainMenu extends GraphicalWindow {
 
@@ -16,18 +21,11 @@ public class MainMenu extends GraphicalWindow {
 
     @Override
     public void draw(DrawTool drawTool){
-        drawTool.setCurrentColor(Color.white);
-        drawTool.formatText("Comic Sans MS",Font.BOLD,20);
-        drawTool.drawText(540,900,"OMG DAS BESTE SPIEL DER WELT: SPACE OUTVADERS");
-        drawTool.drawText(150,220, "Start");
-        drawTool.drawText(475,220, "Ende");
-        drawTool.drawRectangle(450,200,150,100);
-        drawTool.drawText(775,220, "Optionen");
-        drawTool.drawRectangle(750,200,150,100);
-        // ToDO: Button wird nicht Rot
-        if(getButtonIndex() == 1){
-            drawTool.setCurrentColor(Color.RED);
-            drawTool.drawRectangle(125,200,150,100);
+        try {
+            BufferedImage mainScreen = ImageIO.read((getClass().getResource("/graphic/main_screen.png").openStream()));
+            drawTool.drawImage(mainScreen, 0 , 0);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

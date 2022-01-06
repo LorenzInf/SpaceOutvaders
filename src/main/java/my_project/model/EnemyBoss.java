@@ -1,4 +1,4 @@
 package my_project.model;
 
-public class EnemyBoss extends Enemy{
+public class EnemyBoss{
 }
