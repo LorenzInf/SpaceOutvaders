@@ -22,14 +22,14 @@ public class GraphicalWindow extends GraphicalObject {
         game = new Game(viewController);
         guide = new Guide(viewController);
         leaderboard = new Leaderboard(viewController);
-        mainMenu = new MainMenu(viewController);
+        mainMenu = new MainMenu(viewController, programController);
         options = new Options(viewController);
         viewController.draw(mainMenu,0);
         viewController.draw(options,1);
         viewController.draw(guide,2);
         viewController.draw(game,3);
         viewController.draw(leaderboard,4);
-        buttonIndex = 1; //temp
+        buttonIndex = 0; //temp
     }
 
     public void switchScene(int index){
