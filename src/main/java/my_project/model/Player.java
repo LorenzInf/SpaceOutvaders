@@ -53,7 +53,6 @@ public class Player extends GraphicalObject {
 
         }
 
-
     }
 
     public int getSpeed() {

@@ -1,6 +1,7 @@
 package my_project.control;
 
 import my_project.model.Enemy;
+import my_project.model.EnemyBoss;
 import my_project.model.Player;
 import KAGO_framework.control.ViewController;
 import KAGO_framework.model.GraphicalObject;
@@ -24,7 +25,7 @@ public class ProgramController {
     private ViewController viewController;  // diese Referenz soll auf ein Objekt der Klasse viewController zeigen. Über dieses Objekt wird das Fenster gesteuert.
     private Menu menu;
     private Player player;
-    private Enemy enemy;
+    private EnemyBoss enemyBoss;
     private GraphicalWindow window;
 
     /**
@@ -59,7 +60,7 @@ public class ProgramController {
     }
     public void createEnemyWave(){
 
-            Enemy enemy = new Enemy(100,100,2,1,20,viewController); //Platzhalterzahlen, nicht wundern
+
     }
 
     /**

@@ -2,7 +2,7 @@ package my_project.model;
 import KAGO_framework.control.ViewController;
 import KAGO_framework.model.GraphicalObject;
 
-public class Enemy extends GraphicalObject {
+public abstract class Enemy extends GraphicalObject {
     private double x;
     private double y;
     private int hp;
@@ -15,7 +15,7 @@ public class Enemy extends GraphicalObject {
 
         this.x = x;
         this.y = y;
-        this.hp = hp;
+        this.hp = 2;
         this.damage = damage;
         this.speed = speed;
 
