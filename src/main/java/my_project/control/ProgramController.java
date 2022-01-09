@@ -1,14 +1,12 @@
 package my_project.control;
 
-import my_project.model.Enemy;
 import my_project.model.EnemyBoss;
 import my_project.model.Player;
 import KAGO_framework.control.ViewController;
 import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
 import my_project.Config;
-import my_project.view.InputManager;
-import my_project.control.GraphicalWindow;
+import my_project.view.Options;
 
 import java.awt.*;
 
@@ -45,15 +43,9 @@ public class ProgramController {
      */
     public void startProgram() {
         // Setzt den Hintergrund auf Schwarz
-        viewController.draw(new GraphicalObject() {
-            @Override
-            public void draw(DrawTool drawTool) {
-                drawTool.setCurrentColor(Color.BLACK);
-                drawTool.drawFilledRectangle(0,0, Config.WINDOW_WIDTH,Config.WINDOW_HEIGHT);
-            }
-        });
         window = new GraphicalWindow(viewController, this);
-        new InputManager(this, viewController);
+        new InputManagerMainMenu(this, viewController);
+        new InputManagerOptions(this, viewController, window.getOptions());
     }
     public void createPlayer(){
         Player player = new Player(10, 3,false,0,viewController);
