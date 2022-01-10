@@ -26,6 +26,7 @@ public class ProgramController {
     private EnemyBoss enemyBoss;
     private GraphicalWindow window;
 
+
     /**
      * Konstruktor
      * Dieser legt das Objekt der Klasse ProgramController an, das den Programmfluss steuert.
@@ -35,6 +36,7 @@ public class ProgramController {
      */
     public ProgramController(ViewController viewController){
         this.viewController = viewController;
+
     }
 
     /**

@@ -3,8 +3,12 @@ import KAGO_framework.control.ViewController;
 import KAGO_framework.model.GraphicalObject;
 
 import javax.swing.text.View;
+import java.awt.image.BufferedImage;
 
 public class Player extends GraphicalObject {
+
+    private BufferedImage Spaceship;
+    private String name;
     private int speed;
     private int hp;
     private boolean shield;
