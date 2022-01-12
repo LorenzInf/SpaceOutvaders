@@ -39,7 +39,7 @@ public class InputManagerOptions extends InteractiveGraphicalObject {
 
     @Override
     public void keyPressed(int key){
-        if(key == KeyEvent.VK_SPACE){
+        if(key == KeyEvent.VK_ENTER){
             switch(programController.getWindow().getOptionsIndex()) { // Checkt Boolean Wert für das ändern des Symbols
                 case 1 -> options.setMusicOn(!options.isMusicOn());
                 case 2 -> options.setSoundOn(!options.isSoundOn());
