@@ -42,6 +42,7 @@ public class ProgramController {
         window = new GraphicalWindow(viewController, this);
         new InputManagerMainMenu(this, viewController);
         new InputManagerOptions(this, viewController, window.getOptions());
+        new InputManagerGame(this, viewController);
     }
     public void createPlayer(){
         Player player = new Player(10, 3,false,0,viewController);

@@ -24,7 +24,7 @@ public class GraphicalWindow extends GraphicalObject {
     public GraphicalWindow(ViewController viewController, ProgramController programController) {
         this.viewController = viewController;
         this.programController = programController;
-        game = new Game(viewController);
+        game = new Game(viewController, programController);
         guide = new Guide(viewController);
         leaderboard = new Leaderboard(viewController);
         mainMenu = new MainMenu(viewController, programController);
