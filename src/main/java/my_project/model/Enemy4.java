@@ -1,0 +1,14 @@
+package my_project.model;
+
+import KAGO_framework.control.ViewController;
+
+import java.awt.image.BufferedImage;
+
+public class Enemy4 extends Enemy{
+
+    private BufferedImage enemy_4;
+
+    public Enemy4(double x, double y, int hp, int damage, int speed, ViewController viewController) {
+        super(x, y, 2, damage, speed, true,viewController);
+    }
+}

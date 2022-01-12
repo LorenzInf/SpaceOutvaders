@@ -22,12 +22,9 @@ public class Player extends GraphicalObject {
         this.buff = ((int)(Math.random()*4));
     }
 
-        public void shootMoreThanOneBullet(){
 
-        }
-        public void shoot(){
 
-        }
+
 
     /**
      *
