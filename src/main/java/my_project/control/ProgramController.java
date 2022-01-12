@@ -3,10 +3,6 @@ package my_project.control;
 import my_project.model.EnemyBoss;
 import my_project.model.Player;
 import KAGO_framework.control.ViewController;
-import KAGO_framework.model.GraphicalObject;
-import KAGO_framework.view.DrawTool;
-import my_project.Config;
-import my_project.view.Options;
 
 import java.awt.*;
 
@@ -48,6 +44,7 @@ public class ProgramController {
         window = new GraphicalWindow(viewController, this);
         new InputManagerMainMenu(this, viewController);
         new InputManagerOptions(this, viewController, window.getOptions());
+        new InputManagerGame(this, viewController);
     }
     public void createPlayer(){
         Player player = new Player(10, 3,false,0,viewController);
