@@ -8,16 +8,18 @@ public abstract class Enemy extends GraphicalObject {
     private int hp;
     private int damage;
     private int speed;
+    private boolean shield;
     private ViewController viewController;
 
-    public Enemy(double x, double y, int hp, int damage, int speed, ViewController viewController){
+    public Enemy(double x, double y, int hp, int damage, int speed, boolean shield, ViewController viewController){
 
 
         this.x = x;
         this.y = y;
-        this.hp = 2;
+        this.hp = 3;
         this.damage = damage;
         this.speed = speed;
+        this.shield = shield;
 
     }
     public void shoot(){

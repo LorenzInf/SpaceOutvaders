@@ -50,6 +50,9 @@ public class ProgramController {
 
 
     }
+    public void EnemyShoots(){
+
+    }
 
     /**
      * Wenn ein Gegner getroffen wurde -> Enemy verliert ein Leben
