@@ -34,7 +34,7 @@ public class InputManagerMainMenu extends InteractiveGraphicalObject {
 
     @Override
     public void keyPressed(int key){
-        if(key == KeyEvent.VK_ENTER){
+        if(key == KeyEvent.VK_ENTER || key == KeyEvent.VK_SPACE){
             if(programController.getWindow().getMainMenuIndex() == 5) programController.getWindow().escape();
             if(programController.getWindow().getMainMenuIndex() > 0){
                 programController.getWindow().switchScene(programController.getWindow().getMainMenuIndex());
