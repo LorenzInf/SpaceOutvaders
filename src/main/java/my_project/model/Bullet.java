@@ -6,18 +6,22 @@ import KAGO_framework.view.DrawTool;
 
 public class Bullet extends GraphicalObject {
 
-    private int radius;
-    private double x,y;
+    private int radiusBu,buR,buG,buB;
+    private double xBu,yBu;
 
-    public Bullet(double x, double y){
-        this.x = x;
-        this.y = y;
-        radius = 50;
-
+    public Bullet(double xBu, double yBu, int buR, int buG, int buB, int radiusBu){
+        this.xBu = xBu;
+        this.yBu = yBu;
+        this.buR = buR;
+        this.buG = buG;
+        this.buB = buB;
+        this.radiusBu = radiusBu;
     }
 
+
     public void draw(DrawTool drawTool){
-        drawTool.drawFilledCircle(x,y,radius);
+        drawTool.setCurrentColor(buR,buG,buB,255);
+        drawTool.drawFilledCircle(xBu,yBu,radius);
     }
     @Override
     public void update(double dt){
@@ -26,4 +30,27 @@ public class Bullet extends GraphicalObject {
 
 
 
+    public int getRadiusBu() {
+        return radiusBu;
+    }
+
+    public double getxBu() {
+        return xBu;
+    }
+
+    public void setxBu(double xBu) {
+        this.xBu = xBu;
+    }
+
+    public void setRadius(int radius) {
+        this.radius = radius;
+    }
+
+    public double getyBu() {
+        return yBu;
+    }
+
+    public void setyBu(double yBu) {
+        this.yBu = yBu;
+    }
 }
