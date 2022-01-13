@@ -1,6 +1,6 @@
 package my_project.model;
 import KAGO_framework.control.ViewController;
-import KAGO_framework.model.GraphicalObject;
+ofimport KAGO_framework.model.GraphicalObject;
 import my_project.view.Game;
 import java.awt.image.BufferedImage;
 import java.util.Random;

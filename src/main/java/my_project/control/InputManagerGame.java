@@ -33,6 +33,7 @@ public class InputManagerGame extends InteractiveGraphicalObject {
 
     @Override
     public void keyPressed(int key){
+
         if(key == KeyEvent.VK_SPACE){
         }
 

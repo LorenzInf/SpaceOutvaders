@@ -1,11 +1,13 @@
 package my_project.model;
 import KAGO_framework.control.ViewController;
 import KAGO_framework.model.GraphicalObject;
+import my_project.control.ProgramController;
+import my_project.view.Game;
 
 import javax.swing.text.View;
 import java.awt.image.BufferedImage;
 
-public class Player extends GraphicalObject {
+public class Player extends Game {
 
     private BufferedImage Spaceship;
     private String name;
@@ -14,12 +16,19 @@ public class Player extends GraphicalObject {
     private boolean shield;
     private int buff;
     private ViewController viewController;
+    private ProgramController programController;
+    private BufferedImage[] images;
 
-    public Player(int speed, int hp, boolean shield, int buff, ViewController viewController){
+    public Player(int speed, int hp, boolean shield, int buff, ViewController viewController, ProgramController programController){
+        super(viewController, programController);
         this.speed = speed;
         this.hp = hp;
         this.shield = false;
         this.buff = ((int)(Math.random()*4));
+        images = new BufferedImage[]{
+                load("Spaceship.png"), // 1
+        };
+        viewController.draw(this, 2);
     }
 
 

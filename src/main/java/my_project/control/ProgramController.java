@@ -19,9 +19,7 @@ public class ProgramController {
 
 
     // Referenzen
-    private ViewController viewController;  // diese Referenz soll auf ein Objekt der Klasse viewController zeigen. Über dieses Objekt wird das Fenster gesteuert.
-    private Menu menu;
-    private Player player;
+    private ViewController viewController;
     private GraphicalWindow window;
     private Visual2DArray array;
 
@@ -48,6 +46,7 @@ public class ProgramController {
         new InputManagerMainMenu(this, viewController);
         new InputManagerOptions(this, viewController, window.getOptions());
         new InputManagerGame(this, viewController);
+        new Player(0,0,false, 0, viewController, getWindow().programController);
         viewController.draw(array, 2);
         viewController.register(array);
     }
