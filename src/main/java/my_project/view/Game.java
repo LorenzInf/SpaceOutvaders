@@ -14,6 +14,7 @@ public class Game extends GraphicalWindow {
     private ProgramController programController;
     private BufferedImage[] images;
 
+    public Game(){ }
     public Game(ViewController viewController, ProgramController programController) {
         super();
         this.programController = programController;
