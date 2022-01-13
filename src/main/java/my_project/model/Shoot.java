@@ -9,7 +9,6 @@ public class Shoot extends GraphicalObject {
     private int shootR,shootG,shootB;
 
     public Shoot(double x, double y, double speed, int shootR, int shootG, int shootB){
-
         this.x = x;
         this.y = y;
         this.w = w;
@@ -18,7 +17,6 @@ public class Shoot extends GraphicalObject {
         this.shootG = shootG;
         this.shootB = shootB;
         this.speed = speed;
-
     }
 
     public void draw(DrawTool drawtool){

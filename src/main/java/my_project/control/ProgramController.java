@@ -51,25 +51,6 @@ public class ProgramController {
         viewController.draw(array, 2);
         viewController.register(array);
     }
-    public void createPlayer(){
-        Player player = new Player(10, 3,false,0,viewController);
-    }
-    public void createEnemyWave(){
-
-
-    }
-    public void EnemyShoots(){
-
-    }
-
-    /**
-     * Wenn ein Gegner getroffen wurde -> Enemy verliert ein Leben
-     * Wenn Enemy kein Leben mehr hat soll der enemy verschwinden
-     */
-    /*public boolean enemyGotHit() {
-
-    }*/
-
 
     /**
      * Aufruf mit jeder Frame
