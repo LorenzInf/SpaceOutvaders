@@ -1,9 +1,13 @@
 package my_project.control;
 
+import my_project.Config;
 import my_project.model.Player;
 import KAGO_framework.control.ViewController;
+import my_project.view.Game;
+import my_project.view.Visual2DArray;
 
 import java.awt.*;
+import java.lang.reflect.Array;
 
 /**
  * Ein Objekt der Klasse ProgramController dient dazu das Programm zu steuern. Die updateProgram - Methode wird
@@ -19,6 +23,7 @@ public class ProgramController {
     private Menu menu;
     private Player player;
     private GraphicalWindow window;
+    private Visual2DArray array;
 
 
     /**
@@ -38,11 +43,13 @@ public class ProgramController {
      * Sie erstellt die leeren Datenstrukturen, zu Beginn nur eine Queue
      */
     public void startProgram() {
-        // Setzt den Hintergrund auf Schwarz
+        array = new Visual2DArray<Game>(11, Config.WINDOW_HEIGHT / 175, 0 , 0, new Visual2DArray.VisualizationConfig(0,0, 175, 175, 0, true, false, false, null, Color.WHITE, new Color(0,0,0,0)));
         window = new GraphicalWindow(viewController, this);
         new InputManagerMainMenu(this, viewController);
         new InputManagerOptions(this, viewController, window.getOptions());
         new InputManagerGame(this, viewController);
+        viewController.draw(array, 2);
+        viewController.register(array);
     }
     public void createPlayer(){
         Player player = new Player(10, 3,false,0,viewController);

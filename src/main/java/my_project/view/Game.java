@@ -9,7 +9,7 @@ import my_project.control.ProgramController;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Game extends GraphicalWindow {
+public class Game extends GraphicalWindow implements Visual2DArray.Animatable {
 
     private ProgramController programController;
     private BufferedImage[] images;
@@ -28,6 +28,14 @@ public class Game extends GraphicalWindow {
     @Override
     public void draw(DrawTool drawTool) {
         drawTool.drawImage(images[0], 0 ,0);
-        drawTool.drawTransformedImage(images[1], 666,700, 0 ,0.5);
+        drawTool.drawTransformedImage(images[1], 690,775, 0 ,0.5);
+    }
+
+    @Override
+    public void fadeIn() {
+    }
+
+    @Override
+    public void fadeOut() {
     }
 }
