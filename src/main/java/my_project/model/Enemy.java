@@ -1,7 +1,10 @@
 package my_project.model;
 import KAGO_framework.control.ViewController;
-ofimport KAGO_framework.model.GraphicalObject;
+import KAGO_framework.model.GraphicalObject;
+import my_project.control.ProgramController;
 import my_project.view.Game;
+
+import javax.swing.text.View;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
@@ -13,6 +16,15 @@ public abstract class Enemy extends Game {
             load("enemy_normal.png"), //2
             load("enemy_shield.png") //3
     };
+
+    protected ViewController viewController;
+    protected ProgramController programController;
+
+    public Enemy(ViewController viewController, ProgramController programController){
+        super(viewController, programController);
+        this.viewController = viewController;
+        this.programController = programController;
+    }
 
     public void tryToShoot(double dt){
         double help = 0;
