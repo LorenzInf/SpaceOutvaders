@@ -7,6 +7,7 @@ import my_project.view.*;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Objects;
 
 public class GraphicalWindow extends GraphicalObject {
     protected int mainMenuIndex;
@@ -34,8 +35,8 @@ public class GraphicalWindow extends GraphicalObject {
         viewController.draw(game,2);
         viewController.draw(leaderboard,3);
         viewController.draw(guide,4);
-        mainMenuIndex = 0;
-        optionsIndex = 0;
+        mainMenuIndex = 2;
+        optionsIndex = 1;
     }
 
     public void switchScene(int index){
@@ -67,11 +68,10 @@ public class GraphicalWindow extends GraphicalObject {
         }
     }
 
-    // Methode um Bilder zu malen, Parameter load -> Pfad des Bild
+    // Methode um Bilder zu malen, Parameter load → Pfad des Bild
     public BufferedImage load (String name) {
         try {
-            BufferedImage img = ImageIO.read((getClass().getResource("/graphic/" + name).openStream()));
-            return img;
+            return ImageIO.read((Objects.requireNonNull(getClass().getResource("/graphic/" + name)).openStream()));
         } catch (IOException e) {
             e.printStackTrace();
             return null;
