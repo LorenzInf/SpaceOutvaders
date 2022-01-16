@@ -1,34 +1,31 @@
 package my_project.control;
 
+import KAGO_framework.control.SoundController;
 import KAGO_framework.control.ViewController;
-import KAGO_framework.model.InteractiveGraphicalObject;
-import my_project.view.Game;
-import my_project.view.Options;
 
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
+
 /**
  * Realisiert ein Objekt, dass alle Eingaben empfängt und dann danach passende Methoden
  * im ProgramController aufruft
  */
-public class InputManagerGame extends InteractiveGraphicalObject {
+public class InputManagerGame extends InputManager {
 
-    private ProgramController programController;
-    private ViewController viewController;
+    private final ProgramController programController;
+    private final ViewController viewController;
+    private final SoundController soundController;
 
     /**
      * Objekterzeugung
      * @param programController Nötig als Objekt vom Controllerbereich, das informiert wird
      * @param viewController Nötig, um den Aufruf der Interface-Methoden sicherzustellen
      */
-    public InputManagerGame(ProgramController programController, ViewController viewController){
+    public InputManagerGame(ProgramController programController, ViewController viewController, SoundController soundController){
+        super(viewController,programController,soundController);
         this.programController = programController;
         this.viewController = viewController;
+        this.soundController = soundController;
         viewController.register(this, 2);
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
     }
 
     @Override
@@ -43,5 +40,6 @@ public class InputManagerGame extends InteractiveGraphicalObject {
         if(key == KeyEvent.VK_D){
 
         }
+        forceMainMenu(key);
     }
 }
