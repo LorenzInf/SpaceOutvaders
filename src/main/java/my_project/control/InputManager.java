@@ -22,6 +22,10 @@ public abstract class InputManager extends InteractiveGraphicalObject {
         this.soundController.loadSound("src/main/resources/sound/exit.mp3","exit",false);
     }
 
+
+    /**
+     * Updates the soundController
+     */
     protected void updateSoundController(){
         elapsedTime = System.nanoTime() - lastLoop;
         lastLoop = System.nanoTime();
@@ -31,6 +35,10 @@ public abstract class InputManager extends InteractiveGraphicalObject {
         if(soundController != null) soundController.update(dtSeconds);
     }
 
+
+    /**
+     * Forces you back to the main menu if Esc is held for 5 seconds - this should be called in keyPressed() methods of any subclass
+     */
     protected void forceMainMenu(int key){
         //TODO Fix I guess (After five seconds KAGO dies, console still works though)
         /*

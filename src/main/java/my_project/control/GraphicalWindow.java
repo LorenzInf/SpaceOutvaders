@@ -10,8 +10,7 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class GraphicalWindow extends GraphicalObject {
-    protected int mainMenuIndex;
-    protected int optionsIndex;
+    protected int mainMenuIndex, optionsIndex;
     protected ViewController viewController;
     protected ProgramController programController;
     private Game game;
@@ -39,6 +38,10 @@ public class GraphicalWindow extends GraphicalObject {
         optionsIndex = 1;
     }
 
+    /**
+     * Switches the scene to the given index
+     * @param index index of the scene to switch to
+     */
     public void switchScene(int index){
         viewController.showScene(index);
     }
@@ -68,7 +71,10 @@ public class GraphicalWindow extends GraphicalObject {
         }
     }
 
-    // Methode um Bilder zu malen, Parameter load → Pfad des Bild
+    /**
+     * Loads images
+     * @param name the name of the image file (has to be in src/main/resources/graphic)
+     */
     public BufferedImage load (String name) {
         try {
             return ImageIO.read((Objects.requireNonNull(getClass().getResource("/graphic/" + name)).openStream()));
