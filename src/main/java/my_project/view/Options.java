@@ -9,15 +9,15 @@ import java.awt.image.BufferedImage;
 
 public class Options extends GraphicalWindow {
 
-    private ProgramController programController;
+    private final ProgramController programController;
     private boolean musicOn;
     private boolean soundOn;
-    private BufferedImage[] images;
+    private final BufferedImage[] images;
 
     public Options(ViewController viewController, ProgramController programController) {
         super();
         this.programController = programController;
-        images = new BufferedImage[]{ // Alle Bilder pre laden, damit es zu keinen Lags kommt weil sonst die Images neu geladen werden
+        images = new BufferedImage[]{ // Alle Bilder pre laden, damit es zu keinen Lags kommt, weil sonst die Images neu geladen werden
                 load("options_blank.png"), // 0
                 load("options_music_on.png"), // 1
                 load("options_music_off.png"), // 2
@@ -38,33 +38,15 @@ public class Options extends GraphicalWindow {
     public void draw(DrawTool drawTool){
         drawTool.drawImage(images[0], 0 ,0);
 
-        if(musicOn){ // Wenn es neu gezeichnet wird muss geguckt werden ob es an oder aus gemacht werden muss
-            drawTool.drawImage(images[1], 0, 0);
-        }else{
-            drawTool.drawImage(images[2], 0, 0);
-        }
+        // Wenn es neu gezeichnet wird muss geguckt werden, ob es an oder aus gemacht werden muss
+        drawTool.drawImage(musicOn ? images[1] : images[2], 0, 0);
 
-        if(soundOn){ // Wenn es neu gezeichnet wird muss geguckt werden ob es an oder aus gemacht werden muss
-            drawTool.drawImage(images[3], 0, 0);
-        }else{
-            drawTool.drawImage(images[4], 0, 0);
-        }
+        // Wenn es neu gezeichnet wird muss geguckt werden, ob es an oder aus gemacht werden muss
+        drawTool.drawImage(soundOn ? images[3] : images[4], 0, 0);
 
         switch(programController.getWindow().getOptionsIndex()) { // Symbol markiert oder nicht
-            case 1 -> {
-                if(musicOn){
-                    drawTool.drawImage(images[5], 0, 0);
-                }else{
-                    drawTool.drawImage(images[6], 0, 0);
-                }
-            }
-            case 2 -> {
-                if(soundOn){
-                    drawTool.drawImage(images[7], 0, 0);
-                }else{
-                    drawTool.drawImage(images[8], 0, 0);
-                }
-            }
+            case 1 -> drawTool.drawImage(musicOn ? images[5] : images[6], 0, 0);
+            case 2 -> drawTool.drawImage(soundOn ? images[7] : images[8], 0, 0);
             case 3 -> drawTool.drawImage(images[9], 0, 0);
         }
     }
