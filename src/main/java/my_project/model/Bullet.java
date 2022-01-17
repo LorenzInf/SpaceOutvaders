@@ -6,23 +6,23 @@ import KAGO_framework.view.DrawTool;
 
 public class Bullet extends GraphicalObject {
 
-    private int radiusBu,buR,buG,buB;
-    private double xBu,yBu;
+    private int r,g,b;
 
-    public Bullet(double xBu, double yBu, int buR, int buG, int buB, int radiusBu){
-        this.xBu = xBu;
-        this.yBu = yBu;
-        this.buR = buR;
-        this.buG = buG;
-        this.buB = buB;
-        this.radiusBu = radiusBu;
+    public Bullet(double x, double y, int r, int g, int b, double radius){
+        this.x = x;
+        this.y = y;
+        this.r = r;
+        this.g = g;
+        this.b = b;
+        this.radius = radius;
     }
 
 
     public void draw(DrawTool drawTool){
-        drawTool.setCurrentColor(buR,buG,buB,255);
-        drawTool.drawFilledCircle(xBu,yBu,radius);
+        drawTool.setCurrentColor(r,g,b,255);
+        drawTool.drawFilledCircle(x,y,radius);
     }
+
     @Override
     public void update(double dt){
 
@@ -30,27 +30,27 @@ public class Bullet extends GraphicalObject {
 
 
 
-    public int getRadiusBu() {
-        return radiusBu;
+    public double getRadius() {
+        return radius;
     }
 
-    public double getxBu() {
-        return xBu;
+    public double getX() {
+        return x;
     }
 
-    public void setxBu(double xBu) {
-        this.xBu = xBu;
+    public void setX(double x) {
+        this.x = x;
     }
 
     public void setRadius(int radius) {
         this.radius = radius;
     }
 
-    public double getyBu() {
-        return yBu;
+    public double getY() {
+        return y;
     }
 
-    public void setyBu(double yBu) {
-        this.yBu = yBu;
+    public void setY(double y) {
+        this.y = y;
     }
 }
