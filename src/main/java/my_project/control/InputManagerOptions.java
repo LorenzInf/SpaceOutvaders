@@ -48,7 +48,6 @@ public class InputManagerOptions extends InputManager {
             if(programController.getWindow().getOptionsIndex() == 3){ // Wenn man auf dem X ist
                 SoundController.playSound("exit");
                 programController.getWindow().setOptionsIndex(1);
-                viewController.draw(options); // Damit das X nicht rot markiert ist
                 programController.getWindow().switchScene(0);
             }
         }
@@ -56,7 +55,6 @@ public class InputManagerOptions extends InputManager {
         if(key == KeyEvent.VK_ESCAPE){
             SoundController.playSound("exit");
             programController.getWindow().setOptionsIndex(1);
-            viewController.draw(options); // Damit das X nicht rot markiert ist
             programController.getWindow().switchScene(0);
         }
 

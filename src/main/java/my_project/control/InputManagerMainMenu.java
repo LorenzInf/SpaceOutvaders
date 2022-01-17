@@ -75,7 +75,6 @@ public class InputManagerMainMenu extends InputManager {
             } else {
                 programController.getWindow().setMainMenuIndex(5);
             }
-            viewController.draw(menu);
         }
 
         // Selected den Button unten
