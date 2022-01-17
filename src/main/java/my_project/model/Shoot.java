@@ -5,14 +5,14 @@ import KAGO_framework.view.DrawTool;
 
 public class Shoot extends GraphicalObject {
 
-    private double x,y,w,h,speed;
+    private double speed;
     private int shootR,shootG,shootB;
 
-    public Shoot(double x, double y, double speed, int shootR, int shootG, int shootB){
+    public Shoot(double x, double y, double width, double height, double speed, int shootR, int shootG, int shootB){
         this.x = x;
         this.y = y;
-        this.w = w;
-        this.h = h;
+        this.width = width;
+        this.height = height;
         this.shootR = shootR;
         this.shootG = shootG;
         this.shootB = shootB;
@@ -21,7 +21,7 @@ public class Shoot extends GraphicalObject {
 
     public void draw(DrawTool drawtool){
         drawtool.setCurrentColor(shootR, shootG, shootB,255);
-        drawtool.drawFilledRectangle(x,y,w,h);
+        drawtool.drawFilledRectangle(x,y,width,height);
     }
 
     @Override
