@@ -17,8 +17,12 @@ public abstract class Enemy extends Game {
             load("enemy_shield.png") //3
     };
 
+    //other stuff
     protected ViewController viewController;
     protected ProgramController programController;
+    protected int hp = 1; //1 oder 2
+    protected int speed = 1; //in felder/sekunde
+    protected double shootChance = 0.5;
 
     public Enemy(ViewController viewController, ProgramController programController){
         super(viewController, programController);
@@ -26,6 +30,11 @@ public abstract class Enemy extends Game {
         this.programController = programController;
     }
 
+
+    /**
+     * This should constantly be called in subclasses - Every second there is a chance of {@code shootChance}% to shoot
+     * @param dt Time since last update
+     */
     public void tryToShoot(double dt){
         double help = 0;
         help += dt;
@@ -37,11 +46,6 @@ public abstract class Enemy extends Game {
             }
         }
     }
-
-    //Stuff
-    protected int hp = 1; //1 oder 2
-    protected int speed = 1; //in felder/sekunde
-    protected double shootChance = 0.5;
 
     //Jedes mal wenn er sich bewegt und kein Gegner unter ihm ist hat er eine x Prozent chance nach unten zu schießen
     //(würde 0.5% oder so vorschlagen, muss man ausprobieren)
@@ -57,7 +61,6 @@ public abstract class Enemy extends Game {
     public void setHp(int hp) {
         this.hp = hp;
     }
-
 
     public int getSpeed() {
         return speed;
