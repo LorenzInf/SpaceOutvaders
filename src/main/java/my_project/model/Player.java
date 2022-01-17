@@ -31,10 +31,6 @@ public class Player extends Game {
         viewController.draw(this, 2);
     }
 
-
-
-
-
     /**
      *
      * @param dt
@@ -45,24 +41,13 @@ public class Player extends Game {
      */
     @Override
     public void update(double dt){
-        if(buff == 1){
-
-            speed = speed *2;
-
-        }else if(buff == 2){
-
-            hp = hp + hp/4;
-
-        }else if(buff == 3){
-
-            shield = true; //Muss ich mir noch was überlegen
-
-        }else if(buff == 4){
-
-            speed = speed/2;
-
+        //hab die ganzen if's mal zu nem switch case gemacht - Lorenz
+        switch(buff){
+            case 1 -> speed *= 2; //Wir müssen uns noch überlegen wie speed funktioniert, wenn man sich in Feldern belegt
+            case 2 -> hp += hp/4;
+            case 3 -> shield = true; //TODO
+            case 4 -> speed /= 2;
         }
-
     }
 
     public int getSpeed() {
