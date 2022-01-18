@@ -12,14 +12,8 @@ public class EnemyNormal extends Enemy {
         super(viewController, programController);
     }
 
-
     @Override
     public void draw(DrawTool drawTool){
         drawTool.drawImage(images[2],x,y);
-    }
-
-    @Override
-    public void update(double dt){
-        tryToShoot(dt);
     }
 }
