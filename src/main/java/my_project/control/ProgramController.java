@@ -24,6 +24,7 @@ public class ProgramController {
     private final SoundController soundController;
     private GraphicalWindow window;
     private Visual2DArray array;
+    private Player player;
 
 
     /**
@@ -47,8 +48,8 @@ public class ProgramController {
         window = new GraphicalWindow(viewController, this);
         new InputManagerMainMenu(this, viewController, soundController);
         new InputManagerOptions(this, viewController, window.getOptions(), soundController);
-        new InputManagerGame(this, viewController, soundController);
-        new Player(0,0,false, 0, viewController, getWindow().programController);
+        new InputManagerGame(this, viewController, soundController, player);
+        player = new Player(0,0,false, 0, viewController, getWindow().programController);
         viewController.draw(array, 2);
         viewController.register(array);
     }

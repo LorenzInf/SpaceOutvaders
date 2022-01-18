@@ -1,16 +1,17 @@
 package my_project.model;
 import KAGO_framework.control.ViewController;
-import KAGO_framework.model.GraphicalObject;
+import KAGO_framework.view.DrawTool;
 import my_project.control.ProgramController;
 import my_project.view.Game;
 
-import javax.swing.text.View;
 import java.awt.image.BufferedImage;
 
 public class Player extends Game {
 
     private BufferedImage Spaceship;
     private String name;
+    private int x;
+    private int y;
     private int speed;
     private int hp;
     private boolean shield;
@@ -25,11 +26,19 @@ public class Player extends Game {
         this.hp = hp;
         this.shield = false;
         this.buff = ((int)(Math.random()*4));
+        x = 666;
+        y = 720;
         images = new BufferedImage[]{
                 load("Spaceship.png"), // 1
         };
         viewController.draw(this, 2);
     }
+
+    @Override
+    public void draw(DrawTool drawTool){
+        drawTool.drawImage(images[0], x, y);
+    }
+
 
     /**
      *
@@ -48,6 +57,24 @@ public class Player extends Game {
             case 3 -> shield = true; //TODO
             case 4 -> speed /= 2;
         }
+    }
+
+    @Override
+    public double getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    @Override
+    public double getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
     }
 
     public int getSpeed() {
