@@ -62,6 +62,7 @@ public class GraphicalWindow extends GraphicalObject {
         this.mainMenuIndex = mainMenuIndex;
     }
 
+
     public void escape(){
         int index = viewController.getCurrentSceneIndex();
         switch (index) {

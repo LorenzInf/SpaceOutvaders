@@ -15,7 +15,8 @@ public abstract class Enemy extends Game {
             load("enemy_burst_fire.png"), //1
             load("enemy_normal.png"), //2
             load("enemy_shield.png"), //3
-            load("enemy_charged_instant_shot") //4
+            load("enemy_charged_instant_shot"), //4
+            load("enemy_speed.png")//5
     };
 
     //other stuff
