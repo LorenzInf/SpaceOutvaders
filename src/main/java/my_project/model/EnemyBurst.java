@@ -16,7 +16,8 @@ public class EnemyBurst extends Enemy{
 
     @Override
     public void update(double dt){
-        if(tryToShoot(shootChance)){
+
+        if(tryToShoot()){
             //shoot();
             //wait idk 0.5 second or so
             //shoot();
