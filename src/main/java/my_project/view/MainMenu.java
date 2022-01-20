@@ -1,6 +1,7 @@
 package my_project.view;
 
 import KAGO_framework.control.ViewController;
+import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
 import my_project.control.GraphicalWindow;
 import my_project.control.ProgramController;
@@ -16,12 +17,12 @@ public class MainMenu extends GraphicalWindow {
         this.programController = programController;
         viewController.createScene();
         images = new BufferedImage[]{
-                load("main_screen.png"), //0
-                load("main_screen_settings_selected.png"), //1
-                load("main_screen_play_selected.png"), //2
-                load("main_screen_leaderboard_selected.png"), //3
-                load("main_screen_question_mark_selected.png"), //4
-                load("x_selected.png") //5
+                createImage("src/main/resources/graphic/main_screen.png"), //0
+                createImage("src/main/resources/graphic/main_screen_settings_selected.png"), //1
+                createImage("src/main/resources/graphic/main_screen_play_selected.png"), //2
+                createImage("src/main/resources/graphic/main_screen_leaderboard_selected.png"), //3
+                createImage("src/main/resources/graphic/main_screen_question_mark_selected.png"), //4
+                createImage("src/main/resources/graphic/x_selected.png") //5
         };
     }
 

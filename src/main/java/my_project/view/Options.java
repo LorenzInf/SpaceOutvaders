@@ -10,24 +10,24 @@ import java.awt.image.BufferedImage;
 public class Options extends GraphicalWindow {
 
     private final ProgramController programController;
+    private final BufferedImage[] images;
     private boolean musicOn;
     private boolean soundOn;
-    private final BufferedImage[] images;
 
     public Options(ViewController viewController, ProgramController programController) {
         super();
         this.programController = programController;
         images = new BufferedImage[]{ // Alle Bilder pre laden, damit es zu keinen Lags kommt, weil sonst die Images neu geladen werden
-                load("options_blank.png"), // 0
-                load("options_music_on.png"), // 1
-                load("options_music_off.png"), // 2
-                load("options_sound_on.png"), // 3
-                load("options_sound_off.png"), // 4
-                load("options_music_on_selected.png"), // 5
-                load("options_music_off_selected.png"), // 6
-                load("options_sound_on_selected.png"), // 7
-                load("options_sound_off_selected.png"), // 8
-                load("x_selected.png"), // 9
+                createImage("src/main/resources/graphic/options_blank.png"), // 0
+                createImage("src/main/resources/graphic/options_music_on.png"), // 1
+                createImage("src/main/resources/graphic/options_music_off.png"), // 2
+                createImage("src/main/resources/graphic/options_sound_on.png"), // 3
+                createImage("src/main/resources/graphic/options_sound_off.png"), // 4
+                createImage("src/main/resources/graphic/options_music_on_selected.png"), // 5
+                createImage("src/main/resources/graphic/options_music_off_selected.png"), // 6
+                createImage("src/main/resources/graphic/options_sound_on_selected.png"), // 7
+                createImage("src/main/resources/graphic/options_sound_off_selected.png"), // 8
+                createImage("src/main/resources/graphic/x_selected.png"), // 9
         };
         musicOn = true;
         soundOn = true;

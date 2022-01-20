@@ -24,18 +24,21 @@ public class GraphicalWindow extends GraphicalObject {
     public GraphicalWindow(ViewController viewController, ProgramController programController) {
         this.viewController = viewController;
         this.programController = programController;
+
         game = new Game(viewController, programController);
         guide = new Guide(viewController);
         leaderboard = new Leaderboard(viewController);
         mainMenu = new MainMenu(viewController, programController);
         options = new Options(viewController, programController);
+
+        mainMenuIndex = 2;
+        optionsIndex = 1;
+
         viewController.draw(mainMenu,0);
         viewController.draw(options,1);
         viewController.draw(game,2);
         viewController.draw(leaderboard,3);
         viewController.draw(guide,4);
-        mainMenuIndex = 2;
-        optionsIndex = 1;
     }
 
     /**
@@ -71,21 +74,24 @@ public class GraphicalWindow extends GraphicalObject {
         }
     }
 
-    /**
-     * Loads images
-     * @param name the name of the image file (has to be in src/main/resources/graphic)
-     */
-    public BufferedImage load (String name) {
-        try {
-            return ImageIO.read((Objects.requireNonNull(getClass().getResource("/graphic/" + name)).openStream()));
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
     public Options getOptions() {
         return options;
+    }
+
+    public Game getGame() {
+        return game;
+    }
+
+    public Guide getGuide() {
+        return guide;
+    }
+
+    public Leaderboard getLeaderboard() {
+        return leaderboard;
+    }
+
+    public MainMenu getMainMenu() {
+        return mainMenu;
     }
 }
 

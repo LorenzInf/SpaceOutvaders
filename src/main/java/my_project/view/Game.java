@@ -18,11 +18,10 @@ public class Game extends GraphicalWindow implements Visual2DArray.Animatable {
     public Game(ViewController viewController, ProgramController programController) {
         super();
         this.programController = programController;
-        images = new BufferedImage[]{ // Alle Bilder pre laden, damit es zu keinen Lags kommt weil sonst die Images neu geladen werden
-                load("maingame_blank.png")
-        };
-        System.out.println(images);
         viewController.createScene();
+        images = new BufferedImage[]{ // Alle Bilder pre laden, damit es zu keinen Lags kommt weil sonst die Images neu geladen werden
+                createImage("src/main/resources/graphic/maingame_blank.png")
+        };
     }
 
     @Override
