@@ -14,6 +14,7 @@ public class Game extends GraphicalWindow implements Visual2DArray.Animatable {
 
     private ProgramController programController;
     private BufferedImage[] images;
+    private Player player;
 
     public Game(ViewController viewController, ProgramController programController) {
         super();
@@ -36,4 +37,9 @@ public class Game extends GraphicalWindow implements Visual2DArray.Animatable {
     @Override
     public void fadeOut() {
     }
+
+    public Player getPlayer(){
+        return player;
+    }
+
 }
