@@ -29,7 +29,7 @@ public class Player extends Game {
         x = 666;
         y = 720;
         images = new BufferedImage[]{
-                createImage("Spaceship.png"), // 1
+                createImage("src/main/resources/graphic/Spaceship.png"), // 1
         };
         viewController.draw(this, 2);
     }
