@@ -11,12 +11,12 @@ import java.util.Random;
 public abstract class Enemy extends Game {
     //Sprites
     protected BufferedImage[] images = new BufferedImage[]{
-            load("enemy_boss.png"), //0
-            load("enemy_burst_fire.png"), //1
-            load("enemy_normal.png"), //2
-            load("enemy_shield.png"), //3
-            load("enemy_charged_instant_shot"), //4
-            load("enemy_speed.png")//5
+            createImage("enemy_boss.png"), //0
+            createImage("enemy_burst_fire.png"), //1
+            createImage("enemy_normal.png"), //2
+            createImage("enemy_shield.png"), //3
+            createImage("enemy_charged_instant_shot"), //4
+            createImage("enemy_speed.png")//5
     };
 
     //other stuff

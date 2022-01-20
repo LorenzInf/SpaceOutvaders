@@ -5,8 +5,9 @@ import KAGO_framework.view.DrawTool;
 import my_project.control.ProgramController;
 
 public class EnemySpeed extends Enemy {
-    public EnemySpeed(ViewController viewController, ProgramController programController){
-        super(viewController, programController);
+    public EnemySpeed( ViewController viewController, ProgramController programController){
+        super( viewController, programController);
+        speed = 3;
 
 
     }
@@ -15,5 +16,11 @@ public class EnemySpeed extends Enemy {
     public void draw(DrawTool drawTool){
         drawTool.drawImage(images[5],x,y);
     }
+
+    @Override
+    public void update(double dt){
+
+    }
+
 }
 
