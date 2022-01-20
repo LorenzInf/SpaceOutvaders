@@ -49,7 +49,7 @@ public class ProgramController {
         new InputManagerMainMenu(this, viewController, soundManager);
         new InputManagerOptions(this, viewController, window.getOptions(), soundManager);
         new InputManagerGame(this, viewController, soundManager, getWindow().getGame());
-        player = new Player(0,0,false, 0, viewController, getWindow().programController);
+        player = new Player(666,720,0,0,false, 0, viewController, getWindow().programController);
         viewController.draw(array, 2);
         viewController.register(array);
     }
@@ -66,4 +66,7 @@ public class ProgramController {
         return window;
     }
 
+    public Player getPlayer() {
+        return player;
+    }
 }

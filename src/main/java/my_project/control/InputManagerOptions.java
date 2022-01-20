@@ -15,7 +15,6 @@ public class InputManagerOptions extends InputManager {
     private ProgramController programController;
     private ViewController viewController;
     private Options options;
-    private long elapsedTime,lastLoop;
     private final SoundManager soundManager;
 
     /**

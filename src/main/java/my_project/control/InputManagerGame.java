@@ -17,6 +17,7 @@ public class InputManagerGame extends InputManager {
     private final ViewController viewController;
     private final SoundManager soundManager;
     private Game game;
+    private Player player;
 
     /**
      * Objekterzeugung
@@ -29,6 +30,7 @@ public class InputManagerGame extends InputManager {
         this.viewController = viewController;
         this.soundManager = soundManager;
         this.game = game;
+        player = programController.getPlayer();
         viewController.register(this, 2);
     }
 
@@ -42,8 +44,8 @@ public class InputManagerGame extends InputManager {
         }
 
         if(key == KeyEvent.VK_D){
-            game.getPlayer().setX(getX()+11);
-            // Player um die Breite eines Array Feldes verschieben.
+            player.setX(800);
+            // ToDo: Player um die Breite eines Array Feldes verschieben.
         }
         forceMainMenu(key);
     }

@@ -20,15 +20,15 @@ public class Player extends Game {
     private ProgramController programController;
 
 
-    public Player(int speed, int hp, boolean shield, int buff, ViewController viewController, ProgramController programController){
+    public Player(int x, int y, int speed, int hp, boolean shield, int buff, ViewController viewController, ProgramController programController){
         super(viewController, programController);
+        this.x = x;
+        this.y = y;
         this.speed = speed;
         this.hp = hp;
         this.shield = false;
         this.buff = ((int)(Math.random()*4));
         viewController.draw(this, 2);
-        x = 666;
-        y = 720;
         images = new BufferedImage[]{
                 createImage("src/main/resources/graphic/Spaceship.png"), // 1
         };
@@ -106,5 +106,9 @@ public class Player extends Game {
 
     public void setBuff(int buff) {
         this.buff = buff;
+    }
+
+    public Player getPlayer(){
+        return this;
     }
 }
