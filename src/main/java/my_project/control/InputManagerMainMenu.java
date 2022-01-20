@@ -15,24 +15,24 @@ public class InputManagerMainMenu extends InputManager {
     private final ProgramController programController;
     private final ViewController viewController;
     private MainMenu menu;
-    private final SoundController soundController;
+    private final SoundManager soundManager;
 
     /**
      * Objekterzeugung
      * @param programController Nötig als Objekt vom Controllerbereich, das informiert wird
      * @param viewController Nötig, um den Aufruf der Interface-Methoden sicherzustellen
      */
-    public InputManagerMainMenu(ProgramController programController, ViewController viewController, SoundController soundController){
-        super(viewController, programController, soundController);
+    public InputManagerMainMenu(ProgramController programController, ViewController viewController, SoundManager soundManager){
+        super(viewController, programController, soundManager);
         this.programController = programController;
         this.viewController = viewController;
-        this.soundController = soundController;
+        this.soundManager = soundManager;
         viewController.register(this, 0);
     }
 
     @Override
     public void keyPressed(int key){
-        updateSoundController();
+        soundManager.updateSoundController();
         if(key == KeyEvent.VK_ENTER || key == KeyEvent.VK_SPACE){
             if(programController.getWindow().getMainMenuIndex() == 5) programController.getWindow().escape();
             if(programController.getWindow().getMainMenuIndex() > 0){

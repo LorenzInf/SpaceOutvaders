@@ -14,7 +14,7 @@ public class InputManagerGame extends InputManager {
 
     private final ProgramController programController;
     private final ViewController viewController;
-    private final SoundController soundController;
+    private final SoundManager soundManager;
     private Player player;
 
     /**
@@ -22,11 +22,11 @@ public class InputManagerGame extends InputManager {
      * @param programController Nötig als Objekt vom Controllerbereich, das informiert wird
      * @param viewController Nötig, um den Aufruf der Interface-Methoden sicherzustellen
      */
-    public InputManagerGame(ProgramController programController, ViewController viewController, SoundController soundController, Player player){
-        super(viewController,programController,soundController);
+    public InputManagerGame(ProgramController programController, ViewController viewController, SoundManager soundManager, Player player){
+        super(viewController,programController,soundManager);
         this.programController = programController;
         this.viewController = viewController;
-        this.soundController = soundController;
+        this.soundManager = soundManager;
         viewController.register(this, 2);
     }
 

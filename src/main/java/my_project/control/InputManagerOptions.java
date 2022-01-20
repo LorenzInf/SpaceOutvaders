@@ -16,25 +16,25 @@ public class InputManagerOptions extends InputManager {
     private ViewController viewController;
     private Options options;
     private long elapsedTime,lastLoop;
-    private SoundController soundController;
+    private final SoundManager soundManager;
 
     /**
      * Objekterzeugung
      * @param programController Nötig als Objekt vom Controllerbereich, das informiert wird
      * @param viewController Nötig, um den Aufruf der Interface-Methoden sicherzustellen
      */
-    public InputManagerOptions(ProgramController programController, ViewController viewController, Options options, SoundController soundController){
-        super(viewController,programController,soundController);
+    public InputManagerOptions(ProgramController programController, ViewController viewController, Options options, SoundManager soundManager){
+        super(viewController,programController, soundManager);
         this.programController = programController;
         this.viewController = viewController;
         this.options = options;
-        this.soundController = soundController;
+        this.soundManager = soundManager;
         viewController.register(this, 1);
     }
 
     @Override
     public void keyPressed(int key){
-        updateSoundController();
+        soundManager.updateSoundController();
         if(key == KeyEvent.VK_ENTER || key == KeyEvent.VK_SPACE){
             // Checkt Boolean Wert für das ändern des Symbols
             if (programController.getWindow().getOptionsIndex() == 1) {
