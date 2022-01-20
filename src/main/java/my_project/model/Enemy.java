@@ -1,22 +1,20 @@
 package my_project.model;
 import KAGO_framework.control.ViewController;
-import KAGO_framework.model.GraphicalObject;
 import my_project.control.ProgramController;
 import my_project.view.Game;
 
-import javax.swing.text.View;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
 public abstract class Enemy extends Game {
     //Sprites
     protected BufferedImage[] images = new BufferedImage[]{
-            load("enemy_boss.png"), //0
-            load("enemy_burst_fire.png"), //1
-            load("enemy_normal.png"), //2
-            load("enemy_shield.png"), //3
-            load("enemy_charged_instant_shot"), //4
-            load("enemy_speed.png")//5
+            createImage("src/main/resources/enemy_boss.png"), //0
+            createImage("src/main/resources/enemy_burst_fire.png"), //1
+            createImage("src/main/resources/enemy_normal.png"), //2
+            createImage("src/main/resources/enemy_shield.png"), //3
+            createImage("src/main/resources/enemy_charged_instant_shot"), //4
+            createImage("src/main/resources/enemy_speed.png")//5
     };
 
     //other stuff
