@@ -17,7 +17,6 @@ public class InputManagerGame extends InputManager {
     private final ViewController viewController;
     private final SoundManager soundManager;
     private Game game;
-    private Player player;
 
     /**
      * Objekterzeugung
@@ -30,7 +29,6 @@ public class InputManagerGame extends InputManager {
         this.viewController = viewController;
         this.soundManager = soundManager;
         this.game = game;
-        player = programController.getPlayer();
         viewController.register(this, 2);
     }
 
@@ -38,14 +36,20 @@ public class InputManagerGame extends InputManager {
     public void keyPressed(int key){
 
         if(key == KeyEvent.VK_SPACE){
+            viewController.draw(programController.getShoot(), 2);
+            // ToDo: Schießen
         }
 
-        if(key == KeyEvent.VK_A){
+        if(key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT){
+            if(programController.getPlayer().getX() != -191){
+                programController.getPlayer().setX(programController.getPlayer().getX()-173);
+            }
         }
 
-        if(key == KeyEvent.VK_D){
-            player.setX(800);
-            // ToDo: Player um die Breite eines Array Feldes verschieben.
+        if(key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT){
+            if(programController.getPlayer().getX() != 1539){
+                programController.getPlayer().setX(programController.getPlayer().getX()+173);
+            }
         }
         forceMainMenu(key);
     }

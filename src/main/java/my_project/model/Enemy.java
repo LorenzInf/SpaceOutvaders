@@ -38,7 +38,7 @@ public abstract class Enemy extends Game {
     public boolean tryToShoot(){
         int help = new Random().nextInt(100 + 1);
         if(shootChance >= help){
-            Shoot s = new Shoot(viewController,x,y,3,8,100,255,255,255,0,0,0,true);
+            Shoot s = new Shoot(viewController,x,y,3,8,100,255,255,255,0,0,0,true, programController);
             return true;
         }
         return false;

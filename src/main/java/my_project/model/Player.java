@@ -9,8 +9,8 @@ import java.awt.image.BufferedImage;
 public class Player extends Game {
 
     private String name;
-    private int x;
-    private int y;
+    private double x;
+    private double y;
     private int speed;
     private int hp;
     private boolean shield;
@@ -20,7 +20,7 @@ public class Player extends Game {
     private ProgramController programController;
 
 
-    public Player(int x, int y, int speed, int hp, boolean shield, int buff, ViewController viewController, ProgramController programController){
+    public Player(double x, double y, int speed, int hp, boolean shield, int buff, ViewController viewController, ProgramController programController){
         super(viewController, programController);
         this.x = x;
         this.y = y;
@@ -31,12 +31,15 @@ public class Player extends Game {
         viewController.draw(this, 2);
         images = new BufferedImage[]{
                 createImage("src/main/resources/graphic/Spaceship.png"), // 1
+                createImage("src/main/resources/graphic/laser_shot.png"), // 2
         };
     }
 
     @Override
     public void draw(DrawTool drawTool){
-        drawTool.drawImage(images[0], x, y);
+        drawTool.drawTransformedImage(images[0], x, y, 0 , 0.53);
+        drawTool.drawTransformedImage(images[1], -2000, y, 0 , 2);
+        // 947 und y
     }
 
     /**
@@ -63,7 +66,7 @@ public class Player extends Game {
         return x;
     }
 
-    public void setX(int x) {
+    public void setX(double x) {
         this.x = x;
     }
 
@@ -72,7 +75,7 @@ public class Player extends Game {
         return y;
     }
 
-    public void setY(int y) {
+public void setY(double y) {
         this.y = y;
     }
 
