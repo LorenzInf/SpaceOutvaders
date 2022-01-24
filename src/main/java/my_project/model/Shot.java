@@ -37,7 +37,7 @@ public class Shot extends Entity {
     @Override
     public void update(double dt){
         // Ist auch noch buggy
-        //y += (enemyShot ? 1 : -1) + speed*dt;
+        //y += (enemyShot ? 1 : -1) * speed*dt;
         y -= 50*dt;
 
         //wenn außerhalb des fensters, removeDrawable();
