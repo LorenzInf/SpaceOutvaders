@@ -2,11 +2,12 @@ package my_project.model;
 import KAGO_framework.control.ViewController;
 import KAGO_framework.view.DrawTool;
 import my_project.control.ProgramController;
+import my_project.view.Entity;
 import my_project.view.Game;
 
 import java.awt.image.BufferedImage;
 
-public class Player extends Game {
+public class Player extends Entity {
 
     private String name;
     private double x;
@@ -16,8 +17,6 @@ public class Player extends Game {
     private boolean shield;
     private int buff;
     private BufferedImage[] images;
-    private ViewController viewController;
-    private ProgramController programController;
 
 
     public Player(double x, double y, int speed, int hp, boolean shield, int buff, ViewController viewController, ProgramController programController){

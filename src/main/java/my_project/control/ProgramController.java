@@ -1,15 +1,13 @@
 package my_project.control;
 
-import KAGO_framework.control.SoundController;
 import my_project.Config;
 import my_project.model.Player;
 import KAGO_framework.control.ViewController;
-import my_project.model.Shoot;
-import my_project.view.Game;
+import my_project.model.Shot;
+import my_project.view.Entity;
 import my_project.view.Visual2DArray;
 
 import java.awt.*;
-import java.lang.reflect.Array;
 
 /**
  * Ein Objekt der Klasse ProgramController dient dazu das Programm zu steuern. Die updateProgram - Methode wird
@@ -26,7 +24,7 @@ public class ProgramController {
     private GraphicalWindow window;
     private Visual2DArray array;
     private Player player;
-    private Shoot shoot;
+    private Shot shoot;
 
 
     /**
@@ -47,13 +45,13 @@ public class ProgramController {
      */
     public void startProgram() {
         // Zu dem Array, die X Koordinate der Mitte ist 674 und 772, wird ein bisschen blöd mit den Koordinaten dann rumzuspielen wegen den Enemys
-        array = new Visual2DArray<Game>(11, Config.WINDOW_HEIGHT / 175, 0 , 0, new Visual2DArray.VisualizationConfig(0,0, 173, 175, 0, true, false, false, null, Color.WHITE, new Color(0,0,0,0)));
+        array = new Visual2DArray<Entity>(11, Config.WINDOW_HEIGHT / 175, 0 , 0, new Visual2DArray.VisualizationConfig(0,0, 173, 175, 0, true, false, false, null, Color.WHITE, new Color(29, 173, 11, 0)));
         window = new GraphicalWindow(viewController, this);
         new InputManagerMainMenu(this, viewController, soundManager);
         new InputManagerOptions(this, viewController, window.getOptions(), soundManager);
         new InputManagerGame(this, viewController, soundManager, getWindow().getGame());
         player = new Player(674,772,0,0,false, 0, viewController, getWindow().programController);
-        shoot = new Shoot(viewController, 300, 300, 100 ,100, 1, 255, 0 ,0 , 0 ,0, 255, false, this);
+        shoot = new Shot(viewController, 300, 300, 100 ,100, 1, 255, 0 ,0 , 0 ,0, 255, false, this);
         viewController.draw(array, 2);
         viewController.register(array);
     }
@@ -74,8 +72,11 @@ public class ProgramController {
         return player;
     }
 
-    public Shoot getShoot(){
+    public Shot getShoot(){
         return shoot;
     }
 
+    public Visual2DArray getArray() {
+        return array;
+    }
 }

@@ -1,12 +1,12 @@
 package my_project.model;
 import KAGO_framework.control.ViewController;
 import my_project.control.ProgramController;
-import my_project.view.Game;
+import my_project.view.Entity;
 
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
-public abstract class Enemy extends Game {
+public abstract class Enemy extends Entity {
     //Sprites
     protected BufferedImage[] images = new BufferedImage[]{
             createImage("enemy_boss.png"), //0
@@ -18,8 +18,6 @@ public abstract class Enemy extends Game {
     };
 
     //other stuff
-    protected ViewController viewController;
-    protected ProgramController programController;
     protected int hp = 1; //1 oder 2
     protected int speed = 1; //in felder/sekunde
     protected double shootChance = 0.5;
@@ -28,8 +26,6 @@ public abstract class Enemy extends Game {
 
     public Enemy(ViewController viewController, ProgramController programController){
         super(viewController, programController);
-        this.viewController = viewController;
-        this.programController = programController;
     }
 
     /**
@@ -38,7 +34,7 @@ public abstract class Enemy extends Game {
     public boolean tryToShoot(){
         int help = new Random().nextInt(100 + 1);
         if(shootChance >= help){
-            Shoot s = new Shoot(viewController,x,y,3,8,100,255,255,255,0,0,0,true, programController);
+            Shot s = new Shot(viewController,x,y,3,8,100,255,255,255,0,0,0,true, programController);
             return true;
         }
         return false;
