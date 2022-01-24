@@ -83,6 +83,7 @@ public class InputManagerMainMenu extends InputManager {
                 programController.getWindow().setMainMenuIndex(4);
             }
         }
+        setVolume(key);
         forceMainMenu(key);
     }
 }

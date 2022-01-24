@@ -40,6 +40,7 @@ public class InputManagerOptions extends InputManager {
                 options.setSoundOn(!options.isSoundOn());
                 SoundController.setVolume("select",options.isSoundOn() ? 1.0 : 0.0);
                 SoundController.setVolume("exit",options.isSoundOn() ? 1.0 : 0.0);
+                SoundController.setVolume("shootPlayer",options.isSoundOn() ? 1.0 : 0.0);
                 SoundController.playSound("select");
             }
             if(programController.getWindow().getOptionsIndex() == 3){ // Wenn man auf dem X ist
@@ -68,6 +69,7 @@ public class InputManagerOptions extends InputManager {
                 programController.getWindow().setOptionsIndex(programController.getWindow().getOptionsIndex()+1);
             }
         }
+        setVolume(key);
         forceMainMenu(key);
     }
 }

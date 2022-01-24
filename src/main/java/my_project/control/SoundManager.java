@@ -13,6 +13,7 @@ public class SoundManager {
         this.soundController.loadSound("src/main/resources/sound/exit.mp3","exit",false);
         this.soundController.loadSound("src/main/resources/sound/Joshua McLean - Mountain Trials.mp3","mainMenuTheme",true);
         this.soundController.loadSound("src/main/resources/sound/AdhesiveWombat - Night Shade.mp3","gameTheme1",true);
+        this.soundController.loadSound("src/main/resources/sound/shoot.mp3","shootPlayer",false);
         soundOff = false;
         soundOn = false;
     }

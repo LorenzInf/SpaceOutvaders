@@ -42,7 +42,7 @@ public class Shot extends Entity {
         y -= 700*dt;
 
         //wenn außerhalb des Fensters, removeDrawable();
-        if(y < -80 || y > (Config.WINDOW_HEIGHT + height)){
+        if(y < -120 || y > (Config.WINDOW_HEIGHT + height)){
             viewController.removeDrawable(this);
         }
     }

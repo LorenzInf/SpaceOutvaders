@@ -1,5 +1,6 @@
 package my_project.control;
 
+import KAGO_framework.control.SoundController;
 import KAGO_framework.control.ViewController;
 import my_project.model.Shot;
 import my_project.view.Game;
@@ -29,8 +30,8 @@ public class InputManagerGame extends InputManager {
     public void keyPressed(int key){
 
         if(key == KeyEvent.VK_SPACE){
-            Shot shot = new Shot(viewController, programController.getPlayer().getX()+92.5, programController.getPlayer().getY()-55,100,false,programController);
-            // ToDo: Schießen
+            SoundController.playSound("shootPlayer");
+            Shot shot = new Shot(viewController, programController.getPlayer().getX()+60, programController.getPlayer().getY()-100,100,false,programController);
         }
 
         if(key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) {
@@ -52,6 +53,7 @@ public class InputManagerGame extends InputManager {
         if(key == KeyEvent.VK_F){
             programController.getEnemyWave().summonWaveNormal11();
         }
+        setVolume(key);
         forceMainMenu(key);
     }
 }
