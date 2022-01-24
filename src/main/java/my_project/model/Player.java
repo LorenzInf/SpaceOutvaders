@@ -2,8 +2,6 @@ package my_project.model;
 import KAGO_framework.control.ViewController;
 import KAGO_framework.view.DrawTool;
 import my_project.control.ProgramController;
-import my_project.view.Entity;
-import my_project.view.Game;
 
 import java.awt.image.BufferedImage;
 

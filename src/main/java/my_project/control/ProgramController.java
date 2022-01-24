@@ -1,11 +1,10 @@
 package my_project.control;
 
-import my_project.Config;
 import my_project.model.EnemyWave;
 import my_project.model.Player;
 import KAGO_framework.control.ViewController;
 import my_project.model.Shot;
-import my_project.view.Entity;
+import my_project.model.Entity;
 import my_project.view.Visual2DArray;
 
 import java.awt.*;
@@ -54,8 +53,8 @@ public class ProgramController {
         new InputManagerOptions(this, viewController, window.getOptions(), soundManager);
         new InputManagerGame(this, viewController, soundManager, getWindow().getGame());
 
-        player = new Player(674,772,0,0,false, 0, viewController, getWindow().programController);
-        shoot = new Shot(viewController, 300, 300, 100 ,100, 1, 255, 0 ,0 , 0 ,0, 255, false, this);
+        player = new Player(832.5,807,0,0,false, 0, viewController, getWindow().programController);
+        shoot = new Shot(viewController, 300, 300, 100 , false, this);
         enemyWave = new EnemyWave(viewController,this);
 
         viewController.draw(array, 2);

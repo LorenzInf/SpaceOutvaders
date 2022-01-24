@@ -1,7 +1,6 @@
 package my_project.model;
 import KAGO_framework.control.ViewController;
 import my_project.control.ProgramController;
-import my_project.view.Entity;
 
 import java.awt.image.BufferedImage;
 import java.util.Random;
@@ -34,7 +33,7 @@ public abstract class Enemy extends Entity {
     public boolean tryToShoot(){
         int help = new Random().nextInt(100 + 1);
         if(shootChance >= help){
-            Shot s = new Shot(viewController,x,y,3,8,100,255,255,255,0,0,0,true, programController);
+            Shot s = new Shot(viewController,x,y,3,true, programController);
             return true;
         }
         return false;

@@ -33,13 +33,13 @@ public class InputManagerGame extends InputManager {
         }
 
         if(key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT){
-            if(programController.getPlayer().getX() != -191){
+            if(programController.getPlayer().getX() != -32.5){
                 programController.getPlayer().setX(programController.getPlayer().getX()-173);
             }
         }
 
         if(key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT){
-            if(programController.getPlayer().getX() != 1539){
+            if(programController.getPlayer().getX() != 1697.5){
                 programController.getPlayer().setX(programController.getPlayer().getX()+173);
             }
         }
