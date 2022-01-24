@@ -30,19 +30,22 @@ public class InputManagerGame extends InputManager {
 
         if(key == KeyEvent.VK_SPACE){
             Shot shot = new Shot(viewController, programController.getPlayer().getX()+92.5, programController.getPlayer().getY()-55,100,false,programController);
-            programController.getArray().set(shot,5,7);
             // ToDo: Schießen
         }
 
-        if(key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT){
-            if(programController.getPlayer().getX() >= 0){
-                programController.getPlayer().setX(programController.getPlayer().getX()-173);
+        if(key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) {
+            if (programController.getPlayer().getArrayX() != 0){
+                programController.getArray().set(null, programController.getPlayer().getArrayX(), 7);
+                programController.getArray().set(programController.getPlayer(), programController.getPlayer().getArrayX() - 1, 7);
+                programController.getPlayer().setArrayX(programController.getPlayer().getArrayX() - 1);
             }
         }
 
         if(key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT){
-            if(programController.getPlayer().getX() <= 1697.5){
-                programController.getPlayer().setX(programController.getPlayer().getX()+173);
+            if (programController.getPlayer().getArrayX() != 10) {
+                programController.getArray().set(null, programController.getPlayer().getArrayX(), 7);
+                programController.getArray().set(programController.getPlayer(), programController.getPlayer().getArrayX() + 1, 7);
+                programController.getPlayer().setArrayX(programController.getPlayer().getArrayX() + 1);
             }
         }
 

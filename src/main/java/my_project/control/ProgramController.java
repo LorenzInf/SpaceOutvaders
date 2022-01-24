@@ -52,7 +52,8 @@ public class ProgramController {
         new InputManagerOptions(this, viewController, window.getOptions(), soundManager);
         new InputManagerGame(this, viewController, soundManager, getWindow().getGame());
 
-        player = new Player(674,772,0,0,false, 0, viewController, getWindow().programController);
+        player = new Player(5,0,0,false, 0, viewController, getWindow().programController);
+        array.set(player,5,7);
         enemyWave = new EnemyWave(viewController,this);
 
         viewController.draw(array, 2);

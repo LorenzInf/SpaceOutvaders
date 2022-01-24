@@ -7,28 +7,26 @@ import java.awt.image.BufferedImage;
 
 public class Player extends Entity {
 
+    private int arrayX;
     private String name;
-    private double x;
-    private double y;
     private int speed;
     private int hp;
     private boolean shield;
     private int buff;
-    private BufferedImage[] images;
+    private final BufferedImage[] images;
 
 
-    public Player(double x, double y, int speed, int hp, boolean shield, int buff, ViewController viewController, ProgramController programController){
+    public Player(int arrayX, int speed, int hp, boolean shield, int buff, ViewController viewController, ProgramController programController){
         super(viewController, programController);
-        this.x = x;
-        this.y = y;
+        this.arrayX = arrayX;
         this.speed = speed;
         this.hp = hp;
         this.shield = false;
         this.buff = ((int)(Math.random()*4));
         viewController.draw(this, 2);
         images = new BufferedImage[]{
-                createImage("src/main/resources/graphic/Spaceship.png"), // 1
-                createImage("src/main/resources/graphic/laser_shot.png"), // 2
+                createImage("src/main/resources/graphic/Spaceship.png"), // 0
+                createImage("src/main/resources/graphic/laser_shot.png"), // 1
         };
     }
 
@@ -36,7 +34,6 @@ public class Player extends Entity {
     public void draw(DrawTool drawTool){
         drawTool.drawTransformedImage(images[0], x, y, 0 , 0.53);
         drawTool.drawTransformedImage(images[1], -2000, y, 0 , 2);
-        // 947 und y
     }
 
     /**
@@ -58,21 +55,13 @@ public class Player extends Entity {
         }
     }
 
-    @Override
-    public double getX() {
-        return x;
+    //https://www.microsoft.com/en-us/software-download/windows11
+
+    public int getArrayX() {
+        return arrayX;
     }
 
-    public void setX(double x) {
-        this.x = x;
-    }
-
-    @Override
-    public double getY() {
-        return y;
-    }
-
-    public void setY(double y) {
-        this.y = y;
+    public void setArrayX(int arrayX) {
+        this.arrayX = arrayX;
     }
 }
