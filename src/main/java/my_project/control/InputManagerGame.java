@@ -23,7 +23,7 @@ public class InputManagerGame extends InputManager {
     public InputManagerGame(ProgramController programController, ViewController viewController, SoundManager soundManager, Game game){
         super(viewController,programController,soundManager);
         this.game = game;
-        viewController.register(this, 2);
+        viewController.register(this, 3);
     }
 
     @Override

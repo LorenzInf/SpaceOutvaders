@@ -19,6 +19,7 @@ public class GraphicalWindow extends GraphicalObject {
     private Leaderboard leaderboard;
     private MainMenu mainMenu;
     private Options options;
+    private StartScreen startScreen;
 
     public GraphicalWindow(){}
 
@@ -26,20 +27,25 @@ public class GraphicalWindow extends GraphicalObject {
         this.viewController = viewController;
         this.programController = programController;
 
+        startScreen = new StartScreen(viewController, programController);
         game = new Game(viewController, programController);
         guide = new Guide(viewController);
         leaderboard = new Leaderboard(viewController);
         mainMenu = new MainMenu(viewController, programController);
         options = new Options(viewController, programController);
 
-        mainMenuIndex = 2;
-        optionsIndex = 1;
 
-        viewController.draw(mainMenu,0);
-        viewController.draw(options,1);
-        viewController.draw(game,2);
-        viewController.draw(leaderboard,3);
-        viewController.draw(guide,4);
+        mainMenuIndex = 2;
+        optionsIndex = 3;
+
+        viewController.draw(startScreen, 0);
+        viewController.draw(mainMenu,1);
+        viewController.draw(options,2);
+        viewController.draw(game,3);
+        viewController.draw(leaderboard,4);
+        viewController.draw(guide,5);
+
+
     }
 
     /**
@@ -77,18 +83,6 @@ public class GraphicalWindow extends GraphicalObject {
 
     public Game getGame() {
         return game;
-    }
-
-    public Guide getGuide() {
-        return guide;
-    }
-
-    public Leaderboard getLeaderboard() {
-        return leaderboard;
-    }
-
-    public MainMenu getMainMenu() {
-        return mainMenu;
     }
 }
 

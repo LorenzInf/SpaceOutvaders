@@ -23,7 +23,7 @@ public abstract class InputManager extends InteractiveGraphicalObject {
      */
     protected void forceMainMenu(int key){
         if(key == KeyEvent.VK_P) {
-            viewController.showScene(0);
+            viewController.showScene(1);
             System.out.println("Main Menu force initialized");
         }
     }

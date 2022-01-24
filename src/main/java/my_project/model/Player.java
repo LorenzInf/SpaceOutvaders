@@ -23,7 +23,7 @@ public class Player extends Entity {
         this.hp = hp;
         this.shield = false;
         this.buff = ((int)(Math.random()*4));
-        viewController.draw(this, 2);
+        viewController.draw(this, 3);
         images = new BufferedImage[]{
                 createImage("src/main/resources/graphic/Spaceship.png")
         };

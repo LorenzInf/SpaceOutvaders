@@ -27,7 +27,7 @@ public class Shot extends Entity {
         images = new BufferedImage[]{
                 createImage("src/main/resources/graphic/laser_shot.png"),
         };
-        viewController.draw(this,2);
+        viewController.draw(this,3);
     }
 
     public void draw(DrawTool drawTool){

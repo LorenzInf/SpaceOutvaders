@@ -45,7 +45,6 @@ public class ProgramController {
      * Sie erstellt die leeren Datenstrukturen, zu Beginn nur eine Queue
      */
     public void startProgram() {
-        // Zu dem Array, die X Koordinate der Mitte ist 674 und 772, wird ein bisschen blöd mit den Koordinaten dann rumzuspielen wegen den Enemys
         array = new Visual2DArray<>(11, 8, 0 , 0, new Visual2DArray.VisualizationConfig(0,-350, 173, 175, 0, true, false, false, null, Color.WHITE, new Color(29, 173, 11, 0)));
         window = new GraphicalWindow(viewController, this);
 
@@ -57,7 +56,7 @@ public class ProgramController {
         array.set(player,5,7);
         enemyWave = new EnemyWave(viewController,this);
 
-        viewController.draw(array, 2);
+        viewController.draw(array, 3);
         viewController.register(array);
 
         soundManager.updateSoundController();
