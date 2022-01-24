@@ -32,10 +32,14 @@ public class InputManagerOptions extends InputManager {
             // Checkt Boolean Wert für das ändern des Symbols
             if (programController.getWindow().getOptionsIndex() == 1) {
                 options.setMusicOn(!options.isMusicOn());
+                SoundController.setVolume("mainMenuTheme",options.isMusicOn() ? 1.0 : 0.0);
+                SoundController.setVolume("gameTheme1",options.isMusicOn() ? 1.0 : 0.0);
                 SoundController.playSound("select");
             }
             if (programController.getWindow().getOptionsIndex() == 2) {
                 options.setSoundOn(!options.isSoundOn());
+                SoundController.setVolume("select",options.isSoundOn() ? 1.0 : 0.0);
+                SoundController.setVolume("exit",options.isSoundOn() ? 1.0 : 0.0);
                 SoundController.playSound("select");
             }
             if(programController.getWindow().getOptionsIndex() == 3){ // Wenn man auf dem X ist
