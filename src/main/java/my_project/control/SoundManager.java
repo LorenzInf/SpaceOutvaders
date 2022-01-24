@@ -11,6 +11,8 @@ public class SoundManager {
         soundController = new SoundController();
         this.soundController.loadSound("src/main/resources/sound/select.mp3","select",false);
         this.soundController.loadSound("src/main/resources/sound/exit.mp3","exit",false);
+        this.soundController.loadSound("src/main/resources/sound/Joshua McLean - Mountain Trials.mp3","mainMenuTheme",true);
+        this.soundController.loadSound("src/main/resources/sound/AdhesiveWombat - Night Shade.mp3","gameTheme1",true);
         soundOff = false;
         soundOn = false;
     }

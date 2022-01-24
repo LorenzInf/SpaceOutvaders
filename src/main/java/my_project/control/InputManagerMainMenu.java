@@ -42,6 +42,7 @@ public class InputManagerMainMenu extends InputManager {
 
         // Selected den Button rechts
         if(key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT){
+            SoundController.playSound("select");
             if(programController.getWindow().getMainMenuIndex() < 4) {
                 if (programController.getWindow().getMainMenuIndex() != 1) {
                     programController.getWindow().setMainMenuIndex(programController.getWindow().getMainMenuIndex() - 1);
@@ -53,6 +54,7 @@ public class InputManagerMainMenu extends InputManager {
 
         // Selected den Button Links
         if(key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT){
+            SoundController.playSound("select");
             if(programController.getWindow().getMainMenuIndex() < 4) {
                 if (programController.getWindow().getMainMenuIndex() != 3) {
                     programController.getWindow().setMainMenuIndex(programController.getWindow().getMainMenuIndex() + 1);
@@ -64,6 +66,7 @@ public class InputManagerMainMenu extends InputManager {
 
         // Selected den Button oben
         if(key == KeyEvent.VK_W){
+            SoundController.playSound("select");
             if(programController.getWindow().getMainMenuIndex() == 4){
                 programController.getWindow().setMainMenuIndex(2);
             } else {
@@ -73,6 +76,7 @@ public class InputManagerMainMenu extends InputManager {
 
         // Selected den Button unten
         if(key == KeyEvent.VK_S){
+            SoundController.playSound("select");
             if(programController.getWindow().getMainMenuIndex() == 5){
                 programController.getWindow().setMainMenuIndex(2);
             } else {

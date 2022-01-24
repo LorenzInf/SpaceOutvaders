@@ -1,5 +1,6 @@
 package my_project.control;
 
+import KAGO_framework.control.SoundController;
 import my_project.model.EnemyWave;
 import my_project.model.Player;
 import KAGO_framework.control.ViewController;
@@ -58,6 +59,9 @@ public class ProgramController {
 
         viewController.draw(array, 2);
         viewController.register(array);
+
+        soundManager.updateSoundController();
+        SoundController.playSound("mainMenuTheme");
     }
 
     /**

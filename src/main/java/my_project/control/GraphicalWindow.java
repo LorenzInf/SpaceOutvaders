@@ -1,5 +1,6 @@
 package my_project.control;
 
+import KAGO_framework.control.SoundController;
 import KAGO_framework.control.ViewController;
 import KAGO_framework.model.GraphicalObject;
 import my_project.view.*;
@@ -47,6 +48,11 @@ public class GraphicalWindow extends GraphicalObject {
      */
     public void switchScene(int index){
         viewController.showScene(index);
+        if(index == 2) {
+            SoundController.stopSound("mainMenuTheme");
+            SoundController.playSound("gameTheme1");
+        }
+
     }
 
     public int getOptionsIndex() {
