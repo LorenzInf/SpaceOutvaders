@@ -1,8 +1,6 @@
 package my_project.control;
 
-import KAGO_framework.control.SoundController;
 import KAGO_framework.control.ViewController;
-import my_project.model.Player;
 import my_project.view.Game;
 
 import java.awt.event.KeyEvent;
@@ -44,6 +42,10 @@ public class InputManagerGame extends InputManager {
             if(programController.getPlayer().getX() != 1539){
                 programController.getPlayer().setX(programController.getPlayer().getX()+173);
             }
+        }
+
+        if(key == KeyEvent.VK_F){
+            programController.getEnemyWave().summonWaveNormal11();
         }
         forceMainMenu(key);
     }

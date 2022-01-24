@@ -74,7 +74,7 @@ public class Player extends Entity {
         return y;
     }
 
-public void setY(double y) {
+    public void setY(double y) {
         this.y = y;
     }
 

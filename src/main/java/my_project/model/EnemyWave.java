@@ -22,21 +22,23 @@ public class EnemyWave {
 
     public void summonAWave(){
         int random = new Random().nextInt(difficultyCurrent + 1);
-        if(difficultyW1 < random) summonWave1();
-        else if (difficultyW2 < random) summonWave2();
+        if(difficultyW1 < random) summonWaveNormal11();
+        else if (difficultyW2 < random) summonWaveNormal22();
         else if (difficultyW3 < random) summonWave3();
     }
 
-    public void summonWave1(){
-        EnemyNormal enemy = new EnemyNormal(viewController, programController);
+    public void summonWaveNormal11(){ //Change to private when done - only public for testing purposes
+        for(int i = 0; i < 11; i++) {
+            EnemyNormal enemy = new EnemyNormal(viewController, programController);
+            programController.getArray().set(enemy, i, 3);
+        }
+    }
+
+    private void summonWaveNormal22() { //Change to private when done - only public for testing purposes
 
     }
 
-    private void summonWave2() {
-
-    }
-
-    private void summonWave3() {
+    private void summonWave3() { //Change to private when done - only public for testing purposes
 
     }
 }

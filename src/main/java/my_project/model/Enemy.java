@@ -9,12 +9,12 @@ import java.util.Random;
 public abstract class Enemy extends Entity {
     //Sprites
     protected BufferedImage[] images = new BufferedImage[]{
-            createImage("enemy_boss.png"), //0
-            createImage("enemy_burst_fire.png"), //1
-            createImage("enemy_normal.png"), //2
-            createImage("enemy_shield.png"), //3
-            createImage("enemy_charged_instant_shot"), //4
-            createImage("enemy_fast.png"), //5
+            createImage("src/main/resources/graphic/enemy_boss.png"), //0
+            createImage("src/main/resources/graphic/enemy_burst_fire.png"), //1
+            createImage("src/main/resources/graphic/enemy_normal.png"), //2
+            createImage("src/main/resources/graphic/enemy_shield.png"), //3
+            createImage("src/main/resources/graphic/enemy_charged_instant_shot.png"), //4
+            createImage("src/main/resources/graphic/enemy_fast.png"), //5
     };
 
     //other stuff
