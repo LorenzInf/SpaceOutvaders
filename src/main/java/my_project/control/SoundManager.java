@@ -4,7 +4,7 @@ import KAGO_framework.control.SoundController;
 
 public class SoundManager {
     private final SoundController soundController;
-    private long lastLoop, soundElapsedTime;
+    private long lastLoop;
 
     public SoundManager() {
         soundController = new SoundController();
@@ -16,7 +16,7 @@ public class SoundManager {
      * Updates the soundController
      */
     protected void updateSoundController(){
-        soundElapsedTime = System.nanoTime() - lastLoop;
+        long soundElapsedTime = System.nanoTime() - lastLoop;
         lastLoop = System.nanoTime();
         int dt = (int) ((soundElapsedTime / 1000000L));
         double dtSeconds = (double)dt/1000;

@@ -12,10 +12,7 @@ import java.awt.event.KeyEvent;
  */
 public class InputManagerOptions extends InputManager {
 
-    private ProgramController programController;
-    private ViewController viewController;
-    private Options options;
-    private final SoundManager soundManager;
+    private final Options options;
 
     /**
      * Objekterzeugung
@@ -24,10 +21,7 @@ public class InputManagerOptions extends InputManager {
      */
     public InputManagerOptions(ProgramController programController, ViewController viewController, Options options, SoundManager soundManager){
         super(viewController,programController, soundManager);
-        this.programController = programController;
-        this.viewController = viewController;
         this.options = options;
-        this.soundManager = soundManager;
         viewController.register(this, 1);
     }
 

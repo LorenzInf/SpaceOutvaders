@@ -13,9 +13,6 @@ import java.awt.event.KeyEvent;
  */
 public class InputManagerGame extends InputManager {
 
-    private final ProgramController programController;
-    private final ViewController viewController;
-    private final SoundManager soundManager;
     private Game game;
 
     /**
@@ -25,9 +22,6 @@ public class InputManagerGame extends InputManager {
      */
     public InputManagerGame(ProgramController programController, ViewController viewController, SoundManager soundManager, Game game){
         super(viewController,programController,soundManager);
-        this.programController = programController;
-        this.viewController = viewController;
-        this.soundManager = soundManager;
         this.game = game;
         viewController.register(this, 2);
     }

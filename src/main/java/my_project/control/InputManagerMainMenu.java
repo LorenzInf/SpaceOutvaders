@@ -12,10 +12,7 @@ import java.awt.event.KeyEvent;
  */
 public class InputManagerMainMenu extends InputManager {
 
-    private final ProgramController programController;
-    private final ViewController viewController;
     private MainMenu menu;
-    private final SoundManager soundManager;
 
     /**
      * Objekterzeugung
@@ -24,9 +21,6 @@ public class InputManagerMainMenu extends InputManager {
      */
     public InputManagerMainMenu(ProgramController programController, ViewController viewController, SoundManager soundManager){
         super(viewController, programController, soundManager);
-        this.programController = programController;
-        this.viewController = viewController;
-        this.soundManager = soundManager;
         viewController.register(this, 0);
     }
 
@@ -34,7 +28,7 @@ public class InputManagerMainMenu extends InputManager {
     public void keyPressed(int key){
         soundManager.updateSoundController();
         if(key == KeyEvent.VK_ENTER || key == KeyEvent.VK_SPACE){
-            if(programController.getWindow().getMainMenuIndex() == 5) programController.getWindow().escape();
+            if(programController.getWindow().getMainMenuIndex() == 5) System.exit(0);
             if(programController.getWindow().getMainMenuIndex() > 0){
                 SoundController.playSound("select");
                 programController.getWindow().switchScene(programController.getWindow().getMainMenuIndex());
@@ -43,7 +37,7 @@ public class InputManagerMainMenu extends InputManager {
 
         if(key == KeyEvent.VK_ESCAPE) {
             SoundController.playSound("exit");
-            programController.getWindow().escape();
+            System.exit(0);
         }
 
         // Selected den Button rechts

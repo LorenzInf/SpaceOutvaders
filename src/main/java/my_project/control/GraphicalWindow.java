@@ -65,16 +65,6 @@ public class GraphicalWindow extends GraphicalObject {
         this.mainMenuIndex = mainMenuIndex;
     }
 
-
-    public void escape(){
-        int index = viewController.getCurrentSceneIndex();
-        switch (index) {
-            case 0 -> System.exit(0);
-            //case 3 -> /* todo*/
-            default -> switchScene(0);
-        }
-    }
-
     public Options getOptions() {
         return options;
     }

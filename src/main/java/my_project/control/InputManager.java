@@ -8,9 +8,9 @@ import java.awt.event.KeyEvent;
 
 public abstract class InputManager extends InteractiveGraphicalObject {
 
-    private final ViewController viewController;
-    private final ProgramController programController;
-    private final SoundManager soundManager;
+    protected final ViewController viewController;
+    protected final ProgramController programController;
+    protected final SoundManager soundManager;
 
     public InputManager(ViewController viewController, ProgramController programController, SoundManager soundManager){
         this.viewController = viewController;
