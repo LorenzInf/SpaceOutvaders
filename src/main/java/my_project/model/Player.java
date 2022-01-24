@@ -25,15 +25,13 @@ public class Player extends Entity {
         this.buff = ((int)(Math.random()*4));
         viewController.draw(this, 2);
         images = new BufferedImage[]{
-                createImage("src/main/resources/graphic/Spaceship.png"), // 0
-                createImage("src/main/resources/graphic/laser_shot.png"), // 1
+                createImage("src/main/resources/graphic/Spaceship.png")
         };
     }
 
     @Override
     public void draw(DrawTool drawTool){
-        drawTool.drawTransformedImage(images[0], x, y, 0 , 0.53);
-        drawTool.drawTransformedImage(images[1], -2000, y, 0 , 2);
+        drawTool.drawTransformedImage(images[0], x-32.5, y-70, 0 , 0.53);
     }
 
     /**
