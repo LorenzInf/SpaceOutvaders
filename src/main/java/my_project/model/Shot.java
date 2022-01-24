@@ -2,6 +2,7 @@ package my_project.model;
 
 import KAGO_framework.control.ViewController;
 import KAGO_framework.view.DrawTool;
+import my_project.Config;
 import my_project.control.ProgramController;
 
 import java.awt.*;
@@ -38,12 +39,17 @@ public class Shot extends Entity {
     public void update(double dt){
         // Ist auch noch buggy
         //y += (enemyShot ? 1 : -1) * speed*dt;
-        y -= 50*dt;
+        y -= 700*dt;
 
-        //wenn außerhalb des fensters, removeDrawable();
-        if(y < (0 - height) || y > (1080 + height)){
-            System.out.println(Window.HEIGHT);
+        //wenn außerhalb des Fensters, removeDrawable();
+        if(y < -80 || y > (Config.WINDOW_HEIGHT + height)){
             viewController.removeDrawable(this);
         }
     }
+
+    @Override
+    public void setX(double x){}
+
+    @Override
+    public void setY(double y){}
 }
