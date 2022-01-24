@@ -6,6 +6,7 @@ public class SoundManager {
     private final SoundController soundController;
     private long lastLoop;
     private boolean soundOff, soundOn;
+    private double vol;
 
     public SoundManager() {
         soundController = new SoundController();
@@ -16,6 +17,7 @@ public class SoundManager {
         this.soundController.loadSound("src/main/resources/sound/shoot.mp3","shootPlayer",false);
         soundOff = false;
         soundOn = false;
+        vol = 1;
     }
 
     /**
@@ -28,5 +30,13 @@ public class SoundManager {
         double dtSeconds = (double)dt/1000;
         if ( dtSeconds == 0 ) dtSeconds = 0.01;
         if(soundController != null) soundController.update(dtSeconds);
+    }
+
+    public void modifyVolume(double volume){
+        SoundController.setVolume("exit",vol + volume);
+        SoundController.setVolume("select",vol + volume);
+        SoundController.setVolume("mainMenuTheme",vol + volume);
+        SoundController.setVolume("gameTheme1",vol + volume);
+        SoundController.setVolume("shootPlayer",vol + volume);
     }
 }

@@ -32,20 +32,12 @@ public abstract class InputManager extends InteractiveGraphicalObject {
 
     protected void setVolume(int key){
         if(key == KeyEvent.VK_MINUS && vol > 0) {
-            SoundController.setVolume("exit",vol - 0.1);
-            SoundController.setVolume("select",vol - 0.1);
-            SoundController.setVolume("mainMenuTheme",vol - 0.1);
-            SoundController.setVolume("gameTheme1",vol - 0.1);
-            SoundController.setVolume("shootPlayer",vol - 0.1);
+            soundManager.modifyVolume(-0.1);
             vol -= 0.1;
             SoundController.playSound("select");
         }
         if(key == KeyEvent.VK_PLUS && vol < 1) {
-            SoundController.setVolume("exit",vol + 0.1);
-            SoundController.setVolume("select",vol + 0.1);
-            SoundController.setVolume("mainMenuTheme",vol + 0.1);
-            SoundController.setVolume("gameTheme1",vol + 0.1);
-            SoundController.setVolume("shootPlayer",vol + 0.1);
+            soundManager.modifyVolume(0.1);
             vol += 0.1;
             SoundController.playSound("select");
         }
