@@ -57,12 +57,14 @@ public class InputManagerOptions extends InputManager {
         }
 
         if(key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT){ // Markiertes Symbol nach rechts bewegen
+            SoundController.playSound("select");
             if(programController.getWindow().getOptionsIndex() >= 1){
                 programController.getWindow().setOptionsIndex(programController.getWindow().getOptionsIndex()-1);
             }
         }
 
         if(key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT){ // Markiertes Symbol nach links bewegen
+            SoundController.playSound("select");
             if(programController.getWindow().getOptionsIndex() == 0){
                 programController.getWindow().setOptionsIndex(1);
             } else if(programController.getWindow().getOptionsIndex() < 3){
