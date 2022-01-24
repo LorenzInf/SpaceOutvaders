@@ -33,10 +33,14 @@ public class SoundManager {
     }
 
     public void modifyVolume(double volume){
-        SoundController.setVolume("exit",vol + volume);
-        SoundController.setVolume("select",vol + volume);
-        SoundController.setVolume("mainMenuTheme",vol + volume);
-        SoundController.setVolume("gameTheme1",vol + volume);
-        SoundController.setVolume("shootPlayer",vol + volume);
+        if((vol + volume <= 1) && (vol + volume >= 0)) {
+            vol += volume;
+            SoundController.setVolume("exit", vol);
+            SoundController.setVolume("select", vol);
+            SoundController.setVolume("mainMenuTheme", vol);
+            SoundController.setVolume("gameTheme1", vol);
+            SoundController.setVolume("shootPlayer", vol);
+            SoundController.playSound("select");
+        }
     }
 }

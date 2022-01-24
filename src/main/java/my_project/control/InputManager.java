@@ -11,13 +11,11 @@ public abstract class InputManager extends InteractiveGraphicalObject {
     protected final ViewController viewController;
     protected final ProgramController programController;
     protected final SoundManager soundManager;
-    protected double vol;
 
     public InputManager(ViewController viewController, ProgramController programController, SoundManager soundManager){
         this.viewController = viewController;
         this.programController = programController;
         this.soundManager = soundManager;
-        vol = 1;
     }
 
     /**
@@ -31,15 +29,11 @@ public abstract class InputManager extends InteractiveGraphicalObject {
     }
 
     protected void setVolume(int key){
-        if(key == KeyEvent.VK_MINUS && vol > 0) {
+        if(key == KeyEvent.VK_MINUS) {
             soundManager.modifyVolume(-0.1);
-            vol -= 0.1;
-            SoundController.playSound("select");
         }
-        if(key == KeyEvent.VK_PLUS && vol < 1) {
+        if(key == KeyEvent.VK_PLUS) {
             soundManager.modifyVolume(0.1);
-            vol += 0.1;
-            SoundController.playSound("select");
         }
     }
 
