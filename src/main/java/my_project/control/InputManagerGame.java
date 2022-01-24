@@ -1,6 +1,7 @@
 package my_project.control;
 
 import KAGO_framework.control.ViewController;
+import my_project.model.Shot;
 import my_project.view.Game;
 
 import java.awt.event.KeyEvent;
@@ -28,7 +29,8 @@ public class InputManagerGame extends InputManager {
     public void keyPressed(int key){
 
         if(key == KeyEvent.VK_SPACE){
-            viewController.draw(programController.getShoot(), 2);
+            Shot shot = new Shot(viewController, programController.getPlayer().getX()+92.5, programController.getPlayer().getY()-55,100,false,programController);
+            programController.getArray().set(shot,5,7);
             // ToDo: Schießen
         }
 

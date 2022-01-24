@@ -24,7 +24,6 @@ public class ProgramController {
     private GraphicalWindow window;
     private Visual2DArray<Entity> array;
     private Player player;
-    private Shot shoot; // ඞ
     private EnemyWave enemyWave;
 
 
@@ -53,8 +52,7 @@ public class ProgramController {
         new InputManagerOptions(this, viewController, window.getOptions(), soundManager);
         new InputManagerGame(this, viewController, soundManager, getWindow().getGame());
 
-        player = new Player(832.5,807,0,0,false, 0, viewController, getWindow().programController);
-        shoot = new Shot(viewController, 300, 300, 100 , false, this);
+        player = new Player(674,772,0,0,false, 0, viewController, getWindow().programController);
         enemyWave = new EnemyWave(viewController,this);
 
         viewController.draw(array, 2);
@@ -75,10 +73,6 @@ public class ProgramController {
 
     public Player getPlayer() {
         return player;
-    }
-
-    public Shot getShoot(){
-        return shoot;
     }
 
     public Visual2DArray<Entity> getArray() {

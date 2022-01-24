@@ -27,8 +27,9 @@ public abstract class Enemy extends Entity {
         super(viewController, programController);
     }
 
+    //TODO Make tryToShoot a working thing
     /**
-     * This should constantly be called in subclasses - When called there is a chance of {@code shootChance}% to shoot
+     * When called there is a chance of {@code shootChance}% for the Enemy to shoot
      */
     public boolean tryToShoot(){
         int help = new Random().nextInt(100 + 1);
@@ -41,10 +42,6 @@ public abstract class Enemy extends Entity {
 
     //Jedes mal wenn er sich bewegt und kein Gegner unter ihm ist hat er eine x Prozent chance nach unten zu schießen
     //(würde 0.5% oder so vorschlagen, muss man ausprobieren)
-    @Override
-    public void update(double dt){
-        tryToShoot();
-    }
 
     public int getHp() {
         return hp;

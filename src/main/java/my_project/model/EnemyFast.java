@@ -7,7 +7,7 @@ import my_project.control.ProgramController;
 public class EnemyFast extends Enemy {
     public EnemyFast(ViewController viewController, ProgramController programController) {
         super(viewController, programController);
-        speed += speed;
+        speed += speed; //TODO ??!???!?
     }
 
     @Override

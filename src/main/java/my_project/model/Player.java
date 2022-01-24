@@ -75,40 +75,4 @@ public class Player extends Entity {
     public void setY(double y) {
         this.y = y;
     }
-
-    public int getSpeed() {
-        return speed;
-    }
-
-    public void setSpeed(int speed) {
-        this.speed = speed;
-    }
-
-    public int getHp() {
-        return hp;
-    }
-
-    public void setHp(int hp) {
-        this.hp = hp;
-    }
-
-    public boolean isShield() {
-        return shield;
-    }
-
-    public void setShield(boolean shield) {
-        this.shield = shield;
-    }
-
-    public int getBuff() {
-        return buff;
-    }
-
-    public void setBuff(int buff) {
-        this.buff = buff;
-    }
-
-    public Player getPlayer(){
-        return this;
-    }
 }

@@ -8,4 +8,6 @@ public class EnemyBoss extends Enemy {
     public EnemyBoss(ViewController viewController, ProgramController programController){
         super(viewController, programController);
     }
+
+    //TODO yeah so like actually code a boss lmao L lol ok
 }

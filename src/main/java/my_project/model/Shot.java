@@ -26,11 +26,12 @@ public class Shot extends Entity {
         images = new BufferedImage[]{
                 createImage("src/main/resources/graphic/laser_shot.png"),
         };
+        viewController.draw(this,2);
     }
 
     public void draw(DrawTool drawTool){
         // Funktioniert noch nicht
-        drawTool.drawTransformedImage(images[0], programController.getPlayer().getX()+92.5, programController.getPlayer().getY()-55, 0 ,0.25);
+        drawTool.drawTransformedImage(images[0], x, y, 0 ,0.25);
     }
 
     @Override
