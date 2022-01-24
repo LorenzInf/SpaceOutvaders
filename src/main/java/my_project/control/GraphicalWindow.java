@@ -54,7 +54,7 @@ public class GraphicalWindow extends GraphicalObject {
      */
     public void switchScene(int index){
         viewController.showScene(index);
-        if(index == 2) {
+        if(index == 3) {
             SoundController.stopSound("mainMenuTheme");
             SoundController.playSound("gameTheme1");
         }

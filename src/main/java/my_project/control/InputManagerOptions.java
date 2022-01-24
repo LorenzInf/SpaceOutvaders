@@ -83,6 +83,7 @@ public class InputManagerOptions extends InputManager {
             }
             if(programController.getWindow().getOptionsIndex() == 1){
                 programController.getWindow().setOptionsIndex(5);
+                SoundController.playSound("select");
             }
         }
 
@@ -92,6 +93,7 @@ public class InputManagerOptions extends InputManager {
             }
             if(programController.getWindow().getOptionsIndex() == 5){
                 programController.getWindow().setOptionsIndex(1);
+                SoundController.playSound("select");
             }
         }
 
