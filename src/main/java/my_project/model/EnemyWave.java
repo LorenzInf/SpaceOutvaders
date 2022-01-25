@@ -30,15 +30,24 @@ public class EnemyWave {
     public void summonWaveNormal11(){ //Change to private when done - only public for testing purposes
         for(int i = 0; i < 11; i++) {
             EnemyNormal enemy = new EnemyNormal(viewController, programController);
-            programController.getArray().set(enemy, i, 3);
+            programController.getArray().set(enemy, i, 1);
         }
     }
 
-    private void summonWaveNormal22() { //Change to private when done - only public for testing purposes
+    public void summonWaveNormal22() { //Change to private when done - only public for testing purposes
+        for(int i = 0; i < 11; i++) {
+            EnemyNormal enemy = new EnemyNormal(viewController, programController);
+            programController.getArray().set(enemy, i, 0);
+        }
+        for(int i = 0; i < 11; i++) {
+            EnemyNormal enemy = new EnemyNormal(viewController, programController);
+            programController.getArray().set(enemy, i, 1);
+        }
+    }
+
+    public void summonWave3() { //Change to private when done - only public for testing purposes
 
     }
 
-    private void summonWave3() { //Change to private when done - only public for testing purposes
 
-    }
 }

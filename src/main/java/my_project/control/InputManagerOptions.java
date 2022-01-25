@@ -28,7 +28,6 @@ public class InputManagerOptions extends InputManager {
 
     @Override
     public void keyPressed(int key){
-        soundManager.updateSoundController();
         if(key == KeyEvent.VK_ENTER || key == KeyEvent.VK_SPACE){
             // Checkt Boolean Wert für das ändern des Symbols
             if (programController.getWindow().getOptionsIndex() == 1) {

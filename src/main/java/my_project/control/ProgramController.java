@@ -37,7 +37,7 @@ public class ProgramController {
      */
     public ProgramController(ViewController viewController){
         this.viewController = viewController;
-        soundManager = new SoundManager();
+        soundManager = new SoundManager(viewController);
     }
 
     /**
@@ -59,7 +59,6 @@ public class ProgramController {
         viewController.draw(array, 3);
         viewController.register(array);
 
-        soundManager.updateSoundController();
         SoundController.playSound("mainMenuTheme");
     }
 
