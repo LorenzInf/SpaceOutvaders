@@ -3,17 +3,16 @@ package my_project.view;
 import KAGO_framework.control.ViewController;
 import KAGO_framework.view.DrawTool;
 import my_project.control.GraphicalWindow;
-import my_project.control.ProgramController;
+import my_project.control.SoundManager;
+
 import java.awt.image.BufferedImage;
 
 public class StartScreen extends GraphicalWindow {
 
-    private ProgramController programController;
     private BufferedImage[] images;
 
-    public StartScreen(ViewController viewController, ProgramController programController) {
+    public StartScreen(ViewController viewController) {
         super();
-        this.programController = programController;
         viewController.createScene();
         images = new BufferedImage[]{
                 createImage("src/main/resources/graphic/start_screen.png"), //0
