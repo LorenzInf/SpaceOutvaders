@@ -1,7 +1,9 @@
 package my_project.model;
 import KAGO_framework.control.ViewController;
+import KAGO_framework.model.GraphicalObject;
 import my_project.control.ProgramController;
 
+import javax.swing.text.View;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
@@ -22,6 +24,7 @@ public abstract class Enemy extends Entity {
     protected double shootChance = 0.5;
     protected boolean instantShot = false;
     protected double count = 0;
+    protected boolean shield;
 
     public Enemy(ViewController viewController, ProgramController programController){
         super(viewController, programController);

@@ -16,7 +16,7 @@ public class Shot extends Entity {
     private BufferedImage[] images;
     private ProgramController programController;
 
-    public Shot(ViewController viewController, double x, double y, double speed, boolean enemyShot, ProgramController programController){
+    public Shot(ViewController viewController, double x, double y, double speed, boolean enemyShot,ProgramController programController){
         super(viewController, programController);
         this.viewController = viewController;
         this.programController = programController;
@@ -39,7 +39,7 @@ public class Shot extends Entity {
     public void update(double dt){
         // Ist auch noch buggy
         //y += (enemyShot ? 1 : -1) * speed*dt;
-        y -= 700*dt;
+        y -= speed*dt;
 
         //wenn außerhalb des Fensters, removeDrawable();
         if(y < -120 || y > (Config.WINDOW_HEIGHT + height)){
@@ -52,4 +52,5 @@ public class Shot extends Entity {
 
     @Override
     public void setY(double y){}
+
 }

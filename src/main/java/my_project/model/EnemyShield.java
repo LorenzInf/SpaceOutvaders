@@ -7,11 +7,17 @@ import my_project.control.ProgramController;
 public class EnemyShield extends Enemy {
     public EnemyShield(ViewController viewController, ProgramController programController){
         super(viewController,programController);
-        hp = 2; //TODO ??
+        shield = true;
+
     }
 
     @Override
     public void draw(DrawTool drawTool){
         drawTool.drawImage(images[3],x,y);
+    }
+
+    @Override
+    public void update(double dt){
+
     }
 }

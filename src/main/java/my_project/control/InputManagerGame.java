@@ -31,7 +31,7 @@ public class InputManagerGame extends InputManager {
 
         if(key == KeyEvent.VK_SPACE){
             SoundController.playSound("shootPlayer");
-            Shot shot = new Shot(viewController, programController.getPlayer().getX()+60, programController.getPlayer().getY()-100,100,false,programController);
+            Shot shot = new Shot(viewController, programController.getPlayer().getX()+60, programController.getPlayer().getY()-100,700,false, programController);
         }
 
         if(key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) {

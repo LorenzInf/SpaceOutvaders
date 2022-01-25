@@ -14,3 +14,4 @@ public class EnemyBurst extends Enemy{
         drawTool.drawImage(images[1],x,y);
     }
 }
+
