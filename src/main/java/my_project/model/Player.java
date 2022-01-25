@@ -8,7 +8,6 @@ import java.awt.image.BufferedImage;
 public class Player extends Entity {
 
     private int arrayX;
-    private String name;
     private int speed;
     private int hp;
     private boolean shield;
@@ -52,8 +51,6 @@ public class Player extends Entity {
             case 4 -> speed /= 2;
         }
     }
-
-    //https://www.microsoft.com/en-us/software-download/windows11
 
     public int getArrayX() {
         return arrayX;

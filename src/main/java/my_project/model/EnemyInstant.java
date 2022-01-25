@@ -14,4 +14,9 @@ public class EnemyInstant extends Enemy {
     public void draw(DrawTool drawTool){
         drawTool.drawImage(images[4],x,y);
     }
+
+    @Override
+    public void update(double dt){
+
+    }
 }
