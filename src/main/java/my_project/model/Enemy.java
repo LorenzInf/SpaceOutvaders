@@ -24,6 +24,7 @@ public abstract class Enemy extends Entity {
     protected double shootChance = 0.5;
     protected boolean instantShot = false;
     protected double count = 0;
+    protected boolean shield;
 
     public Enemy(ViewController viewController, ProgramController programController){
         super(viewController, programController);

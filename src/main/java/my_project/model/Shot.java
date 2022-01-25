@@ -16,7 +16,7 @@ public class Shot extends Entity {
     private BufferedImage[] images;
     private ProgramController programController;
 
-    public Shot(ViewController viewController, double x, double y, double speed, boolean enemyShot, ProgramController programController){
+    public Shot(ViewController viewController, double x, double y, double speed, boolean enemyShot,ProgramController programController){
         super(viewController, programController);
         this.viewController = viewController;
         this.programController = programController;
@@ -52,4 +52,5 @@ public class Shot extends Entity {
 
     @Override
     public void setY(double y){}
+
 }
