@@ -1,14 +1,14 @@
 package my_project.control;
 
 import KAGO_framework.control.SoundController;
-import my_project.Config;
+import my_project.model.EnemyWave;
 import my_project.model.Player;
 import KAGO_framework.control.ViewController;
-import my_project.view.Game;
+import my_project.model.Shot;
+import my_project.model.Entity;
 import my_project.view.Visual2DArray;
 
 import java.awt.*;
-import java.lang.reflect.Array;
 
 /**
  * Ein Objekt der Klasse ProgramController dient dazu das Programm zu steuern. Die updateProgram - Methode wird
@@ -23,8 +23,9 @@ public class ProgramController {
     private final ViewController viewController;
     private final SoundManager soundManager;
     private GraphicalWindow window;
-    private Visual2DArray array;
+    private Visual2DArray<Entity> array;
     private Player player;
+    private EnemyWave enemyWave;
 
 
     /**
@@ -44,14 +45,22 @@ public class ProgramController {
      * Sie erstellt die leeren Datenstrukturen, zu Beginn nur eine Queue
      */
     public void startProgram() {
-        array = new Visual2DArray<Game>(11, Config.WINDOW_HEIGHT / 175, 0 , 0, new Visual2DArray.VisualizationConfig(0,0, 175, 175, 0, true, false, false, null, Color.WHITE, new Color(0,0,0,0)));
+        array = new Visual2DArray<>(11, 8, 0 , 0, new Visual2DArray.VisualizationConfig(0,-350, 173, 175, 0, true, false, false, null, Color.WHITE, new Color(29, 173, 11, 0)));
         window = new GraphicalWindow(viewController, this);
+
         new InputManagerMainMenu(this, viewController, soundManager);
         new InputManagerOptions(this, viewController, window.getOptions(), soundManager);
         new InputManagerGame(this, viewController, soundManager, getWindow().getGame());
-        player = new Player(666,720,0,0,false, 0, viewController, getWindow().programController);
-        viewController.draw(array, 2);
+
+        player = new Player(5,0,0,false, 0, viewController, getWindow().programController);
+        array.set(player,5,7);
+        enemyWave = new EnemyWave(viewController,this);
+
+        viewController.draw(array, 3);
         viewController.register(array);
+
+        soundManager.updateSoundController();
+        SoundController.playSound("mainMenuTheme");
     }
 
     /**
@@ -68,5 +77,13 @@ public class ProgramController {
 
     public Player getPlayer() {
         return player;
+    }
+
+    public Visual2DArray<Entity> getArray() {
+        return array;
+    }
+
+    public EnemyWave getEnemyWave(){
+        return enemyWave;
     }
 }

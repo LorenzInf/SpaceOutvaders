@@ -13,16 +13,4 @@ public class EnemyBurst extends Enemy{
     public void draw(DrawTool drawTool){
         drawTool.drawImage(images[1],x,y);
     }
-
-    @Override
-    public void update(double dt){
-
-        if(tryToShoot()){
-            //shoot();
-            //wait idk 0.5 second or so
-            //shoot();
-            //wait idk 0.5 second or so
-            //shoot();
-        }
-    }
 }

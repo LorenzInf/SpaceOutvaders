@@ -8,9 +8,9 @@ import java.awt.event.KeyEvent;
 
 public abstract class InputManager extends InteractiveGraphicalObject {
 
-    private final ViewController viewController;
-    private final ProgramController programController;
-    private final SoundManager soundManager;
+    protected final ViewController viewController;
+    protected final ProgramController programController;
+    protected final SoundManager soundManager;
 
     public InputManager(ViewController viewController, ProgramController programController, SoundManager soundManager){
         this.viewController = viewController;
@@ -23,8 +23,18 @@ public abstract class InputManager extends InteractiveGraphicalObject {
      */
     protected void forceMainMenu(int key){
         if(key == KeyEvent.VK_P) {
-            viewController.showScene(0);
+            viewController.showScene(1);
             System.out.println("Main Menu force initialized");
         }
     }
+
+    protected void setVolume(int key){
+        if(key == KeyEvent.VK_MINUS) {
+            soundManager.modifyVolume(-0.1);
+        }
+        if(key == KeyEvent.VK_PLUS) {
+            soundManager.modifyVolume(0.1);
+        }
+    }
+
 }

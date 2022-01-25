@@ -28,6 +28,9 @@ public class Options extends GraphicalWindow {
                 createImage("src/main/resources/graphic/options_sound_on_selected.png"), // 7
                 createImage("src/main/resources/graphic/options_sound_off_selected.png"), // 8
                 createImage("src/main/resources/graphic/x_selected.png"), // 9
+                createImage("src/main/resources/graphic/plus_and_minus.png"), // 10
+                createImage("src/main/resources/graphic/plus_selected.png"), // 11
+                createImage("src/main/resources/graphic/minus_selected.png"), // 12
         };
         musicOn = true;
         soundOn = true;
@@ -37,6 +40,7 @@ public class Options extends GraphicalWindow {
     @Override
     public void draw(DrawTool drawTool){
         drawTool.drawImage(images[0], 0 ,0);
+        drawTool.drawImage(images[10], 0 , 0);
 
         // Wenn es neu gezeichnet wird muss geguckt werden, ob es an oder aus gemacht werden muss
         drawTool.drawImage(images[musicOn ? 1 : 2], 0, 0);
@@ -48,7 +52,10 @@ public class Options extends GraphicalWindow {
             case 1 -> drawTool.drawImage(images[musicOn ? 5 : 6], 0, 0);
             case 2 -> drawTool.drawImage(images[soundOn ? 7 : 8], 0, 0);
             case 3 -> drawTool.drawImage(images[9], 0, 0);
+            case 4 -> drawTool.drawImage(images[11], 0 ,0);
+            case 5 -> drawTool.drawImage(images[12], 0 , 0);
         }
+
     }
 
     public boolean isMusicOn() {

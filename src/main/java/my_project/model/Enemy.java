@@ -2,26 +2,23 @@ package my_project.model;
 import KAGO_framework.control.ViewController;
 import KAGO_framework.model.GraphicalObject;
 import my_project.control.ProgramController;
-import my_project.view.Game;
 
 import javax.swing.text.View;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
-public abstract class Enemy extends Game {
+public abstract class Enemy extends Entity {
     //Sprites
     protected BufferedImage[] images = new BufferedImage[]{
-            createImage("enemy_boss.png"), //0
-            createImage("enemy_burst_fire.png"), //1
-            createImage("enemy_normal.png"), //2
-            createImage("enemy_shield.png"), //3
-            createImage("enemy_charged_instant_shot"), //4
-            createImage("enemy_fast.png"), //5
+            createImage("src/main/resources/graphic/enemy_boss.png"), //0
+            createImage("src/main/resources/graphic/enemy_burst_fire.png"), //1
+            createImage("src/main/resources/graphic/enemy_normal.png"), //2
+            createImage("src/main/resources/graphic/enemy_shield.png"), //3
+            createImage("src/main/resources/graphic/enemy_charged_instant_shot.png"), //4
+            createImage("src/main/resources/graphic/enemy_fast.png"), //5
     };
 
     //other stuff
-    protected ViewController viewController;
-    protected ProgramController programController;
     protected int hp = 1; //1 oder 2
     protected int speed = 1; //in felder/sekunde
     protected double shootChance = 0.5;
@@ -30,17 +27,16 @@ public abstract class Enemy extends Game {
 
     public Enemy(ViewController viewController, ProgramController programController){
         super(viewController, programController);
-        this.viewController = viewController;
-        this.programController = programController;
     }
 
+    //TODO Make tryToShoot a working thing
     /**
-     * This should constantly be called in subclasses - When called there is a chance of {@code shootChance}% to shoot
+     * When called there is a chance of {@code shootChance}% for the Enemy to shoot
      */
     public boolean tryToShoot(){
         int help = new Random().nextInt(100 + 1);
         if(shootChance >= help){
-            Shoot s = new Shoot(viewController,x,y,3,8,100,255,255,255,0,0,0,true);
+            Shot s = new Shot(viewController,x,y,3,true, programController);
             return true;
         }
         return false;
@@ -48,10 +44,6 @@ public abstract class Enemy extends Game {
 
     //Jedes mal wenn er sich bewegt und kein Gegner unter ihm ist hat er eine x Prozent chance nach unten zu schießen
     //(würde 0.5% oder so vorschlagen, muss man ausprobieren)
-    @Override
-    public void update(double dt){
-        tryToShoot();
-    }
 
     public int getHp() {
         return hp;

@@ -2,41 +2,36 @@ package my_project.model;
 import KAGO_framework.control.ViewController;
 import KAGO_framework.view.DrawTool;
 import my_project.control.ProgramController;
-import my_project.view.Game;
 
 import java.awt.image.BufferedImage;
 
-public class Player extends Game {
+public class Player extends Entity {
 
+    private int arrayX;
     private String name;
-    private int x;
-    private int y;
     private int speed;
     private int hp;
     private boolean shield;
     private int buff;
-    private BufferedImage[] images;
-    private ViewController viewController;
-    private ProgramController programController;
+    private final BufferedImage[] images;
 
 
-    public Player(int x, int y, int speed, int hp, boolean shield, int buff, ViewController viewController, ProgramController programController){
+    public Player(int arrayX, int speed, int hp, boolean shield, int buff, ViewController viewController, ProgramController programController){
         super(viewController, programController);
-        this.x = x;
-        this.y = y;
+        this.arrayX = arrayX;
         this.speed = speed;
         this.hp = hp;
         this.shield = false;
         this.buff = ((int)(Math.random()*4));
-        viewController.draw(this, 2);
+        viewController.draw(this, 3);
         images = new BufferedImage[]{
-                createImage("src/main/resources/graphic/Spaceship.png"), // 1
+                createImage("src/main/resources/graphic/Spaceship.png")
         };
     }
 
     @Override
     public void draw(DrawTool drawTool){
-        drawTool.drawImage(images[0], x, y);
+        drawTool.drawTransformedImage(images[0], x-32.5, y-70, 0 , 0.53);
     }
 
     /**
@@ -58,57 +53,13 @@ public class Player extends Game {
         }
     }
 
-    @Override
-    public double getX() {
-        return x;
+    //https://www.microsoft.com/en-us/software-download/windows11
+
+    public int getArrayX() {
+        return arrayX;
     }
 
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    @Override
-    public double getY() {
-        return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    public int getSpeed() {
-        return speed;
-    }
-
-    public void setSpeed(int speed) {
-        this.speed = speed;
-    }
-
-    public int getHp() {
-        return hp;
-    }
-
-    public void setHp(int hp) {
-        this.hp = hp;
-    }
-
-    public boolean isShield() {
-        return shield;
-    }
-
-    public void setShield(boolean shield) {
-        this.shield = shield;
-    }
-
-    public int getBuff() {
-        return buff;
-    }
-
-    public void setBuff(int buff) {
-        this.buff = buff;
-    }
-
-    public Player getPlayer(){
-        return this;
+    public void setArrayX(int arrayX) {
+        this.arrayX = arrayX;
     }
 }

@@ -2,15 +2,11 @@ package my_project.view;
 
 import KAGO_framework.control.ViewController;
 import KAGO_framework.view.DrawTool;
-import my_project.Config;
 import my_project.control.GraphicalWindow;
 import my_project.control.ProgramController;
-import my_project.model.Player;
-
-import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Game extends GraphicalWindow implements Visual2DArray.Animatable {
+public class Game extends GraphicalWindow {
 
     private ProgramController programController;
     private BufferedImage[] images;
@@ -28,13 +24,4 @@ public class Game extends GraphicalWindow implements Visual2DArray.Animatable {
     public void draw(DrawTool drawTool) {
         drawTool.drawImage(images[0], 0 ,0);
     }
-
-    @Override
-    public void fadeIn() {
-    }
-
-    @Override
-    public void fadeOut() {
-    }
-
 }
