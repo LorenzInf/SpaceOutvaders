@@ -3,8 +3,7 @@ package my_project.control;
 import KAGO_framework.control.SoundController;
 import my_project.model.*;
 import KAGO_framework.control.ViewController;
-import my_project.view.Visual2DArray;
-import my_project.view.VisualStack;
+import my_project.view.*;
 
 import java.awt.*;
 
@@ -22,6 +21,7 @@ public class ProgramController {
     private GraphicalWindow window;
     private Visual2DArray<Entity> array;
     private VisualStack<PlayerLife> playerLifesStack;
+    private VisualList<PlayerName>nameList;
     private Player player;
     private PlayerLife playerLife;
     private EnemyWave enemyWave;
@@ -51,6 +51,7 @@ public class ProgramController {
         new InputManagerMainMenu(this, viewController, soundManager);
         new InputManagerOptions(this, viewController, window.getOptions(), soundManager);
         new InputManagerGame(this, viewController, soundManager, getWindow().getGame());
+        new InputManagerEnterName(this,viewController,soundManager);
 
         player = new Player(5,0,0,false, 0, viewController, getWindow().programController);
         array.set(player,5,7);

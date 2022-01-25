@@ -20,6 +20,7 @@ public class GraphicalWindow extends GraphicalObject {
     private MainMenu mainMenu;
     private Options options;
     private StartScreen startScreen;
+    private EnterName enterName;
 
     public GraphicalWindow(){}
 
@@ -33,6 +34,7 @@ public class GraphicalWindow extends GraphicalObject {
         leaderboard = new Leaderboard(viewController);
         mainMenu = new MainMenu(viewController, programController);
         options = new Options(viewController, programController);
+        enterName = new EnterName(viewController,programController);
 
 
         mainMenuIndex = 2;
@@ -44,6 +46,7 @@ public class GraphicalWindow extends GraphicalObject {
         viewController.draw(game,3);
         viewController.draw(leaderboard,4);
         viewController.draw(guide,5);
+        viewController.draw(enterName,6);
 
 
     }
@@ -84,6 +87,7 @@ public class GraphicalWindow extends GraphicalObject {
     public Game getGame() {
         return game;
     }
+
 }
 
 // sceneIndex 0 = MainMenu
@@ -91,3 +95,5 @@ public class GraphicalWindow extends GraphicalObject {
 // sceneIndex 2 = Guide
 // sceneIndex 3 = Game
 // sceneIndex 4 = Leaderboard
+// sceneIndex 5 = guide
+// sceneIndex 6 = enterName
