@@ -28,6 +28,7 @@ public class InputManagerMainMenu extends InputManager {
     public void keyPressed(int key){
         if(startScreen){
             if(key == KeyEvent.VK_SPACE){
+                soundManager.updateSoundController();
                 programController.getWindow().switchScene(1);
                 startScreen = false;
             }
