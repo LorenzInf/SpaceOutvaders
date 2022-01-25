@@ -41,9 +41,6 @@ public class VisualStack<T extends GraphicalObject & VisualStack.Animated> exten
         }
     }
 
-
-
-
     /**
      * Die Methode popVisual ist ähnlich zu pop() in Stack.
      * Es wird erst geprüft, ob stack leer ist, wenn ja, dann passiert nichts, sonst:

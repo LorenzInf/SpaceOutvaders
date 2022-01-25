@@ -39,7 +39,7 @@ public class Shot extends Entity {
     public void update(double dt){
         // Ist auch noch buggy
         //y += (enemyShot ? 1 : -1) * speed*dt;
-        y -= 700*dt;
+        y -= speed*dt;
 
         //wenn außerhalb des Fensters, removeDrawable();
         if(y < -120 || y > (Config.WINDOW_HEIGHT + height)){

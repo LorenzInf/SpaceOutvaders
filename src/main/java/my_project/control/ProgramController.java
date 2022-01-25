@@ -1,12 +1,10 @@
 package my_project.control;
 
 import KAGO_framework.control.SoundController;
-import my_project.model.EnemyWave;
-import my_project.model.Player;
+import my_project.model.*;
 import KAGO_framework.control.ViewController;
-import my_project.model.Shot;
-import my_project.model.Entity;
 import my_project.view.Visual2DArray;
+import my_project.view.VisualStack;
 
 import java.awt.*;
 
@@ -18,13 +16,14 @@ public class ProgramController {
 
     //Attribute
 
-
     // Referenzen
     private final ViewController viewController;
     private final SoundManager soundManager;
     private GraphicalWindow window;
     private Visual2DArray<Entity> array;
+    private VisualStack<PlayerLife> playerLifesStack;
     private Player player;
+    private PlayerLife playerLife;
     private EnemyWave enemyWave;
 
 
@@ -46,6 +45,7 @@ public class ProgramController {
      */
     public void startProgram() {
         array = new Visual2DArray<>(11, 8, 0 , 0, new Visual2DArray.VisualizationConfig(0,-350, 173, 175, 0, true, false, false, null, Color.WHITE, new Color(29, 173, 11, 0)));
+        playerLifesStack = new VisualStack<>(viewController);
         window = new GraphicalWindow(viewController, this);
 
         new InputManagerMainMenu(this, viewController, soundManager);
@@ -54,6 +54,7 @@ public class ProgramController {
 
         player = new Player(5,0,0,false, 0, viewController, getWindow().programController);
         array.set(player,5,7);
+
         enemyWave = new EnemyWave(viewController,this);
 
         viewController.draw(array, 3);
@@ -85,5 +86,9 @@ public class ProgramController {
 
     public EnemyWave getEnemyWave(){
         return enemyWave;
+    }
+
+    public VisualStack<PlayerLife> getStack(){
+        return playerLifesStack;
     }
 }
