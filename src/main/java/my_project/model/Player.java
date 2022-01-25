@@ -8,7 +8,6 @@ import java.awt.image.BufferedImage;
 
 public class Player extends Game {
 
-    private BufferedImage Spaceship;
     private String name;
     private int x;
     private int y;
@@ -16,29 +15,29 @@ public class Player extends Game {
     private int hp;
     private boolean shield;
     private int buff;
+    private BufferedImage[] images;
     private ViewController viewController;
     private ProgramController programController;
-    private BufferedImage[] images;
 
-    public Player(int speed, int hp, boolean shield, int buff, ViewController viewController, ProgramController programController){
+
+    public Player(int x, int y, int speed, int hp, boolean shield, int buff, ViewController viewController, ProgramController programController){
         super(viewController, programController);
+        this.x = x;
+        this.y = y;
         this.speed = speed;
         this.hp = hp;
         this.shield = false;
         this.buff = ((int)(Math.random()*4));
-        x = 666;
-        y = 720;
+        viewController.draw(this, 2);
         images = new BufferedImage[]{
                 createImage("src/main/resources/graphic/Spaceship.png"), // 1
         };
-        viewController.draw(this, 2);
     }
 
     @Override
     public void draw(DrawTool drawTool){
         drawTool.drawImage(images[0], x, y);
     }
-
 
     /**
      *
@@ -107,5 +106,9 @@ public class Player extends Game {
 
     public void setBuff(int buff) {
         this.buff = buff;
+    }
+
+    public Player getPlayer(){
+        return this;
     }
 }

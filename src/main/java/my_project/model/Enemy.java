@@ -11,12 +11,12 @@ import java.util.Random;
 public abstract class Enemy extends Game {
     //Sprites
     protected BufferedImage[] images = new BufferedImage[]{
-            createImage("src/main/resources/enemy_boss.png"), //0
-            createImage("src/main/resources/enemy_burst_fire.png"), //1
-            createImage("src/main/resources/enemy_normal.png"), //2
-            createImage("src/main/resources/enemy_shield.png"), //3
-            createImage("src/main/resources/enemy_charged_instant_shot"), //4
-            createImage("src/main/resources/enemy_speed.png")//5
+            createImage("enemy_boss.png"), //0
+            createImage("enemy_burst_fire.png"), //1
+            createImage("enemy_normal.png"), //2
+            createImage("enemy_shield.png"), //3
+            createImage("enemy_charged_instant_shot"), //4
+            createImage("enemy_fast.png"), //5
     };
 
     //other stuff
@@ -26,6 +26,7 @@ public abstract class Enemy extends Game {
     protected int speed = 1; //in felder/sekunde
     protected double shootChance = 0.5;
     protected boolean instantShot = false;
+    protected double count = 0;
 
     public Enemy(ViewController viewController, ProgramController programController){
         super(viewController, programController);
@@ -33,21 +34,14 @@ public abstract class Enemy extends Game {
         this.programController = programController;
     }
 
-
     /**
-     * This should constantly be called in subclasses - Every second there is a chance of {@code shootChance}% to shoot
-     * @param dt Time since last update
+     * This should constantly be called in subclasses - When called there is a chance of {@code shootChance}% to shoot
      */
-    public boolean tryToShoot(double dt){
-        double help = 0;
-        help += dt;
-        if(help >= 1){
-            help = 0;
-            int help2 = new Random().nextInt(100 + 1);
-            if(shootChance >= help2){
-                //shoot();
-                return true;
-            }
+    public boolean tryToShoot(){
+        int help = new Random().nextInt(100 + 1);
+        if(shootChance >= help){
+            Shoot s = new Shoot(viewController,x,y,3,8,100,255,255,255,0,0,0,true);
+            return true;
         }
         return false;
     }
@@ -56,7 +50,7 @@ public abstract class Enemy extends Game {
     //(würde 0.5% oder so vorschlagen, muss man ausprobieren)
     @Override
     public void update(double dt){
-        tryToShoot(dt);
+        tryToShoot();
     }
 
     public int getHp() {

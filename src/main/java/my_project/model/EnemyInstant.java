@@ -7,7 +7,7 @@ import my_project.control.ProgramController;
 public class EnemyInstant extends Enemy {
     public EnemyInstant(ViewController viewController, ProgramController programController){
         super(viewController,programController);
-        instantShot = true;
+        instantShot = true; //TODO make instant shots actually be a thing
     }
 
     @Override
