@@ -30,13 +30,13 @@ public class VisualStack<T extends GraphicalObject & VisualStack.Animated> exten
      * x-Koordinate in abhängigkeit von counter gesetzt
      * gezeichnet + der counter um 1 erhöht
      */
-    public void pushInVisual(T contentType) {
+    public void pushInVisual(T contentType, int sceneIndex) {
         if (contentType != null) {
             stack.push(contentType);
             contentType.comeIn();
 // Eigentlich sollte der counter + setX() in der Ball Klasse/ die //Klasse die das implementiert
             contentType.setX(counter * (contentType.getRadius()*2));
-            viewController.draw(contentType);
+            viewController.draw(contentType, sceneIndex);
             counter++;
         }
     }
@@ -56,6 +56,13 @@ public class VisualStack<T extends GraphicalObject & VisualStack.Animated> exten
             stack.pop();
             counter--;
         }
+    }
+
+    public T top(){
+        if (!stack.isEmpty()){
+            return stack.top();
+        }
+        return null;
     }
 }
 

@@ -20,7 +20,6 @@ public class Game extends GraphicalWindow {
         this.viewController = viewController;
         this.programController = programController;
         viewController.createScene();
-        programController.getStack().pushInVisual(new PlayerLife(viewController, programController)); // ToDo: Player Life kaputt, er zeichnet es noch nicht
         images = new BufferedImage[]{ // Alle Bilder pre laden, damit es zu keinen Lags kommt weil sonst die Images neu geladen werden
                 createImage("src/main/resources/graphic/maingame_blank.png")
         };

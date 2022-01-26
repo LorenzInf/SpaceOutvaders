@@ -22,7 +22,6 @@ public class ProgramController {
     private final SoundManager soundManager;
     private GraphicalWindow window;
     private Visual2DArray<Entity> array;
-    private VisualStack<PlayerLife> playerLifesStack;
     private VisualList<PlayerName>nameList;
     private Player player;
     private PlayerLife playerLife;
@@ -48,7 +47,7 @@ public class ProgramController {
      */
     public void startProgram() {
         array = new Visual2DArray<>(11, 8, 0 , 0, new Visual2DArray.VisualizationConfig(0,-350, 173, 175, 0, true, false, false, null, Color.WHITE, new Color(29, 173, 11, 0)));
-        playerLifesStack = new VisualStack<>(viewController);
+
         window = new GraphicalWindow(viewController, this);
 
         new InputManagerMainMenu(this, viewController, soundManager);
@@ -58,6 +57,8 @@ public class ProgramController {
 
         player = new Player(5,0,0,false, 0, viewController, getWindow().programController);
         array.set(player,5,7);
+
+        playerLife = new PlayerLife(30, 30 , viewController, this);
 
         enemyWave = new EnemyWave(viewController,this);
 
@@ -92,10 +93,6 @@ public class ProgramController {
 
     public EnemyWave getEnemyWave(){
         return enemyWave;
-    }
-
-    public VisualStack<PlayerLife> getStack(){
-        return playerLifesStack;
     }
 
     public void setMoveTimerActive(boolean moveTimerActive) {
