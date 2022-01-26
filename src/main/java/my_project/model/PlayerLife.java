@@ -2,6 +2,7 @@ package my_project.model;
 
 import KAGO_framework.control.ViewController;
 import KAGO_framework.view.DrawTool;
+import my_project.control.GraphicalWindow;
 import my_project.control.ProgramController;
 import my_project.view.VisualStack;
 
@@ -17,7 +18,7 @@ public class PlayerLife extends Entity implements VisualStack.Animated {
                 createImage("src/main/resources/graphic/heart_full.png"), // 0
                 createImage("src/main/resources/graphic/heart_empty.png"), // 1
         };
-        viewController.draw(this, 3);
+        viewController.draw(this, GraphicalWindow.GAME_INDEX);
     }
 
     @Override

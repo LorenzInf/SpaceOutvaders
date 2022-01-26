@@ -1,6 +1,7 @@
 package my_project.model;
 import KAGO_framework.control.ViewController;
 import KAGO_framework.view.DrawTool;
+import my_project.control.GraphicalWindow;
 import my_project.control.ProgramController;
 
 import java.awt.image.BufferedImage;
@@ -22,7 +23,7 @@ public class Player extends Entity {
         this.hp = hp;
         this.shield = false;
         this.buff = ((int)(Math.random()*4));
-        viewController.draw(this, 3);
+        viewController.draw(this, GraphicalWindow.GAME_INDEX);
         images = new BufferedImage[]{
                 createImage("src/main/resources/graphic/Spaceship.png")
         };

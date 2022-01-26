@@ -6,6 +6,8 @@ import KAGO_framework.control.ViewController;
 import my_project.view.*;
 
 import java.awt.*;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Ein Objekt der Klasse ProgramController dient dazu das Programm zu steuern. Die updateProgram - Methode wird
@@ -58,7 +60,7 @@ public class ProgramController {
 
         enemyWave = new EnemyWave(viewController,this);
 
-        viewController.draw(array, 3);
+        viewController.draw(array, GraphicalWindow.GAME_INDEX);
         viewController.register(array);
 
         SoundController.playSound("mainMenuTheme");

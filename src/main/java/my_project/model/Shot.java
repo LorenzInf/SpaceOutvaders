@@ -3,6 +3,7 @@ package my_project.model;
 import KAGO_framework.control.ViewController;
 import KAGO_framework.view.DrawTool;
 import my_project.Config;
+import my_project.control.GraphicalWindow;
 import my_project.control.ProgramController;
 
 import java.awt.*;
@@ -27,7 +28,7 @@ public class Shot extends Entity {
         images = new BufferedImage[]{
                 createImage("src/main/resources/graphic/laser_shot.png"),
         };
-        viewController.draw(this,3);
+        viewController.draw(this, GraphicalWindow.GAME_INDEX);
     }
 
     public void draw(DrawTool drawTool){

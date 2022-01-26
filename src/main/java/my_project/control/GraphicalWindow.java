@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class GraphicalWindow extends GraphicalObject {
+    public static int START_SCREEN_INDEX = 0, MAIN_MENU_INDEX = 1, OPTIONS_INDEX = 2, GAME_INDEX = 3, LEADERBOARD_INDEX = 4, GUIDE_INDEX = 5, ENTER_NAME_INDEX = 6;
     protected int mainMenuIndex, optionsIndex;
     protected ViewController viewController;
     protected ProgramController programController;
@@ -36,19 +37,16 @@ public class GraphicalWindow extends GraphicalObject {
         options = new Options(viewController, programController);
         enterName = new EnterName(viewController,programController);
 
-
         mainMenuIndex = 2;
         optionsIndex = 3;
 
-        viewController.draw(startScreen, 0);
-        viewController.draw(mainMenu,1);
-        viewController.draw(options,2);
-        viewController.draw(game,3);
-        viewController.draw(leaderboard,4);
-        viewController.draw(guide,5);
-        viewController.draw(enterName,6);
-
-
+        viewController.draw(startScreen, START_SCREEN_INDEX);
+        viewController.draw(mainMenu,MAIN_MENU_INDEX);
+        viewController.draw(options,OPTIONS_INDEX);
+        viewController.draw(game,GAME_INDEX);
+        viewController.draw(leaderboard,LEADERBOARD_INDEX);
+        viewController.draw(guide,GUIDE_INDEX);
+        viewController.draw(enterName,ENTER_NAME_INDEX);
     }
 
     /**
