@@ -9,24 +9,20 @@ import java.awt.image.BufferedImage;
 
 public class InputManagerEnterName extends InputManager {
 
-    private boolean game;
-
     public InputManagerEnterName(ProgramController programController,ViewController viewController, SoundManager soundManager) {
         super(viewController, programController, soundManager);
         viewController.register(this,6);
-        game = true;
     }
+
     @Override
     public void keyPressed(int key){
-        if (game){
-            if (key == KeyEvent.VK_M) {
-                    programController.getWindow().switchScene(6);
-                    game = false;
-            }
+        if (key == KeyEvent.VK_ENTER) {
+            viewController.showScene(4);
         }
 
 
-        /**switch (key){
+
+        /*switch (key){
             case KeyEvent.VK_A->
             case KeyEvent.VK_B->
             case KeyEvent.VK_C->

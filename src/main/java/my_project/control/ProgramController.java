@@ -23,7 +23,7 @@ public class ProgramController {
     private GraphicalWindow window;
     private Visual2DArray<Entity> array;
     private VisualStack<PlayerLife> playerLifesStack;
-    private VisualList<PlayerName>nameList;
+    private VisualList<PlayerName> nameList;
     private Player player;
     private PlayerLife playerLife;
     private EnemyWave enemyWave;
@@ -49,11 +49,12 @@ public class ProgramController {
         array = new Visual2DArray<>(11, 8, 0 , 0, new Visual2DArray.VisualizationConfig(0,-350, 173, 175, 0, true, false, false, null, Color.WHITE, new Color(29, 173, 11, 0)));
         playerLifesStack = new VisualStack<>(viewController);
         window = new GraphicalWindow(viewController, this);
-
+        nameList = new VisualList<>(0,0,0,0);
         new InputManagerMainMenu(this, viewController, soundManager);
         new InputManagerOptions(this, viewController, window.getOptions(), soundManager);
         new InputManagerGame(this, viewController, soundManager, getWindow().getGame());
-        new InputManagerEnterName(this,viewController,soundManager);
+        new InputManagerEnterName(this, viewController, soundManager);
+        new InputManagerLeaderboard(this,viewController,soundManager);
 
         player = new Player(5,0,0,false, 0, viewController, getWindow().programController);
         array.set(player,5,7);

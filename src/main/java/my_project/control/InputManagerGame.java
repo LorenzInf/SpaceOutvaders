@@ -50,6 +50,10 @@ public class InputManagerGame extends InputManager {
             }
         }
 
+        if (key == KeyEvent.VK_M) {
+            viewController.showScene(6);
+        }
+
         if(key == KeyEvent.VK_F){
             programController.getEnemyWave().summonWaveNormal11();
         }
