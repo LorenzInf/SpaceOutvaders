@@ -265,6 +265,14 @@ public class Visual2DArray<T extends GraphicalObject & Visual2DArray.Animatable>
         set(value, xPointer, yPointer);
     }
 
+    public T get(int x, int y) {
+        if (isLegal(x, y)) {
+            return internalRepresentation[x][y];
+        }
+        return null;
+    }
+
+
     /**
      * Sets the pointer to this x and y index if it is a valid coordinate
      * @param x the x-pointer

@@ -27,6 +27,7 @@ public class ProgramController {
     private Player player;
     private PlayerLife playerLife;
     private EnemyWave enemyWave;
+    private boolean moveTimerActive;
 
 
     /**
@@ -72,7 +73,10 @@ public class ProgramController {
      * @param dt Zeit seit letzter Frame
      */
     public void updateProgram(double dt){
-
+        if(viewController.getCurrentSceneIndex() == GraphicalWindow.GAME_INDEX && !moveTimerActive){
+            window.getGame().EnemyMovement();
+            moveTimerActive = true;
+        }
     }
 
     public GraphicalWindow getWindow(){
@@ -93,5 +97,9 @@ public class ProgramController {
 
     public VisualStack<PlayerLife> getStack(){
         return playerLifesStack;
+    }
+
+    public void setMoveTimerActive(boolean moveTimerActive) {
+        this.moveTimerActive = moveTimerActive;
     }
 }
