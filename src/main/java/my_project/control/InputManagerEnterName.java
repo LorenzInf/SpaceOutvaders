@@ -20,8 +20,6 @@ public class InputManagerEnterName extends InputManager {
             viewController.showScene(4);
         }
 
-
-
         /*switch (key){
             case KeyEvent.VK_A->
             case KeyEvent.VK_B->

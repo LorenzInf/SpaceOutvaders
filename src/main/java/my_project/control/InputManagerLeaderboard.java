@@ -8,6 +8,7 @@ public class InputManagerLeaderboard extends InputManager{
 
     public InputManagerLeaderboard(ProgramController programController,ViewController viewController, SoundManager soundManager) {
         super(viewController, programController, soundManager);
+        viewController.register(this,4);
 
     }
 
@@ -19,5 +20,7 @@ public class InputManagerLeaderboard extends InputManager{
         if(key == KeyEvent.VK_DOWN){
 
         }
+        forceMainMenu(key);
+
     }
 }

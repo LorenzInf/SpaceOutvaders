@@ -5,7 +5,10 @@ import my_project.control.GraphicalWindow;
 import my_project.control.ProgramController;
 import my_project.view.VisualList;
 
+
 public class PlayerName extends Entity implements VisualList.AnimableList{
+
+    private VisualList<PlayerName> playerNameList;
 
 
     public PlayerName(ViewController viewController, ProgramController programController) {

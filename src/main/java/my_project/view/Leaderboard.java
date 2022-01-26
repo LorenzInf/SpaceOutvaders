@@ -13,16 +13,18 @@ public class Leaderboard extends GraphicalWindow {
 
     private ProgramController programController;
     private BufferedImage[] images;
+
     public Leaderboard(ViewController viewController) {
         super();
         viewController.createScene();
+        images = new BufferedImage[]{
+                createImage("src/main/resources/graphic/leaderboard.png")//0
+        };
     }
 
     @Override
     public void draw(DrawTool drawTool) {
-        drawTool.setCurrentColor(Color.BLACK);
-        drawTool.drawFilledRectangle(0,0, Config.WINDOW_WIDTH,Config.WINDOW_HEIGHT);
-        drawTool.setCurrentColor(Color.WHITE);
-        drawTool.drawRectangle(10,10,1900,1070);
+        drawTool.drawImage(images[0], 0 ,0);
     }
+
 }
