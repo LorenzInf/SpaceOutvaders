@@ -5,11 +5,6 @@ import KAGO_framework.control.ViewController;
 import KAGO_framework.model.GraphicalObject;
 import my_project.view.*;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.util.Objects;
-
 public class GraphicalWindow extends GraphicalObject {
     public static int START_SCREEN_INDEX = 0, MAIN_MENU_INDEX = 1, OPTIONS_INDEX = 2, GAME_INDEX = 3, LEADERBOARD_INDEX = 4, GUIDE_INDEX = 5, ENTER_NAME_INDEX = 6;
     protected int mainMenuIndex, optionsIndex;
@@ -22,7 +17,7 @@ public class GraphicalWindow extends GraphicalObject {
     private Options options;
     private StartScreen startScreen;
     private EnterName enterName;
-    private Fade fade;
+    private FadeIn fadeIn;
 
     public GraphicalWindow(){}
 
@@ -37,7 +32,7 @@ public class GraphicalWindow extends GraphicalObject {
         mainMenu = new MainMenu(viewController, programController);
         options = new Options(viewController, programController);
         enterName = new EnterName(viewController,programController);
-        fade = new Fade(viewController);
+        fadeIn = new FadeIn(viewController);
 
         mainMenuIndex = 2;
         optionsIndex = 3;
@@ -59,7 +54,7 @@ public class GraphicalWindow extends GraphicalObject {
         if(index == 3) {
             SoundController.stopSound("mainMenuTheme");
             SoundController.playSound("gameTheme1");
-            fade.fadeIn(0,4,index);
+            fadeIn.fadeIn(0,4,index);
         }
         viewController.showScene(index);
 
