@@ -58,44 +58,38 @@ public class InputManagerOptions extends InputManager {
             programController.getWindow().switchScene(1);
         }
 
-        if(key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT){ // Markiertes Symbol nach rechts bewegen
+        if(key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT){ // Markiertes Symbol nach links bewegen
+            switch (programController.getWindow().getOptionsIndex()){
+                case 4 -> programController.getWindow().setOptionsIndex(5);
+                case 2 -> programController.getWindow().setOptionsIndex(1);
+            }
             SoundController.playSound("select");
-            if(programController.getWindow().getOptionsIndex() != 1 && programController.getWindow().getOptionsIndex() != 4){
-                programController.getWindow().setOptionsIndex(programController.getWindow().getOptionsIndex() - 1);
-            }
-            if(programController.getWindow().getOptionsIndex() == 4){
-                programController.getWindow().setOptionsIndex(5);
-            }
         }
 
-        if(key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT){ // Markiertes Symbol nach links bewegen
+        if(key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT){ // Markiertes Symbol nach rechts bewegen
+            switch (programController.getWindow().getOptionsIndex()){
+                case 5 -> programController.getWindow().setOptionsIndex(4);
+                case 1 -> programController.getWindow().setOptionsIndex(2);
+            }
             SoundController.playSound("select");
-            if (programController.getWindow().getOptionsIndex() != 3 && programController.getWindow().getOptionsIndex() != 5) {
-                programController.getWindow().setOptionsIndex(programController.getWindow().getOptionsIndex() + 1);
-            }
-            if (programController.getWindow().getOptionsIndex() == 5) {
-                programController.getWindow().setOptionsIndex(4);
-            }
         }
 
         if(key == KeyEvent.VK_S || key == KeyEvent.VK_DOWN){
-            if(programController.getWindow().getOptionsIndex() == 2){
-                programController.getWindow().setOptionsIndex(4);
+            switch (programController.getWindow().getOptionsIndex()){
+                case 3 -> programController.getWindow().setOptionsIndex(2);
+                case 2 -> programController.getWindow().setOptionsIndex(4);
+                case 1 -> programController.getWindow().setOptionsIndex(5);
             }
-            if(programController.getWindow().getOptionsIndex() == 1){
-                programController.getWindow().setOptionsIndex(5);
-                SoundController.playSound("select");
-            }
+            SoundController.playSound("select");
         }
 
         if(key == KeyEvent.VK_W || key == KeyEvent.VK_UP){
-            if(programController.getWindow().getOptionsIndex() == 4){
-                programController.getWindow().setOptionsIndex(2);
+            switch (programController.getWindow().getOptionsIndex()){
+                case 2 -> programController.getWindow().setOptionsIndex(3);
+                case 4 -> programController.getWindow().setOptionsIndex(2);
+                case 5 -> programController.getWindow().setOptionsIndex(1);
             }
-            if(programController.getWindow().getOptionsIndex() == 5){
-                programController.getWindow().setOptionsIndex(1);
-                SoundController.playSound("select");
-            }
+            SoundController.playSound("select");
         }
 
         // Minus und Plus Buttons
