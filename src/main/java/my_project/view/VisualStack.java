@@ -15,13 +15,9 @@ public class VisualStack<T extends GraphicalObject & VisualStack.Animated> exten
     private Stack<T> stack;
     private ViewController viewController;
     private int counter;
-    private int x;
-    private int y;
 
     public VisualStack(ViewController viewController){
         counter = 1;
-        this.x = x;
-        this.y = y;
         stack = new Stack<>();
         this.viewController = viewController;
     }

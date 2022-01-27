@@ -22,6 +22,7 @@ public class GraphicalWindow extends GraphicalObject {
     private Options options;
     private StartScreen startScreen;
     private EnterName enterName;
+    private Fade fade;
 
     public GraphicalWindow(){}
 
@@ -36,6 +37,7 @@ public class GraphicalWindow extends GraphicalObject {
         mainMenu = new MainMenu(viewController, programController);
         options = new Options(viewController, programController);
         enterName = new EnterName(viewController,programController);
+        fade = new Fade(viewController);
 
         mainMenuIndex = 2;
         optionsIndex = 3;
@@ -54,11 +56,12 @@ public class GraphicalWindow extends GraphicalObject {
      * @param index index of the scene to switch to
      */
     public void switchScene(int index){
-        viewController.showScene(index);
         if(index == 3) {
             SoundController.stopSound("mainMenuTheme");
             SoundController.playSound("gameTheme1");
+            fade.fadeIn(0,4,index);
         }
+        viewController.showScene(index);
 
     }
 
@@ -85,6 +88,7 @@ public class GraphicalWindow extends GraphicalObject {
     public Game getGame() {
         return game;
     }
+
 
 }
 
