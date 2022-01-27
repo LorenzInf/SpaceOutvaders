@@ -25,14 +25,10 @@ public class PlayerLife extends Entity implements VisualStack.Animated {
         playerLifesStack = new VisualStack<>(viewController);
         playerLifesStack.pushInVisual(this, x, y, 3);
 
-        // ToDo: Mit Stack muss noch gearbeitet werden
-
         images = new BufferedImage[]{
                 createImage("src/main/resources/graphic/heart_full.png"), // 0
                 createImage("src/main/resources/graphic/heart_empty.png"), // 1
         };
-
-        viewController.draw(this, GraphicalWindow.GAME_INDEX);
     }
 
     @Override
