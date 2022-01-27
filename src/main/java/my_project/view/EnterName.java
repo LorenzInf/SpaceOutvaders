@@ -19,9 +19,7 @@ public class EnterName extends GraphicalWindow {
         viewController.createScene();
         images = new BufferedImage[]{
                 createImage("src/main/resources/graphic/enterName.png")//0
-                //ToDo EnterName screen bearbeiten
         };
-
     }
 
     @Override
