@@ -14,6 +14,7 @@ import java.security.Key;
 public class InputManagerOptions extends InputManager {
 
     private final Options options;
+    private double volRemember;
 
     /**
      * Objekterzeugung
@@ -22,6 +23,7 @@ public class InputManagerOptions extends InputManager {
      */
     public InputManagerOptions(ProgramController programController, ViewController viewController, Options options, SoundManager soundManager){
         super(viewController,programController, soundManager);
+        volRemember = 1.0;
         this.options = options;
         viewController.register(this, 2);
     }
@@ -32,15 +34,15 @@ public class InputManagerOptions extends InputManager {
             // Checkt Boolean Wert für das ändern des Symbols
             if (programController.getWindow().getOptionsIndex() == 1) {
                 options.setMusicOn(!options.isMusicOn());
-                SoundController.setVolume("mainMenuTheme",options.isMusicOn() ? 1.0 : 0.0);
-                SoundController.setVolume("gameTheme1",options.isMusicOn() ? 1.0 : 0.0);
+                SoundController.setVolume("mainMenuTheme", options.isMusicOn() ? volRemember : 0.0);
+                SoundController.setVolume("gameTheme1", options.isMusicOn() ? volRemember : 0.0);
                 SoundController.playSound("select");
             }
             if (programController.getWindow().getOptionsIndex() == 2) {
                 options.setSoundOn(!options.isSoundOn());
-                SoundController.setVolume("select",options.isSoundOn() ? 1.0 : 0.0);
-                SoundController.setVolume("exit",options.isSoundOn() ? 1.0 : 0.0);
-                SoundController.setVolume("shootPlayer",options.isSoundOn() ? 1.0 : 0.0);
+                SoundController.setVolume("select",options.isSoundOn() ? volRemember : 0.0);
+                SoundController.setVolume("exit",options.isSoundOn() ? volRemember : 0.0);
+                SoundController.setVolume("shootPlayer",options.isSoundOn() ? volRemember : 0.0);
                 SoundController.playSound("select");
             }
             if(programController.getWindow().getOptionsIndex() == 3){ // Wenn man auf dem X ist
@@ -100,9 +102,15 @@ public class InputManagerOptions extends InputManager {
         if(key == KeyEvent.VK_SPACE){
             if(programController.getWindow().getOptionsIndex() == 4){
                 soundManager.modifyVolume(0.1);
+                if(volRemember != 1){
+                    volRemember = volRemember + 0.1;
+                }
             }
             if(programController.getWindow().getOptionsIndex() == 5){
                 soundManager.modifyVolume(-0.1);
+                if(volRemember != 0){
+                    volRemember = volRemember - 0.1;
+                }
             }
         }
 
