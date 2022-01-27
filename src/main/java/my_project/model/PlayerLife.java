@@ -13,15 +13,17 @@ public class PlayerLife extends Entity implements VisualStack.Animated {
     private BufferedImage[] images;
     private VisualStack<PlayerLife> playerLifesStack;
     private boolean hit;
+    private int x;
+    private int y;
 
-    public PlayerLife(int x, int y, ViewController viewController, ProgramController programController) {
+    public PlayerLife(int x, int y,  ViewController viewController, ProgramController programController) {
         super(viewController, programController);
+        this.hit = false;
         this.x = x;
         this.y = y;
-        this.hit = false;
 
         playerLifesStack = new VisualStack<>(viewController);
-        playerLifesStack.pushInVisual(this, 3);
+        playerLifesStack.pushInVisual(this, x, y, 3);
 
         // ToDo: Mit Stack muss noch gearbeitet werden
 
@@ -29,6 +31,7 @@ public class PlayerLife extends Entity implements VisualStack.Animated {
                 createImage("src/main/resources/graphic/heart_full.png"), // 0
                 createImage("src/main/resources/graphic/heart_empty.png"), // 1
         };
+
         viewController.draw(this, GraphicalWindow.GAME_INDEX);
     }
 

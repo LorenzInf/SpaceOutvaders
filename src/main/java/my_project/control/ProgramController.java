@@ -60,6 +60,10 @@ public class ProgramController {
         player = new Player(5,0,0,false, 0, viewController, getWindow().programController);
         array.set(player,5,7);
 
+        playerLife = new PlayerLife(30, 30, viewController, this);
+        playerLife = new PlayerLife(30, 100, viewController, this);
+        playerLife = new PlayerLife(30, 170, viewController, this);
+
         enemyWave = new EnemyWave(viewController,this);
 
         viewController.draw(array, GraphicalWindow.GAME_INDEX);

@@ -15,9 +15,13 @@ public class VisualStack<T extends GraphicalObject & VisualStack.Animated> exten
     private Stack<T> stack;
     private ViewController viewController;
     private int counter;
+    private int x;
+    private int y;
 
     public VisualStack(ViewController viewController){
         counter = 1;
+        this.x = x;
+        this.y = y;
         stack = new Stack<>();
         this.viewController = viewController;
     }
@@ -30,12 +34,12 @@ public class VisualStack<T extends GraphicalObject & VisualStack.Animated> exten
      * x-Koordinate in abhängigkeit von counter gesetzt
      * gezeichnet + der counter um 1 erhöht
      */
-    public void pushInVisual(T contentType, int sceneIndex) {
+    public void pushInVisual(T contentType, int x, int y, int sceneIndex) {
         if (contentType != null) {
             stack.push(contentType);
             contentType.comeIn();
-// Eigentlich sollte der counter + setX() in der Ball Klasse/ die //Klasse die das implementiert
-            contentType.setX(counter * (contentType.getRadius()*2));
+            contentType.setX(x);
+            contentType.setY(y);
             viewController.draw(contentType, sceneIndex);
             counter++;
         }
