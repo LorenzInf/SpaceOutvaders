@@ -47,7 +47,7 @@ public class ProgramController {
      * Sie erstellt die leeren Datenstrukturen, zu Beginn nur eine Queue
      */
     public void startProgram() {
-        array = new Visual2DArray<>(11, 8, 0 , 0, new Visual2DArray.VisualizationConfig(0,-350, 173, 175, 0, true, false, false, null, Color.WHITE, new Color(29, 173, 11, 0)));
+        array = new Visual2DArray<>(11, 8, 0 , 0, new Visual2DArray.VisualizationConfig(0,350, 173, 175, 0, true, false, false, null, Color.WHITE, new Color(29, 173, 11, 0)));
         playerLifesStack = new VisualStack<>(viewController);
         window = new GraphicalWindow(viewController, this);
         nameList = new VisualList<>(0,0,0,0);

@@ -13,6 +13,6 @@ public class EnemyNormal extends Enemy {
 
     @Override
     public void draw(DrawTool drawTool){
-        drawTool.drawImage(images[2],x,y);
+        drawTool.drawTransformedImage(images[2],x-25,y-15, 0 , 0.7);
     }
 }

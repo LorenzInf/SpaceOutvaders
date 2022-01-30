@@ -38,12 +38,12 @@ public class GraphicalWindow extends GraphicalObject {
         optionsIndex = 3;
 
         viewController.draw(startScreen, START_SCREEN_INDEX);
-        viewController.draw(mainMenu,MAIN_MENU_INDEX);
-        viewController.draw(options,OPTIONS_INDEX);
-        viewController.draw(game,GAME_INDEX);
-        viewController.draw(leaderboard,LEADERBOARD_INDEX);
-        viewController.draw(guide,GUIDE_INDEX);
-        viewController.draw(enterName,ENTER_NAME_INDEX);
+        viewController.draw(mainMenu, MAIN_MENU_INDEX);
+        viewController.draw(options, OPTIONS_INDEX);
+        viewController.draw(game, GAME_INDEX);
+        viewController.draw(leaderboard, LEADERBOARD_INDEX);
+        viewController.draw(guide, GUIDE_INDEX);
+        viewController.draw(enterName, ENTER_NAME_INDEX);
     }
 
     /**
