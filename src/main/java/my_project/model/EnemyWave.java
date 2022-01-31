@@ -27,10 +27,18 @@ public class EnemyWave {
         else if (difficultyW3 < random) summonWave3();
     }
 
+    /**
+     * For testing purposes only
+     */
+    public void summonEnemy() {
+        EnemyNormal enemy = new EnemyNormal(viewController, programController);
+        programController.getArray().set(enemy, 2, 2);
+    }
+
     public void summonWaveNormal11() { //Change to private when done - only public for testing purposes
         for(int i = 0; i < 11; i++) {
             EnemyNormal enemy = new EnemyNormal(viewController, programController);
-            programController.getArray().set(enemy, i, 1);
+            programController.getArray().set(enemy, i, 2);
         }
     }
 

@@ -57,7 +57,6 @@ public class GraphicalWindow extends GraphicalObject {
             fadeIn.fadeIn(0,4,index);
         }
         viewController.showScene(index);
-
     }
 
     public int getOptionsIndex() {
