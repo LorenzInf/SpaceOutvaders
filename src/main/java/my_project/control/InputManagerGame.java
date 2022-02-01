@@ -13,8 +13,6 @@ import java.awt.event.KeyEvent;
  */
 public class InputManagerGame extends InputManager {
 
-    private Game game;
-
     /**
      * Objekterzeugung
      * @param programController Nötig als Objekt vom Controllerbereich, das informiert wird
@@ -22,7 +20,6 @@ public class InputManagerGame extends InputManager {
      */
     public InputManagerGame(ProgramController programController, ViewController viewController, SoundManager soundManager, Game game){
         super(viewController,programController,soundManager);
-        this.game = game;
         viewController.register(this, 3);
     }
 
@@ -31,7 +28,7 @@ public class InputManagerGame extends InputManager {
 
         if(key == KeyEvent.VK_SPACE){
             SoundController.playSound("shootPlayer");
-            Shot shot = new Shot(viewController, programController.getPlayer().getX()+60, programController.getPlayer().getY()-100,700,false, programController);
+            Shot shot = new Shot(viewController, programController, programController.getEnemyWave(), programController.getPlayer().getX()+60, programController.getPlayer().getY()-100,700,false);
         }
 
         if(key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) {

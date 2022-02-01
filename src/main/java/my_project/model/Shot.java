@@ -16,33 +16,30 @@ public class Shot extends Entity {
     private final boolean enemyShot;
     private BufferedImage[] images;
     private ProgramController programController;
+    private EnemyWave enemyWave;
 
-    public Shot(ViewController viewController, double x, double y, double speed, boolean enemyShot,ProgramController programController){
+    public Shot(ViewController viewController, ProgramController programController, EnemyWave enemyWave, double x, double y, double speed, boolean enemyShot){
         super(viewController, programController);
         this.viewController = viewController;
         this.programController = programController;
+        this.enemyWave = enemyWave;
         this.x = x;
         this.y = y;
         this.speed = speed;
         this.enemyShot = enemyShot;
         images = new BufferedImage[]{
-                createImage("src/main/resources/graphic/laser_shot.png"),
+                createImage("src/main/resources/graphic/laser_shot_2.png"),
         };
         viewController.draw(this, GraphicalWindow.GAME_INDEX);
     }
 
     public void draw(DrawTool drawTool){
-        // Funktioniert noch nicht
         drawTool.drawTransformedImage(images[0], x, y, 0 ,0.25);
     }
 
     @Override
     public void update(double dt){
-        // Ist auch noch buggy
-        //y += (enemyShot ? 1 : -1) * speed*dt;
         y -= speed*dt;
-
-        //wenn außerhalb des Fensters, removeDrawable();
         if(y < -120 || y > (Config.WINDOW_HEIGHT + height)){
             viewController.removeDrawable(this);
         }

@@ -4,7 +4,7 @@ import KAGO_framework.control.ViewController;
 import my_project.control.ProgramController;
 import java.util.Random;
 
-public class EnemyWave {
+public class EnemyWave{
 
     private final ViewController viewController;
     private final ProgramController programController;
@@ -56,4 +56,5 @@ public class EnemyWave {
     public void summonWave3() { //Change to private when done - only public for testing purposes
 
     }
+
 }

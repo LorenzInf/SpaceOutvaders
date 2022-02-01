@@ -8,6 +8,7 @@ import java.awt.image.BufferedImage;
 import java.util.Random;
 
 public abstract class Enemy extends Entity {
+
     //Sprites
     protected BufferedImage[] images = new BufferedImage[]{
             createImage("src/main/resources/graphic/enemy_boss.png"), //0
@@ -32,14 +33,14 @@ public abstract class Enemy extends Entity {
     /**
      * When called there is a chance of {@code shootChance}% for the Enemy to shoot
      */
-    public boolean tryToShoot(){
+    /*public boolean tryToShoot(){
         int help = new Random().nextInt(100 + 1);
         if(shootChance >= help){
             Shot s = new Shot(viewController,x,y,3,true, programController);
             return true;
         }
         return false;
-    }
+    }*/
 
     //Jedes mal wenn er sich bewegt und kein Gegner unter ihm ist hat er eine x Prozent chance nach unten zu schießen
     //(würde 0.5% oder so vorschlagen, muss man ausprobieren)
