@@ -6,8 +6,6 @@ import KAGO_framework.control.ViewController;
 import my_project.view.*;
 
 import java.awt.*;
-import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * Ein Objekt der Klasse ProgramController dient dazu das Programm zu steuern. Die updateProgram - Methode wird
@@ -47,7 +45,7 @@ public class ProgramController {
      * Sie erstellt die leeren Datenstrukturen, zu Beginn nur eine Queue
      */
     public void startProgram() {
-        array = new Visual2DArray<>(11, 8, 0 , 0, new Visual2DArray.VisualizationConfig(0,350, 173, 175, 0, true, false, false, null, Color.WHITE, new Color(29, 173, 11, 0)));
+        array = new Visual2DArray<>(12, 8, 0 , 0, new Visual2DArray.VisualizationConfig(-173,-350, 173, 175, 0, true, false, false, null, Color.WHITE, new Color(29, 173, 11, 0)));
         playerLifesStack = new VisualStack<>(viewController);
         window = new GraphicalWindow(viewController, this);
         nameList = new VisualList<>(0,0,0,0);
@@ -57,8 +55,8 @@ public class ProgramController {
         new InputManagerEnterName(this, viewController, soundManager);
         new InputManagerLeaderboard(this,viewController,soundManager);
 
-        player = new Player(5,0,0,false, 0, viewController, getWindow().programController);
-        array.set(player,5,7);
+        player = new Player(6,0,0,false, 0, viewController, getWindow().programController);
+        array.set(player,6,7);
 
         playerLife = new PlayerLife(30, 30, viewController, this);
         playerLife = new PlayerLife(30, 100, viewController, this);
@@ -78,7 +76,7 @@ public class ProgramController {
      */
     public void updateProgram(double dt){
         if(viewController.getCurrentSceneIndex() == GraphicalWindow.GAME_INDEX && !moveTimerActive){
-            window.getGame().EnemyMovement();
+            window.getGame().doEnemyMovement();
             moveTimerActive = true;
         }
     }

@@ -35,7 +35,7 @@ public class InputManagerGame extends InputManager {
         }
 
         if(key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) {
-            if (programController.getPlayer().getArrayX() != 0){
+            if (programController.getPlayer().getArrayX() != 1){
                 programController.getArray().set(null, programController.getPlayer().getArrayX(), 7);
                 programController.getArray().set(programController.getPlayer(), programController.getPlayer().getArrayX() - 1, 7);
                 programController.getPlayer().setArrayX(programController.getPlayer().getArrayX() - 1);
@@ -43,7 +43,7 @@ public class InputManagerGame extends InputManager {
         }
 
         if(key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT){
-            if (programController.getPlayer().getArrayX() != 10) {
+            if (programController.getPlayer().getArrayX() != 11) {
                 programController.getArray().set(null, programController.getPlayer().getArrayX(), 7);
                 programController.getArray().set(programController.getPlayer(), programController.getPlayer().getArrayX() + 1, 7);
                 programController.getPlayer().setArrayX(programController.getPlayer().getArrayX() + 1);

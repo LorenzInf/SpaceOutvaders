@@ -5,7 +5,7 @@ import KAGO_framework.view.DrawTool;
 import my_project.control.GraphicalWindow;
 import my_project.control.ProgramController;
 import my_project.model.Enemy;
-import my_project.model.PlayerLife;
+import my_project.model.Entity;
 
 import java.awt.image.BufferedImage;
 import java.util.Timer;
@@ -25,19 +25,38 @@ public class Game extends GraphicalWindow {
         };
     }
 
-    public void EnemyMovement(){
+    public void doEnemyMovement(){
         Timer timer = new Timer();
+        Visual2DArray<Entity> array = programController.getArray();
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                for(int x = 7; x > 0; x--) {
-                    for(int y = 10; y > 0; y--) {
-                        if(programController.getArray().get(x,y) instanceof Enemy){
-                            //TODO :)
+                for(int x = 1; x <= 11; x++) {
+                    for(int y = 7; y >= 0; y -= 2) {
+                        if(programController.getArray().get(x,y) instanceof Enemy ){
+                            if( y == 7 ) { /* Game Over */ }
+                            else if( x == 1 ) {
+                                 array.set(array.get(x, y), 0,y + 1);
+                            } else {
+                                array.set(array.get(x, y), x - 1, y);
+                            }
+                            array.set(null, x ,y);
                         }
                     }
                 }
-                if(viewController.getCurrentSceneIndex() != GraphicalWindow.GAME_INDEX){
+                for(int x = 11; x >= 0; x--) {
+                    for (int y = 6; y >= 0; y -= 2) {
+                        if(programController.getArray().get(x,y) instanceof Enemy ) {
+                            if (x == 11) {
+                                array.set(array.get(x, y), x, y + 1);
+                            } else  {
+                                array.set(array.get(x, y), x + 1, y);
+                            }
+                            array.set(null, x, y);
+                        }
+                    }
+                }
+                if(viewController.getCurrentSceneIndex() != GraphicalWindow.GAME_INDEX) {
                     timer.cancel();
                     programController.setMoveTimerActive(false);
                 }
