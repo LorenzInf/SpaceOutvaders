@@ -14,6 +14,8 @@ public class Player extends Entity {
     private boolean shield;
     private int buff;
     private final BufferedImage[] images;
+    private double moveCooldown;
+    private double shootCooldown;
 
 
     public Player(int arrayX, int speed, int hp, boolean shield, int buff, ViewController viewController, ProgramController programController){
@@ -23,6 +25,8 @@ public class Player extends Entity {
         this.hp = hp;
         this.shield = false;
         this.buff = ((int)(Math.random()*4));
+        moveCooldown = 0;
+        shootCooldown = 0;
         viewController.draw(this, GraphicalWindow.GAME_INDEX);
         images = new BufferedImage[]{
                 createImage("src/main/resources/graphic/Spaceship.png")
@@ -45,6 +49,8 @@ public class Player extends Entity {
     @Override
     public void update(double dt){
         //hab die ganzen if's mal zu nem switch case gemacht - Lorenz
+        moveCooldown = Math.max(0, moveCooldown -dt);
+        shootCooldown = Math.max(0, shootCooldown -dt);
         switch(buff){
             case 1 -> speed *= (int) Math.random()*3+1; //Wir müssen uns noch überlegen wie speed funktioniert, wenn man sich in Feldern belegt
             case 2 -> hp += hp/4;
@@ -60,4 +66,21 @@ public class Player extends Entity {
     public void setArrayX(int arrayX) {
         this.arrayX = arrayX;
     }
+
+    public double getMoveCooldown() {
+        return moveCooldown;
+    }
+
+    public void setMoveCooldown(double moveCooldown) {
+        this.moveCooldown = moveCooldown;
+    }
+
+    public double getShootCooldown() {
+        return shootCooldown;
+    }
+
+    public void setShootCooldown(double shootCooldown) {
+        this.shootCooldown = shootCooldown;
+    }
 }
+

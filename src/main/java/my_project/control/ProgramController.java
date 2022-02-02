@@ -51,7 +51,7 @@ public class ProgramController {
         nameList = new VisualList<>(0,0,0,0);
         new InputManagerMainMenu(this, viewController, soundManager);
         new InputManagerOptions(this, viewController, window.getOptions(), soundManager);
-        new InputManagerGame(this, viewController, soundManager, getWindow().getGame());
+        new InputManagerGame(this, viewController, soundManager);
         new InputManagerEnterName(this, viewController, soundManager);
         new InputManagerLeaderboard(this,viewController,soundManager);
 

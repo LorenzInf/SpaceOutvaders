@@ -14,6 +14,7 @@ public class Shot extends Entity {
     private final ViewController viewController;
     private final double speed;
     private final boolean enemyShot;
+    private double cooldown;
     private BufferedImage[] images;
     private ProgramController programController;
     private EnemyWave enemyWave;
@@ -27,6 +28,8 @@ public class Shot extends Entity {
         this.y = y;
         this.speed = speed;
         this.enemyShot = enemyShot;
+        radius = 10;
+        cooldown = 0;
         images = new BufferedImage[]{
                 createImage("src/main/resources/graphic/laser_shot_2.png"),
         };
@@ -43,12 +46,13 @@ public class Shot extends Entity {
         if(y < -120 || y > (Config.WINDOW_HEIGHT + height)){
             viewController.removeDrawable(this);
         }
+        for(int i = 0; i <= 12; i++){
+            for(int j = 0; j <= 8; j++){
+                if(programController.getArray().get(i,j) != null && this.collidesWith(programController.getArray().get(i,j))){
+                    programController.getArray().set(null,i,j);
+                    viewController.removeDrawable(this);
+                }
+            }
+        }
     }
-
-    @Override
-    public void setX(double x){}
-
-    @Override
-    public void setY(double y){}
-
 }

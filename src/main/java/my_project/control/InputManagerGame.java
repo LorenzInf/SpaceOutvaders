@@ -18,7 +18,7 @@ public class InputManagerGame extends InputManager {
      * @param programController Nötig als Objekt vom Controllerbereich, das informiert wird
      * @param viewController Nötig, um den Aufruf der Interface-Methoden sicherzustellen
      */
-    public InputManagerGame(ProgramController programController, ViewController viewController, SoundManager soundManager, Game game){
+    public InputManagerGame(ProgramController programController, ViewController viewController, SoundManager soundManager){
         super(viewController,programController,soundManager);
         viewController.register(this, 3);
     }
@@ -27,23 +27,28 @@ public class InputManagerGame extends InputManager {
     public void keyPressed(int key){
 
         if(key == KeyEvent.VK_SPACE){
-            SoundController.playSound("shootPlayer");
-            Shot shot = new Shot(viewController, programController, programController.getEnemyWave(), programController.getPlayer().getX()+60, programController.getPlayer().getY()-100,700,false);
+            if(programController.getPlayer().getShootCooldown() == 0){
+                SoundController.playSound("shootPlayer");
+                Shot shot = new Shot(viewController, programController, programController.getEnemyWave(), programController.getPlayer().getX()+60, programController.getPlayer().getY()-100,700,false);
+                programController.getPlayer().setShootCooldown(0.5);
+            }
         }
 
         if(key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) {
-            if (programController.getPlayer().getArrayX() != 1){
+            if (programController.getPlayer().getArrayX() != 1 && programController.getPlayer().getMoveCooldown() == 0){
                 programController.getArray().set(null, programController.getPlayer().getArrayX(), 7);
                 programController.getArray().set(programController.getPlayer(), programController.getPlayer().getArrayX() - 1, 7);
                 programController.getPlayer().setArrayX(programController.getPlayer().getArrayX() - 1);
+                programController.getPlayer().setMoveCooldown(0.5);
             }
         }
 
         if(key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT){
-            if (programController.getPlayer().getArrayX() != 11) {
+            if (programController.getPlayer().getArrayX() != 11 && programController.getPlayer().getMoveCooldown() == 0) {
                 programController.getArray().set(null, programController.getPlayer().getArrayX(), 7);
                 programController.getArray().set(programController.getPlayer(), programController.getPlayer().getArrayX() + 1, 7);
                 programController.getPlayer().setArrayX(programController.getPlayer().getArrayX() + 1);
+                programController.getPlayer().setMoveCooldown(0.5);
             }
         }
 
