@@ -29,7 +29,7 @@ public class InputManagerGame extends InputManager {
         if(key == KeyEvent.VK_SPACE){
             if(programController.getPlayer().getShootCooldown() == 0){
                 SoundController.playSound("shootPlayer");
-                Shot shot = new Shot(viewController, programController, programController.getEnemyWave(), programController.getPlayer().getX()+60, programController.getPlayer().getY()-100,700,false);
+                Shot shot = new Shot(viewController, programController, programController.getPlayer().getX()+60, programController.getPlayer().getY()-100,700,false);
                 programController.getPlayer().setShootCooldown(0.5);
             }
         }
@@ -39,7 +39,7 @@ public class InputManagerGame extends InputManager {
                 programController.getArray().set(null, programController.getPlayer().getArrayX(), 7);
                 programController.getArray().set(programController.getPlayer(), programController.getPlayer().getArrayX() - 1, 7);
                 programController.getPlayer().setArrayX(programController.getPlayer().getArrayX() - 1);
-                programController.getPlayer().setMoveCooldown(0.5);
+                programController.getPlayer().setMoveCooldown(0.33);
             }
         }
 
@@ -48,7 +48,7 @@ public class InputManagerGame extends InputManager {
                 programController.getArray().set(null, programController.getPlayer().getArrayX(), 7);
                 programController.getArray().set(programController.getPlayer(), programController.getPlayer().getArrayX() + 1, 7);
                 programController.getPlayer().setArrayX(programController.getPlayer().getArrayX() + 1);
-                programController.getPlayer().setMoveCooldown(0.5);
+                programController.getPlayer().setMoveCooldown(0.33);
             }
         }
 
