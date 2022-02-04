@@ -3,6 +3,7 @@ package my_project.control;
 import KAGO_framework.control.SoundController;
 import KAGO_framework.control.ViewController;
 import KAGO_framework.model.GraphicalObject;
+import KAGO_framework.model.Sound;
 import my_project.view.*;
 
 public class GraphicalWindow extends GraphicalObject {
@@ -56,6 +57,11 @@ public class GraphicalWindow extends GraphicalObject {
             SoundController.playSound("gameTheme1");
             fadeIn.fadeIn(0,4,index);
         }
+        if(index == 6){
+            SoundController.stopSound("gameTheme1");
+            SoundController.playSound("gameover");
+            fadeIn.fadeIn(0,4,index);
+        }
         viewController.showScene(index);
     }
 
@@ -82,6 +88,8 @@ public class GraphicalWindow extends GraphicalObject {
     public Game getGame() {
         return game;
     }
+
+
 
 
 }
