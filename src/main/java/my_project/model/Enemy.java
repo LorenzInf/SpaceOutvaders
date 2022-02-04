@@ -1,4 +1,5 @@
 package my_project.model;
+import KAGO_framework.control.SoundController;
 import KAGO_framework.control.ViewController;
 import KAGO_framework.model.GraphicalObject;
 import my_project.control.ProgramController;
@@ -22,28 +23,31 @@ public abstract class Enemy extends Entity {
     //other stuff
     protected int hp = 1; //1 oder 2
     protected int speed = 1; //in felder/sekunde
-    protected double shootChance = 0.5;
+    protected double shootChance = 5;
     protected boolean instantShot = false;
+    protected double shootTimer = 0;
+    protected double shootDelay;
 
     public Enemy(ViewController viewController, ProgramController programController){
         super(viewController, programController);
+        shootDelay = 0.75;
+        radius = 50;
+        viewController.draw(this);
     }
 
     //TODO Make tryToShoot a working thing
     /**
      * When called there is a chance of {@code shootChance}% for the Enemy to shoot
      */
-    /*public boolean tryToShoot(){
+    public boolean tryToShoot(double chance){
         int help = new Random().nextInt(100 + 1);
-        if(shootChance >= help){
-            Shot s = new Shot(viewController,x,y,3,true, programController);
+        if(chance >= help){
+            Shot s = new Shot(viewController, programController, x + 60, y + 60, 200, true);
+            SoundController.playSound("shootPlayer");
             return true;
         }
         return false;
-    }*/
-
-    //Jedes mal wenn er sich bewegt und kein Gegner unter ihm ist hat er eine x Prozent chance nach unten zu schießen
-    //(würde 0.5% oder so vorschlagen, muss man ausprobieren)
+    }
 
     public int getHp() {
         return hp;
@@ -63,6 +67,10 @@ public abstract class Enemy extends Entity {
 
     @Override
     public void update(double dt){
-
+        shootTimer += dt;
+        if(shootTimer >= shootDelay) {
+            tryToShoot(shootChance);
+            shootTimer = 0;
+        }
     }
 }

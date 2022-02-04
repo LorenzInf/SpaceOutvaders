@@ -27,6 +27,7 @@ public class Player extends Entity {
         this.buff = ((int)(Math.random()*4));
         moveCooldown = 0;
         shootCooldown = 0;
+        radius = 100;
         viewController.draw(this, GraphicalWindow.GAME_INDEX);
         images = new BufferedImage[]{
                 createImage("src/main/resources/graphic/Spaceship.png")

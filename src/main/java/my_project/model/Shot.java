@@ -41,11 +41,17 @@ public class Shot extends Entity {
         if(y < -120 || y > (Config.WINDOW_HEIGHT + height)){
             viewController.removeDrawable(this);
         }
-        for(int i = 0; i <= 12; i++){
-            for(int j = 0; j <= 8; j++){
-                if(programController.getArray().get(i,j) != null && this.collidesWith(programController.getArray().get(i,j))){
-                    programController.getArray().set(null,i,j);
+        for(int x = 0; x <= 12; x++){
+            for(int y = 0; y <= 8; y++){
+                if(programController.getArray().get(x,y) != null && !enemyShot && this.collidesWith(programController.getArray().get(x,y))){
+                    viewController.removeDrawable(programController.getArray().get(x,y));
+                    programController.getArray().set(null,x,y);
                     viewController.removeDrawable(this);
+                    SoundController.playSound("enemyDeath");
+                }
+                if(enemyShot && this.collidesWith(programController.getPlayer())){
+                    viewController.removeDrawable(this);
+                    //programController.getPlayer(). Remove Life
                     SoundController.playSound("enemyDeath");
                 }
             }

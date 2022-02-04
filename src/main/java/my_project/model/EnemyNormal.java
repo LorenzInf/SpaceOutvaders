@@ -9,7 +9,6 @@ public class EnemyNormal extends Enemy {
 
     public EnemyNormal(ViewController viewController, ProgramController programController) {
         super(viewController, programController);
-        radius = 50;
     }
 
     @Override
