@@ -49,6 +49,7 @@ public class ProgramController {
         playerLifesStack = new VisualStack<>(viewController);
         window = new GraphicalWindow(viewController, this);
         nameList = new VisualList<>(0,0,0,0);
+
         new InputManagerMainMenu(this, viewController, soundManager);
         new InputManagerOptions(this, viewController, window.getOptions(), soundManager);
         new InputManagerGame(this, viewController, soundManager);

@@ -13,6 +13,7 @@ public class Shot extends Entity {
     private final ViewController viewController;
     private final double speed;
     private final boolean enemyShot;
+    private boolean hasHit;
     private final BufferedImage[] images;
     private final ProgramController programController;
 
@@ -24,6 +25,7 @@ public class Shot extends Entity {
         this.y = y;
         this.speed = speed;
         this.enemyShot = enemyShot;
+        hasHit = false;
         radius = 10;
         images = new BufferedImage[]{
                 createImage("src/main/resources/graphic/laser_shot_player.png"),
@@ -56,10 +58,20 @@ public class Shot extends Entity {
                 }
                 if(enemyShot && this.collidesWith(programController.getPlayer())){
                     viewController.removeDrawable(this);
-                    //programController.getPlayer(). Remove Life
                     SoundController.playSound("enemyDeath");
+                    if(!hasHit){
+                        programController.getStack().popVisual();
+                        setHasHit(true);
+                        if(programController.getStack().top() == null){
+                            programController.getWindow().switchScene(6);
+                        }
+                    }
                 }
             }
         }
+    }
+
+    public void setHasHit(boolean hasHit) {
+        this.hasHit = hasHit;
     }
 }
