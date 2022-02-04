@@ -26,13 +26,18 @@ public class Shot extends Entity {
         this.enemyShot = enemyShot;
         radius = 10;
         images = new BufferedImage[]{
-                createImage("src/main/resources/graphic/laser_shot_2.png"),
+                createImage("src/main/resources/graphic/laser_shot_player.png"),
+                createImage("src/main/resources/graphic/laser_shot_enemy.png")
         };
         viewController.draw(this, GraphicalWindow.GAME_INDEX);
     }
 
     public void draw(DrawTool drawTool){
-        drawTool.drawTransformedImage(images[0], x, y, 0 ,0.25);
+        if(!enemyShot){
+            drawTool.drawTransformedImage(images[0], x, y, 0 ,0.25);
+        }else{
+            drawTool.drawTransformedImage(images[1], x, y, 0 ,0.25);
+        }
     }
 
     @Override
