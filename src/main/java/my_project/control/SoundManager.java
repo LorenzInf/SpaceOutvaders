@@ -16,6 +16,7 @@ public class SoundManager {
         mySoundController.loadSound("src/main/resources/sound/AdhesiveWombat - Night Shade.mp3","gameTheme1",true);
         mySoundController.loadSound("src/main/resources/sound/shoot.mp3","shootPlayer",false);
         mySoundController.loadSound("src/main/resources/sound/enemy_death.mp3","enemyDeath",false);
+        mySoundController.loadSound("src/main/resources/sound/Undertale Game Over.mp3", "gameover", true);
         soundOff = false;
         soundOn = false;
         vol = 1;

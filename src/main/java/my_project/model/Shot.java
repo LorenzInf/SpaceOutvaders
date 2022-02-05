@@ -13,6 +13,7 @@ public class Shot extends Entity {
     private final ViewController viewController;
     private final double speed;
     private final boolean enemyShot;
+    private boolean hasHit;
     private final BufferedImage[] images;
     private final ProgramController programController;
 
@@ -24,15 +25,21 @@ public class Shot extends Entity {
         this.y = y;
         this.speed = speed;
         this.enemyShot = enemyShot;
+        hasHit = false;
         radius = 10;
         images = new BufferedImage[]{
-                createImage("src/main/resources/graphic/laser_shot_2.png"),
+                createImage("src/main/resources/graphic/laser_shot_player.png"),
+                createImage("src/main/resources/graphic/laser_shot_enemy.png")
         };
         viewController.draw(this, GraphicalWindow.GAME_INDEX);
     }
 
     public void draw(DrawTool drawTool){
-        drawTool.drawTransformedImage(images[0], x, y, 0 ,0.25);
+        if(!enemyShot){
+            drawTool.drawTransformedImage(images[0], x, y, 0 ,0.25);
+        }else{
+            drawTool.drawTransformedImage(images[1], x, y, 0 ,0.25);
+        }
     }
 
     @Override
@@ -61,10 +68,20 @@ public class Shot extends Entity {
                 }
                 if(enemyShot && this.collidesWith(programController.getPlayer())){
                     viewController.removeDrawable(this);
-                    //programController.getPlayer(). Remove Life
-                    SoundController.playSound("enemyDeath");
+                    if(!hasHit){
+                        programController.getStack().popVisual();
+                        setHasHit(true);
+                        SoundController.playSound("enemyDeath");
+                        if(programController.getStack().top() == null){
+                            programController.getWindow().switchScene(6);
+                        }
+                    }
                 }
             }
         }
+    }
+
+    public void setHasHit(boolean hasHit) {
+        this.hasHit = hasHit;
     }
 }

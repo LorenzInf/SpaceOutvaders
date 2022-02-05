@@ -11,7 +11,6 @@ import java.awt.image.BufferedImage;
 public class PlayerLife extends Entity implements VisualStack.Animated {
 
     private BufferedImage[] images;
-    private VisualStack<PlayerLife> playerLifesStack;
     private boolean hit;
     private int x;
     private int y;
@@ -22,8 +21,7 @@ public class PlayerLife extends Entity implements VisualStack.Animated {
         this.x = x;
         this.y = y;
 
-        playerLifesStack = new VisualStack<>(viewController);
-        playerLifesStack.pushInVisual(this, x, y, 3);
+        programController.getStack().pushInVisual(this, x, y, 3);
 
         images = new BufferedImage[]{
                 createImage("src/main/resources/graphic/heart_full.png"), // 0
