@@ -13,12 +13,14 @@ public class Guide extends GraphicalWindow {
         super();
         viewController.createScene();
         images = new BufferedImage[]{ // Alle Bilder pre laden, damit es zu keinen Lags kommt weil sonst die Images neu geladen werden
-                createImage("src/main/resources/graphic/maingame_blank.png")
+                createImage("src/main/resources/graphic/maingame_blank.png"),
+                createImage("src/main/resources/graphic/guide_screen.png")
         };
     }
 
     @Override
     public void draw(DrawTool drawTool) {
         drawTool.drawImage(images[0], 0 ,0);
+        drawTool.drawTransformedImage(images[1], 880, 400, 0, 2.5);
     }
 }
