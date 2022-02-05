@@ -31,6 +31,7 @@ public class EnemyWave{
      * For testing purposes only
      */
     public void summon() {
+        programController.getArray().set(new EnemyBurst(viewController, programController), 1, 2);
         programController.getArray().set(new EnemyFast(viewController, programController), 2, 2);
     }
 
