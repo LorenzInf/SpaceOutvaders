@@ -41,8 +41,8 @@ public abstract class Enemy extends Entity {
      */
     public boolean tryToShoot(double chance){
         int help = new Random().nextInt(100 + 1);
-        if(chance >= help){
-            Shot s = new Shot(viewController, programController, x + 60, y + 60, 200, true);
+        if(chance >= help && x > 0){
+            new Shot(viewController, programController, x + 60, y + 60, 200, true);
             SoundController.playSound("shootPlayer");
             return true;
         }

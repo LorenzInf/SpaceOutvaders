@@ -5,6 +5,7 @@ import KAGO_framework.view.DrawTool;
 import my_project.control.GraphicalWindow;
 import my_project.control.ProgramController;
 import my_project.model.Enemy;
+import my_project.model.EnemyFast;
 import my_project.model.Entity;
 
 import java.awt.image.BufferedImage;
@@ -29,24 +30,20 @@ public class Game extends GraphicalWindow {
         Timer timer = new Timer();
         Visual2DArray<Entity> array = programController.getArray();
         timer.schedule(new TimerTask() {
+            private boolean fast = true;
+            private final Visual2DArray<Entity> array = programController.getArray();
             @Override
             public void run() {
                 for(int x = 1; x <= 11; x++) {
                     for(int y = 7; y >= 0; y -= 2) {
-                        if(programController.getArray().get(x,y) instanceof Enemy ){
-                            if( y == 7 ) { /* Game Over */ }
-                            else if( x == 1 ) {
-                                 array.set(array.get(x, y), 0,y + 1);
-                            } else {
-                                array.set(array.get(x, y), x - 1, y);
-                            }
-                            array.set(null, x ,y);
+                        if(array.get(x,y) instanceof EnemyFast){
+                            doThings(x, y, array);
                         }
                     }
                 }
                 for(int x = 11; x >= 0; x--) {
                     for (int y = 6; y >= 0; y -= 2) {
-                        if(programController.getArray().get(x,y) instanceof Enemy ) {
+                        if(array.get(x,y) instanceof EnemyFast) {
                             if (x == 11) {
                                 array.set(array.get(x, y), x, y + 1);
                             } else  {
@@ -56,12 +53,44 @@ public class Game extends GraphicalWindow {
                         }
                     }
                 }
+                if(!fast) {
+                    for (int x = 1; x <= 11; x++) {
+                        for (int y = 7; y >= 0; y -= 2) {
+                            if (array.get(x, y) instanceof Enemy && !(array.get(x, y) instanceof EnemyFast)) {
+                                doThings(x, y, array);
+                            }
+                        }
+                    }
+                    for (int x = 11; x >= 0; x--) {
+                        for (int y = 6; y >= 0; y -= 2) {
+                            if (array.get(x, y) instanceof Enemy && !(array.get(x, y) instanceof EnemyFast)) {
+                                if (x == 11) {
+                                    array.set(array.get(x, y), x, y + 1);
+                                } else {
+                                    array.set(array.get(x, y), x + 1, y);
+                                }
+                                array.set(null, x, y);
+                            }
+                        }
+                    }
+                }
                 if(viewController.getCurrentSceneIndex() != GraphicalWindow.GAME_INDEX) {
                     timer.cancel();
                     programController.setMoveTimerActive(false);
                 }
+                fast = !fast;
             }
-        }, 0, 1000);
+        }, 0, 500);
+    }
+
+    private void doThings(int x, int y, Visual2DArray<Entity> array) {
+        if (y == 7) { /* Game Over */ }
+        else if (x == 1) {
+            array.set(array.get(x, y), 0, y + 1);
+        } else {
+            array.set(array.get(x, y), x - 1, y);
+        }
+        array.set(null, x, y);
     }
 
     @Override

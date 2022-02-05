@@ -7,11 +7,10 @@ import my_project.control.ProgramController;
 public class EnemyFast extends Enemy {
     public EnemyFast(ViewController viewController, ProgramController programController) {
         super(viewController, programController);
-        speed = speed*2; //TODO ??!???!?
     }
 
     @Override
     public void draw(DrawTool drawTool){
-        drawTool.drawImage(images[5],x,y);
+        drawTool.drawTransformedImage(images[5],x - 115,y - 100,0,0.35);
     }
 }

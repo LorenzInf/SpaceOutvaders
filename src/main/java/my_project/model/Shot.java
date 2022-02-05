@@ -44,10 +44,20 @@ public class Shot extends Entity {
         for(int x = 0; x <= 12; x++){
             for(int y = 0; y <= 8; y++){
                 if(programController.getArray().get(x,y) != null && !enemyShot && this.collidesWith(programController.getArray().get(x,y))){
-                    viewController.removeDrawable(programController.getArray().get(x,y));
-                    programController.getArray().set(null,x,y);
-                    viewController.removeDrawable(this);
-                    SoundController.playSound("enemyDeath");
+                    if(programController.getArray().get(x,y) instanceof EnemyShield){
+                        ((EnemyShield) programController.getArray().get(x,y)).setHp(((EnemyShield) programController.getArray().get(x,y)).getHp() - 1);
+                        SoundController.playSound("enemyDeath");
+                        if(((EnemyShield) programController.getArray().get(x,y)).getHp() == 0) {
+                            viewController.removeDrawable(programController.getArray().get(x, y));
+                            programController.getArray().set(null, x, y);
+                        }
+                        viewController.removeDrawable(this);
+                    } else {
+                        viewController.removeDrawable(programController.getArray().get(x, y));
+                        programController.getArray().set(null, x, y);
+                        viewController.removeDrawable(this);
+                        SoundController.playSound("enemyDeath");
+                    }
                 }
                 if(enemyShot && this.collidesWith(programController.getPlayer())){
                     viewController.removeDrawable(this);

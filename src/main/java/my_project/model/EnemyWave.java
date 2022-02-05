@@ -30,26 +30,31 @@ public class EnemyWave{
     /**
      * For testing purposes only
      */
-    public void summonEnemy() {
-        EnemyNormal enemy = new EnemyNormal(viewController, programController);
-        programController.getArray().set(enemy, 2, 2);
+    public void summon() {
+        programController.getArray().set(new EnemyFast(viewController, programController), 2, 2);
     }
 
     public void summonWaveNormal11() { //Change to private when done - only public for testing purposes
         for(int i = 0; i < 11; i++) {
-            EnemyNormal enemy = new EnemyNormal(viewController, programController);
-            programController.getArray().set(enemy, i, 2);
+            programController.getArray().set(new EnemyNormal(viewController, programController), i, 1);
+        }
+    }
+
+    public void summonWaveMixed11() {
+        for(int i = 0; i < 11; i += 2) {
+            programController.getArray().set(new EnemyNormal(viewController, programController), i, 1);
+        }
+        for(int i = 1; i < 11; i += 2) {
+            programController.getArray().set(new EnemyBurst(viewController, programController), i, 1);
         }
     }
 
     public void summonWaveNormal22() { //Change to private when done - only public for testing purposes
         for(int i = 0; i < 11; i++) {
-            EnemyNormal enemy = new EnemyNormal(viewController, programController);
-            programController.getArray().set(enemy, i, 0);
+            programController.getArray().set(new EnemyNormal(viewController, programController), i, 0);
         }
         for(int i = 0; i < 11; i++) {
-            EnemyNormal enemy = new EnemyNormal(viewController, programController);
-            programController.getArray().set(enemy, i, 1);
+            programController.getArray().set(new EnemyNormal(viewController, programController), i, 1);
         }
     }
 
