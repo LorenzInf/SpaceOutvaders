@@ -18,6 +18,7 @@ public abstract class Enemy extends Entity {
             createImage("src/main/resources/graphic/enemy_shield.png"), //3
             createImage("src/main/resources/graphic/enemy_charged_instant_shot.png"), //4
             createImage("src/main/resources/graphic/enemy_fast.png"), //5
+            createImage("src/main/resources/graphic/enemy_shield_shield.png") //6
     };
 
     //other stuff
@@ -41,8 +42,8 @@ public abstract class Enemy extends Entity {
      */
     public boolean tryToShoot(double chance){
         int help = new Random().nextInt(100 + 1);
-        if(chance >= help && x > 0){
-            new Shot(viewController, programController, x + 60, y + 60, 200, true);
+        if(chance >= help && y > -50){
+            new Shot(viewController, programController, x + 60, y + 60, 500, true);
             SoundController.playSound("shootPlayer");
             return true;
         }

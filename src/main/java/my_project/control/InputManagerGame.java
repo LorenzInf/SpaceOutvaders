@@ -24,31 +24,32 @@ public class InputManagerGame extends InputManager {
 
     @Override
     public void keyPressed(int key){
-
         if(key == KeyEvent.VK_SPACE){
             if(programController.getPlayer().getShootCooldown() == 0){
                 SoundController.playSound("shootPlayer");
-                new Shot(viewController, programController, programController.getPlayer().getX()+60, programController.getPlayer().getY()-100,700,false);
+                new Shot(viewController, programController, programController.getPlayer().getX()+60, programController.getPlayer().getY()-100,1300,false);
                 programController.getPlayer().setShootCooldown(0.5);
             }
         }
 
         if(key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) {
-            if (programController.getPlayer().getArrayX() != 1 && programController.getPlayer().getMoveCooldown() == 0){
+            /*if (programController.getPlayer().getArrayX() != 1 && programController.getPlayer().getMoveCooldown() == 0){
                 programController.getArray().set(null, programController.getPlayer().getArrayX(), 7);
                 programController.getArray().set(programController.getPlayer(), programController.getPlayer().getArrayX() - 1, 7);
                 programController.getPlayer().setArrayX(programController.getPlayer().getArrayX() - 1);
                 programController.getPlayer().setMoveCooldown(0.33);
-            }
+            }*/
+            programController.getPlayer().setMove(0);
         }
 
         if(key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT){
-            if (programController.getPlayer().getArrayX() != 11 && programController.getPlayer().getMoveCooldown() == 0) {
+            /*if (programController.getPlayer().getArrayX() != 11 && programController.getPlayer().getMoveCooldown() == 0) {
                 programController.getArray().set(null, programController.getPlayer().getArrayX(), 7);
                 programController.getArray().set(programController.getPlayer(), programController.getPlayer().getArrayX() + 1, 7);
                 programController.getPlayer().setArrayX(programController.getPlayer().getArrayX() + 1);
                 programController.getPlayer().setMoveCooldown(0.33);
-            }
+            }*/
+            programController.getPlayer().setMove(2);
         }
 
         if (key == KeyEvent.VK_M) {
@@ -60,5 +61,12 @@ public class InputManagerGame extends InputManager {
         }
         setVolume(key);
         forceMainMenu(key);
+    }
+
+    @Override
+    public void keyReleased(int key) {
+        if(key == KeyEvent.VK_A || key == KeyEvent.VK_D || key == KeyEvent.VK_LEFT || key == KeyEvent.VK_RIGHT) {
+            programController.getPlayer().setMove(1);
+        }
     }
 }

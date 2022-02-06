@@ -26,7 +26,8 @@ public class Shot extends Entity {
         this.speed = speed;
         this.enemyShot = enemyShot;
         hasHit = false;
-        radius = 10;
+        width = 10;
+        height = 100;
         images = new BufferedImage[]{
                 createImage("src/main/resources/graphic/laser_shot_player.png"),
                 createImage("src/main/resources/graphic/laser_shot_enemy.png")
@@ -45,12 +46,12 @@ public class Shot extends Entity {
     @Override
     public void update(double dt){
         y += (enemyShot ? 1 : -1) * speed*dt;
-        if(y < -120 || y > (Config.WINDOW_HEIGHT + height)){
+        if(y < -120 || y > Config.WINDOW_HEIGHT){
             viewController.removeDrawable(this);
         }
         for(int x = 0; x <= 12; x++){
             for(int y = 0; y <= 8; y++){
-                if(programController.getArray().get(x,y) != null && !enemyShot && this.collidesWith(programController.getArray().get(x,y))){
+                if(programController.getArray().get(x,y) != null && !enemyShot && y > 1 && this.collidesWith(programController.getArray().get(x,y))){
                     if(programController.getArray().get(x,y) instanceof EnemyShield){
                         ((EnemyShield) programController.getArray().get(x,y)).setHp(((EnemyShield) programController.getArray().get(x,y)).getHp() - 1);
                         SoundController.playSound("enemyDeath");
@@ -66,7 +67,7 @@ public class Shot extends Entity {
                         SoundController.playSound("enemyDeath");
                     }
                 }
-                if(enemyShot && this.collidesWith(programController.getPlayer())){
+                if(enemyShot && this.y < Config.WINDOW_HEIGHT - 120 && this.collidesWith(programController.getPlayer())){
                     viewController.removeDrawable(this);
                     if(!hasHit){
                         programController.getStack().popVisual();

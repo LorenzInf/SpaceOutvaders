@@ -88,10 +88,6 @@ public class GraphicalWindow extends GraphicalObject {
     public Game getGame() {
         return game;
     }
-
-
-
-
 }
 
 // sceneIndex 0 = MainMenu

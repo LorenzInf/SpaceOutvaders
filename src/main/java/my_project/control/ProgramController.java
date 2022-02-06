@@ -45,7 +45,7 @@ public class ProgramController {
      * Sie erstellt die leeren Datenstrukturen, zu Beginn nur eine Queue
      */
     public void startProgram() {
-        array = new Visual2DArray<>(12, 8, 0 , 0, new Visual2DArray.VisualizationConfig(-173,-350, 173, 175, 0, true, false, false, null, Color.WHITE, new Color(29, 173, 11, 0)));
+        array = new Visual2DArray<>(12, 8, 0 , 0, new Visual2DArray.VisualizationConfig(-173,-350, 173, 175, 0, false, false, false, null, Color.WHITE, new Color(29, 173, 11, 0)));
         playerLifesStack = new VisualStack<>(viewController);
         window = new GraphicalWindow(viewController, this);
         nameList = new VisualList<>(0,0,0,0);
@@ -58,13 +58,13 @@ public class ProgramController {
         new InputMangerGuide(this, viewController, soundManager);
 
         player = new Player(6,0,0,false, 0, viewController, getWindow().programController);
-        array.set(player,6,7);
+        //array.set(player,6,7);
 
         playerLife = new PlayerLife(30, 30, viewController, this);
         playerLife = new PlayerLife(30, 100, viewController, this);
         playerLife = new PlayerLife(30, 170, viewController, this);
 
-        enemyWave = new EnemyWave(viewController,this);
+        enemyWave = new EnemyWave(viewController,this, window.getGame());
 
         viewController.draw(array, GraphicalWindow.GAME_INDEX);
         viewController.register(array);
@@ -77,10 +77,7 @@ public class ProgramController {
      * @param dt Zeit seit letzter Frame
      */
     public void updateProgram(double dt){
-        if(viewController.getCurrentSceneIndex() == GraphicalWindow.GAME_INDEX && !moveTimerActive){
-            window.getGame().doEnemyMovement();
-            moveTimerActive = true;
-        }
+
     }
 
     public GraphicalWindow getWindow(){

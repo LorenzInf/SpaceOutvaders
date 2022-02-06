@@ -12,27 +12,34 @@ public class EnemyBurst extends Enemy{
 
     public EnemyBurst(ViewController viewController, ProgramController programController){
         super(viewController,programController);
-        shootChance = 0.5;
+        shootChance = 2;
+        shootDelay = 1.5;
+        x -= 25;
+        y -= 20;
+        width = 200 * 0.7;
+        height = 170 * 0.7;
     }
 
     @Override
     public void draw(DrawTool drawTool){
-        drawTool.drawTransformedImage(images[1],x - 25,y - 20, 0, 0.7);
+        drawTool.drawTransformedImage(images[1], x, y, 0, 0.7);
     }
 
     @Override
     public void update(double dt){
         shootTimer += dt;
         burstTimer = Math.max(burstTimer - dt, 0);
-        if(shooting == 0 && shootTimer >= shootDelay && tryToShoot(shootChance)) {
-            burstTimer = 0.33;
-            shooting = 2;
+        if(shooting == 0 && shootTimer >= shootDelay) {
             shootTimer = 0;
+            if(tryToShoot(shootChance)){
+                burstTimer = 0.2;
+                shooting = 2;
+            }
         }
         if(burstTimer == 0 && shooting > 0) {
-            new Shot(viewController, programController, x + 60, y + 60, 200, true);
+            new Shot(viewController, programController, x + 60, y + 60, 500, true);
             SoundController.playSound("shootPlayer");
-            burstTimer = 0.33;
+            burstTimer = 0.2;
             shooting -= 1;
         }
     }

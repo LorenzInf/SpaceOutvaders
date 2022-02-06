@@ -1,5 +1,6 @@
 package my_project.view;
 
+import KAGO_framework.control.SoundController;
 import KAGO_framework.control.ViewController;
 import KAGO_framework.view.DrawTool;
 import my_project.control.GraphicalWindow;
@@ -7,6 +8,7 @@ import my_project.control.ProgramController;
 import my_project.model.Enemy;
 import my_project.model.EnemyFast;
 import my_project.model.Entity;
+import my_project.model.Shot;
 
 import java.awt.image.BufferedImage;
 import java.util.Timer;
@@ -68,6 +70,10 @@ public class Game extends GraphicalWindow {
                                     array.set(array.get(x, y), x, y + 1);
                                 } else {
                                     array.set(array.get(x, y), x + 1, y);
+                                    if(y > 1 && !(array.get(x + 2, y) instanceof Enemy) && programController.getPlayer().getArrayX() == x + 1) {
+                                        new Shot(viewController, programController, array.get(x + 1, y).getX() + 60 + 175, array.get(x + 1, y).getY() + 60, 500, true);
+                                        SoundController.playSound("shootPlayer");
+                                    }
                                 }
                                 array.set(null, x, y);
                             }
@@ -89,6 +95,10 @@ public class Game extends GraphicalWindow {
             array.set(array.get(x, y), 0, y + 1);
         } else {
             array.set(array.get(x, y), x - 1, y);
+            if(y > 1 && !(array.get(x - 1, y) instanceof EnemyFast) && !(array.get(x - 2, y) instanceof Enemy) && programController.getPlayer().getArrayX() == x - 1) {
+                new Shot(viewController, programController, array.get(x - 1, y).getX() + 60 - 175, array.get(x - 1, y).getY() + 60, 500, true);
+                SoundController.playSound("shootPlayer");
+            }
         }
         array.set(null, x, y);
     }
