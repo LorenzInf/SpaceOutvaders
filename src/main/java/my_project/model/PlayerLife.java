@@ -11,17 +11,21 @@ import java.awt.image.BufferedImage;
 public class PlayerLife extends Entity implements VisualStack.Animated {
 
     private BufferedImage[] images;
-    private boolean hit;
+    private boolean empty;
     private int x;
     private int y;
 
-    public PlayerLife(int x, int y,  ViewController viewController, ProgramController programController) {
+    public PlayerLife(int x, int y,  ViewController viewController, ProgramController programController, boolean empty) {
         super(viewController, programController);
-        this.hit = false;
         this.x = x;
         this.y = y;
+        this.empty = empty;
 
-        programController.getStack().pushInVisual(this, x, y, 3);
+        if(!empty){
+            programController.getStack().pushInVisual(this, x, y, 3);
+        }else{
+            viewController.draw(this, 3);
+        }
 
         images = new BufferedImage[]{
                 createImage("src/main/resources/graphic/heart_full.png"), // 0
@@ -31,15 +35,11 @@ public class PlayerLife extends Entity implements VisualStack.Animated {
 
     @Override
     public void draw(DrawTool drawTool){
-        if(hit){
+        if(empty){
             drawTool.drawTransformedImage(images[1], x, y, 0 , 0.85);
         }else{
             drawTool.drawTransformedImage(images[0], x, y,0,0.85);
         }
-    }
-
-    public void setHit(boolean hit) {
-        this.hit = hit;
     }
 
     @Override

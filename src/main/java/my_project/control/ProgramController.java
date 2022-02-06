@@ -24,6 +24,7 @@ public class ProgramController {
     private VisualList<PlayerName> nameList;
     private Player player;
     private PlayerLife playerLife;
+    private PlayerLife emptyPlayerLife;
     private EnemyWave enemyWave;
     private boolean moveTimerActive;
 
@@ -60,9 +61,13 @@ public class ProgramController {
         player = new Player(6,0,0,false, 0, viewController, getWindow().programController);
         array.set(player,6,7);
 
-        playerLife = new PlayerLife(30, 30, viewController, this);
-        playerLife = new PlayerLife(30, 100, viewController, this);
-        playerLife = new PlayerLife(30, 170, viewController, this);
+        emptyPlayerLife = new PlayerLife(30, 30, viewController, this, true);
+        emptyPlayerLife = new PlayerLife(30, 100, viewController, this, true);
+        emptyPlayerLife = new PlayerLife(30, 170, viewController, this, true);
+
+        playerLife = new PlayerLife(30, 30, viewController, this, false);
+        playerLife = new PlayerLife(30, 100, viewController, this, false);
+        playerLife = new PlayerLife(30, 170, viewController, this, false);
 
         enemyWave = new EnemyWave(viewController,this);
 
