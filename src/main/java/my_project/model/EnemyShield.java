@@ -13,6 +13,7 @@ public class EnemyShield extends Enemy {
     @Override
     public void draw(DrawTool drawTool){
         drawTool.drawTransformedImage(images[3],x - 180,y - 170,0,0.2);
+        if(hp > 1) drawTool.drawTransformedImage(images[6],x - 180,y - 170,0,0.2);
     }
 
     @Override
