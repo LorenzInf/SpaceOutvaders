@@ -9,26 +9,35 @@ import java.awt.image.BufferedImage;
 
 public class Player extends Entity {
 
+    private final BufferedImage[] images;
+
+    private boolean shield;
+    private boolean extraLife;
+    private boolean piercing;
+    private boolean rapidFire;
+    private boolean speedBoost;
+
+    private double rapidTimer;
+    private double shieldTimer;
+    private double speedTimer;
+    private double shootCooldown;
+
     private int arrayX;
     private int speed;
-    private int hp;
-    private boolean shield;
-    private int buff;
-    private boolean extraLife;
-    private final BufferedImage[] images;
-    private double moveCooldown;
-    private double shootCooldown;
     private int move;
 
-    public Player(int arrayX, boolean extraLife, int speed, int hp, boolean shield, int buff, ViewController viewController, ProgramController programController){
+    public Player(int arrayX, ViewController viewController, ProgramController programController){
         super(viewController, programController);
         this.arrayX = arrayX;
-        this.extraLife = false;
-        this.speed = speed;
-        this.hp = hp;
-        this.shield = false;
-        this.buff = ((int)(Math.random()*4));
-        moveCooldown = 0;
+        extraLife = false;
+        piercing = false;
+        shield = false;
+        rapidFire = false;
+        speedBoost = false;
+        speed = 300;
+        shieldTimer = 10;
+        rapidTimer = 5;
+        speedTimer = 5;
         shootCooldown = 0;
         width = 100;
         height = 100;
@@ -45,42 +54,34 @@ public class Player extends Entity {
         drawTool.drawTransformedImage(images[0], x-32.5, y-70, 0 , 0.7);
     }
 
-    /**
-     *
-     * @param dt
-     * wenn buff 1 ist, wird die Geschwindigkeit das doppelte
-     * wenn buff 2 ist, werden die hp um ein viertel erhöht
-     * wenn buff 3 ist, wird shield true
-     * wenn buff 4 ist, wird der player verlangsamt
-     */
     @Override
     public void update(double dt){
-        moveCooldown = Math.max(0, moveCooldown -dt);
         shootCooldown = Math.max(0, shootCooldown -dt);
-        switch(buff){
-            case 1 -> speed *= (int) Math.random()*3+1;
-            case 2 -> hp += hp/4;
-            case 3 -> shield = true; //TODO
-            case 4 -> speed /= 2;
+        if(move == 0) x -= dt*speed;
+        if(move == 2) x += dt*speed;
+        if(shield){
+            shieldTimer = Math.max (shieldTimer - dt, 0);
+            if(shieldTimer == 0){
+                setShield(false);
+            }
         }
-        if(move == 0) x -= dt*300;
-        if(move == 2) x += dt*300;
+        if(rapidFire){
+            rapidTimer = Math.max (rapidTimer - dt, 0);
+            if(rapidTimer == 0){
+                setRapidFire(false);
+            }
+        }
+        if(speedBoost){
+            speedTimer = Math.max (speedTimer - dt, 0);
+            setSpeed(900);
+            if(speedTimer == 0){
+                setSpeed(300);
+            }
+        }
     }
 
     public int getArrayX() {
         return arrayX;
-    }
-
-    public void setArrayX(int arrayX) {
-        this.arrayX = arrayX;
-    }
-
-    public double getMoveCooldown() {
-        return moveCooldown;
-    }
-
-    public void setMoveCooldown(double moveCooldown) {
-        this.moveCooldown = moveCooldown;
     }
 
     public void setMove(int move){
@@ -101,6 +102,38 @@ public class Player extends Entity {
 
     public boolean isExtraLife() {
         return extraLife;
+    }
+
+    public boolean isPiercing() {
+        return piercing;
+    }
+
+    public void setPiercing(boolean piercing) {
+        this.piercing = piercing;
+    }
+
+    public boolean isShield() {
+        return shield;
+    }
+
+    public void setShield(boolean shield) {
+        this.shield = shield;
+    }
+
+    public boolean isRapidFire() {
+        return rapidFire;
+    }
+
+    public void setRapidFire(boolean rapidFire) {
+        this.rapidFire = rapidFire;
+    }
+
+    public void setSpeedBoost(boolean speedBoost) {
+        this.speedBoost = speedBoost;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
     }
 }
 

@@ -16,11 +16,11 @@ public class Buff extends Entity {
         super(viewController, programController);
         this.x = x;
         this.y = y;
-        randomNumber = 0; // new Random().nextInt(6);
+        randomNumber = 4; //new Random().nextInt(6);
 
         images = new BufferedImage[]{
                 createImage("src/main/resources/graphic/buffs/extralife_buff.png"),
-                createImage("src/main/resources/graphic/buffs/fast_shoot_buff.png"), // ToDo: Sprite ändern
+                createImage("src/main/resources/graphic/buffs/fast_shoot_buff.png"),
                 createImage("src/main/resources/graphic/buffs/life_buff.png"),
                 createImage("src/main/resources/graphic/buffs/pierce_buff.png"),
                 createImage("src/main/resources/graphic/buffs/shield_buff.png"),
@@ -51,7 +51,18 @@ public class Buff extends Entity {
                     programController.createExtraLife();
                     programController.getPlayer().setExtraLife(true);
                 }
-                // ToDo: alle anderen implentieren
+                case 1 -> programController.getPlayer().setRapidFire(true);
+                case 2 -> {
+                    if(programController.getStack().getCounter() != 3){
+                        switch (programController.getStack().getCounter()){
+                            case 1 -> new PlayerLife(30, 100, viewController, programController , 0);
+                            case 2 -> new PlayerLife(30, 170, viewController, programController, 0);
+                        }
+                    }
+                }
+                case 3 -> programController.getPlayer().setPiercing(true);
+                case 4 -> programController.getPlayer().setShield(true);
+                case 5 -> programController.getPlayer().setSpeedBoost(true);
             }
         }
     }

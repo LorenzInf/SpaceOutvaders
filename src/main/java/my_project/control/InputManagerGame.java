@@ -29,7 +29,7 @@ public class InputManagerGame extends InputManager {
             if(programController.getPlayer().getShootCooldown() == 0){
                 SoundController.playSound("shootPlayer");
                 new Shot(viewController, programController, programController.getPlayer().getX()+60, programController.getPlayer().getY()-100,1300,false);
-                programController.getPlayer().setShootCooldown(0.5);
+                programController.getPlayer().setShootCooldown(programController.getPlayer().isRapidFire() ? 0.1 : 0.5);
             }
         }
 

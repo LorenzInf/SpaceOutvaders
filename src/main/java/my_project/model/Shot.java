@@ -59,22 +59,26 @@ public class Shot extends Entity {
                             viewController.removeDrawable(programController.getArray().get(x, y));
                             programController.getArray().set(null, x, y);
                         }
-                        viewController.removeDrawable(this);
+                        if(!programController.getPlayer().isPiercing()){
+                            viewController.removeDrawable(this);
+                        }
                     } else {
                         viewController.removeDrawable(programController.getArray().get(x, y));
                         programController.getArray().set(null, x, y);
-                        viewController.removeDrawable(this);
+                        if(!programController.getPlayer().isPiercing()){
+                            viewController.removeDrawable(this);
+                        }
                         SoundController.playSound("enemyDeath");
                     }
                 }
                 if(enemyShot && this.y < Config.WINDOW_HEIGHT - 120 && this.collidesWith(programController.getPlayer())){
                     viewController.removeDrawable(this);
-                    if(programController.getPlayer().isExtraLife()){
+                    if(programController.getPlayer().isExtraLife() && !programController.getPlayer().isShield()){
                         viewController.removeDrawable(programController.getExtraLife());
                         programController.getPlayer().setExtraLife(false);
                         setHasHit(true);
                         SoundController.playSound("enemyDeath");
-                    }else if(!hasHit){
+                    }else if(!hasHit && !programController.getPlayer().isShield()){
                         programController.getStack().popVisual();
                         setHasHit(true);
                         SoundController.playSound("enemyDeath");

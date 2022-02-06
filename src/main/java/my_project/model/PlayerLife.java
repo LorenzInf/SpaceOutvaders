@@ -12,7 +12,6 @@ public class PlayerLife extends Entity implements VisualStack.Animated {
 
     private BufferedImage[] images;
     private int whichLife;
-    private boolean extraLife;
     private int x;
     private int y;
 
@@ -53,4 +52,5 @@ public class PlayerLife extends Entity implements VisualStack.Animated {
     public void goOut() {
 
     }
+
 }

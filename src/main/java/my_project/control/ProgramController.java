@@ -60,7 +60,7 @@ public class ProgramController {
         new InputManagerLeaderboard(this,viewController,soundManager);
         new InputMangerGuide(this, viewController, soundManager);
 
-        player = new Player(6, false,0,0,false, 0, viewController, getWindow().programController);
+        player = new Player(6, viewController, getWindow().programController);
 
         emptyPlayerLife = new PlayerLife(30, 30, viewController, this, 1);
         emptyPlayerLife = new PlayerLife(30, 100, viewController, this, 1);
@@ -94,6 +94,7 @@ public class ProgramController {
     public PlayerLife getExtraLife() {
         return extraLife;
     }
+
 
     public GraphicalWindow getWindow(){
         return window;
