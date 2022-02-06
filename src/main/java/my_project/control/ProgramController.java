@@ -25,7 +25,9 @@ public class ProgramController {
     private Player player;
     private PlayerLife playerLife;
     private PlayerLife emptyPlayerLife;
+    private PlayerLife extraLife;
     private EnemyWave enemyWave;
+    private Buff buff;
     private boolean moveTimerActive;
 
 
@@ -58,17 +60,17 @@ public class ProgramController {
         new InputManagerLeaderboard(this,viewController,soundManager);
         new InputMangerGuide(this, viewController, soundManager);
 
-        player = new Player(6,0,0,false, 0, viewController, getWindow().programController);
-        //array.set(player,6,7);
+        player = new Player(6, false,0,0,false, 0, viewController, getWindow().programController);
 
-        emptyPlayerLife = new PlayerLife(30, 30, viewController, this, true);
-        emptyPlayerLife = new PlayerLife(30, 100, viewController, this, true);
-        emptyPlayerLife = new PlayerLife(30, 170, viewController, this, true);
+        emptyPlayerLife = new PlayerLife(30, 30, viewController, this, 1);
+        emptyPlayerLife = new PlayerLife(30, 100, viewController, this, 1);
+        emptyPlayerLife = new PlayerLife(30, 170, viewController, this, 1);
 
-        playerLife = new PlayerLife(30, 30, viewController, this, false);
-        playerLife = new PlayerLife(30, 100, viewController, this, false);
-        playerLife = new PlayerLife(30, 170, viewController, this, false);
+        playerLife = new PlayerLife(30, 30, viewController, this, 0);
+        playerLife = new PlayerLife(30, 100, viewController, this, 0);
+        playerLife = new PlayerLife(30, 170, viewController, this, 0);
 
+        buff = new Buff(915, 0, viewController, this);
         enemyWave = new EnemyWave(viewController,this, window.getGame());
 
         viewController.draw(array, GraphicalWindow.GAME_INDEX);
@@ -83,6 +85,14 @@ public class ProgramController {
      */
     public void updateProgram(double dt){
 
+    }
+
+    public void createExtraLife(){
+        extraLife = new PlayerLife(30, 240, viewController, this, 2);
+    }
+
+    public PlayerLife getExtraLife() {
+        return extraLife;
     }
 
     public GraphicalWindow getWindow(){

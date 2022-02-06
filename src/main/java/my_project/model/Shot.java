@@ -69,7 +69,12 @@ public class Shot extends Entity {
                 }
                 if(enemyShot && this.y < Config.WINDOW_HEIGHT - 120 && this.collidesWith(programController.getPlayer())){
                     viewController.removeDrawable(this);
-                    if(!hasHit){
+                    if(programController.getPlayer().isExtraLife()){
+                        viewController.removeDrawable(programController.getExtraLife());
+                        programController.getPlayer().setExtraLife(false);
+                        setHasHit(true);
+                        SoundController.playSound("enemyDeath");
+                    }else if(!hasHit){
                         programController.getStack().popVisual();
                         setHasHit(true);
                         SoundController.playSound("enemyDeath");

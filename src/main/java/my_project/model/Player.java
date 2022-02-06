@@ -14,14 +14,16 @@ public class Player extends Entity {
     private int hp;
     private boolean shield;
     private int buff;
+    private boolean extraLife;
     private final BufferedImage[] images;
     private double moveCooldown;
     private double shootCooldown;
     private int move;
 
-    public Player(int arrayX, int speed, int hp, boolean shield, int buff, ViewController viewController, ProgramController programController){
+    public Player(int arrayX, boolean extraLife, int speed, int hp, boolean shield, int buff, ViewController viewController, ProgramController programController){
         super(viewController, programController);
         this.arrayX = arrayX;
+        this.extraLife = false;
         this.speed = speed;
         this.hp = hp;
         this.shield = false;
@@ -53,7 +55,6 @@ public class Player extends Entity {
      */
     @Override
     public void update(double dt){
-        //hab die ganzen if's mal zu nem switch case gemacht - Lorenz
         moveCooldown = Math.max(0, moveCooldown -dt);
         shootCooldown = Math.max(0, shootCooldown -dt);
         switch(buff){
@@ -92,6 +93,14 @@ public class Player extends Entity {
 
     public void setShootCooldown(double shootCooldown) {
         this.shootCooldown = shootCooldown;
+    }
+
+    public void setExtraLife(boolean extraLife) {
+        this.extraLife = extraLife;
+    }
+
+    public boolean isExtraLife() {
+        return extraLife;
     }
 }
 

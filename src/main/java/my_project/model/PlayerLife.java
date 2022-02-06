@@ -11,17 +11,18 @@ import java.awt.image.BufferedImage;
 public class PlayerLife extends Entity implements VisualStack.Animated {
 
     private BufferedImage[] images;
-    private boolean empty;
+    private int whichLife;
+    private boolean extraLife;
     private int x;
     private int y;
 
-    public PlayerLife(int x, int y,  ViewController viewController, ProgramController programController, boolean empty) {
+    public PlayerLife(int x, int y,  ViewController viewController, ProgramController programController, int whichLife) {
         super(viewController, programController);
         this.x = x;
         this.y = y;
-        this.empty = empty;
+        this.whichLife = whichLife;
 
-        if(!empty){
+        if(whichLife == 0){
             programController.getStack().pushInVisual(this, x, y, 3);
         }else{
             viewController.draw(this, 3);
@@ -30,15 +31,16 @@ public class PlayerLife extends Entity implements VisualStack.Animated {
         images = new BufferedImage[]{
                 createImage("src/main/resources/graphic/heart_full.png"), // 0
                 createImage("src/main/resources/graphic/heart_empty.png"), // 1
+                createImage("src/main/resources/graphic/buffs/extralife_buff.png") // 2
         };
     }
 
     @Override
     public void draw(DrawTool drawTool){
-        if(empty){
-            drawTool.drawTransformedImage(images[1], x, y, 0 , 0.85);
-        }else{
-            drawTool.drawTransformedImage(images[0], x, y,0,0.85);
+        switch (whichLife){
+            case 0 -> drawTool.drawTransformedImage(images[0], x, y,0,0.85);
+            case 1 -> drawTool.drawTransformedImage(images[1], x, y, 0 , 0.85);
+            case 2 -> drawTool.drawTransformedImage(images[2], x, y, 0 , 0.85);
         }
     }
 

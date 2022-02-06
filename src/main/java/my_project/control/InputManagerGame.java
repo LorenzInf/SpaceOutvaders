@@ -2,6 +2,7 @@ package my_project.control;
 
 import KAGO_framework.control.SoundController;
 import KAGO_framework.control.ViewController;
+import my_project.model.Buff;
 import my_project.model.Shot;
 
 import java.awt.event.KeyEvent;
@@ -59,6 +60,11 @@ public class InputManagerGame extends InputManager {
         if(key == KeyEvent.VK_F){
             programController.getEnemyWave().summon();
         }
+
+        if(key == KeyEvent.VK_B){ // Für Test-Zwecke
+            new Buff(915, 0, viewController, programController);
+        }
+
         setVolume(key);
         forceMainMenu(key);
     }
