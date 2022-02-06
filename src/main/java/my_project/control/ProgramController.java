@@ -55,6 +55,7 @@ public class ProgramController {
         new InputManagerGame(this, viewController, soundManager);
         new InputManagerEnterName(this, viewController, soundManager);
         new InputManagerLeaderboard(this,viewController,soundManager);
+        new InputMangerGuide(this, viewController, soundManager);
 
         player = new Player(6,0,0,false, 0, viewController, getWindow().programController);
         array.set(player,6,7);
