@@ -2,9 +2,9 @@ package my_project.control;
 
 import KAGO_framework.control.ViewController;
 
-public class InputMangerGuide extends InputManager{
+public class InputManagerGuide extends InputManager{
 
-    public InputMangerGuide(ProgramController programController,ViewController viewController, SoundManager soundManager) {
+    public InputManagerGuide(ProgramController programController, ViewController viewController, SoundManager soundManager) {
         super(viewController, programController, soundManager);
         viewController.register(this,5);
 

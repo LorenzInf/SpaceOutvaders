@@ -118,17 +118,18 @@ public class GraphicalObject implements Drawable {
     public boolean collidesWith(GraphicalObject gO){
         if(radius == 0){
             if(gO.getRadius() == 0){
-                return x < gO.getX() + gO.getWidth() && x + width > gO.getX() && y < gO.getY() + gO.getHeight() && y + height > gO.getY();
+                if ( x < gO.getX()+gO.getWidth() && x + width > gO.getX() && y < gO.getY() + gO.getHeight() && y + height > gO.getY() ) return true;
             }else{
-                return x < gO.getX() + 2 * gO.getRadius() && x + width > gO.getX() && y < gO.getY() + 2 * gO.getRadius() && y + height > gO.getY();
+                if ( x < gO.getX()+2*gO.getRadius() && x + width > gO.getX() && y < gO.getY() + 2*gO.getRadius() && y + height > gO.getY() ) return true;
             }
         }else{
             if(gO.getRadius() == 0){
-                return gO.getX() < x + 2 * radius && gO.getX() + gO.getWidth() > x && gO.getY() < y + 2 * radius && gO.getY() + gO.getHeight() > y;
+                if ( gO.getX() < x+2*radius && gO.getX() + gO.getWidth() > x && gO.getY() < y + 2*radius && gO.getY() + gO.getHeight() > y ) return true;
             }else{
-                return getDistanceTo(gO) <= radius + gO.getRadius();
+                if(getDistanceTo(gO)<=radius+gO.getRadius()) return true;
             }
         }
+        return false;
     }
 
     /**

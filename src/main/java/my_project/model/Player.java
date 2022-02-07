@@ -9,9 +9,12 @@ import java.awt.image.BufferedImage;
 
 public class Player extends Entity {
 
+    private int arrayX;
+    private int speed;
+    private boolean shield;
+    private int buff;
     private final BufferedImage[] images;
 
-    private boolean shield;
     private boolean extraLife;
     private boolean piercing;
     private boolean rapidFire;
@@ -22,8 +25,6 @@ public class Player extends Entity {
     private double speedTimer;
     private double shootCooldown;
 
-    private int arrayX;
-    private int speed;
     private int move;
 
     public Player(int arrayX, ViewController viewController, ProgramController programController){
@@ -34,15 +35,16 @@ public class Player extends Entity {
         shield = false;
         rapidFire = false;
         speedBoost = false;
-        speed = 300;
+        speed = 400;
         shieldTimer = 10;
         rapidTimer = 5;
         speedTimer = 5;
         shootCooldown = 0;
-        width = 100;
-        height = 100;
-        x = 865;
-        y = 875;
+        x = 865 + 28;
+        y = 875 + 12;
+        width = 119;
+        height = 151;
+        move = 1;
         viewController.draw(this, GraphicalWindow.GAME_INDEX);
         images = new BufferedImage[]{
                 createImage("src/main/resources/graphic/Spaceship.png")
@@ -51,7 +53,7 @@ public class Player extends Entity {
 
     @Override
     public void draw(DrawTool drawTool){
-        drawTool.drawTransformedImage(images[0], x-32.5, y-70, 0 , 0.7);
+        drawTool.drawImage(images[0], x, y);
     }
 
     @Override

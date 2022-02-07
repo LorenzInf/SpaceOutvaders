@@ -10,23 +10,24 @@ public class EnemyBurst extends Enemy{
     private double burstTimer;
     private int shooting;
 
-    public EnemyBurst(ViewController viewController, ProgramController programController){
-        super(viewController,programController);
-        shootChance = 2;
-        shootDelay = 1.5;
-        x -= 25;
-        y -= 20;
-        width = 200 * 0.7;
-        height = 170 * 0.7;
+    public EnemyBurst(ViewController viewController, ProgramController programController, boolean movingRight, int posX, int posY){
+        super(viewController,programController,movingRight,posX,posY);
+        shootChance = 0.5;
+        shootDelay = 0.25;
+        x += 17.5;
+        y += 28;
+        width = 140;
+        height = 119;
     }
 
     @Override
     public void draw(DrawTool drawTool){
-        drawTool.drawTransformedImage(images[1], x, y, 0, 0.7);
+        drawTool.drawImage(images[1], x, y);
     }
 
     @Override
     public void update(double dt){
+        super.update(dt);
         shootTimer += dt;
         burstTimer = Math.max(burstTimer - dt, 0);
         if(shooting == 0 && shootTimer >= shootDelay) {
@@ -37,7 +38,7 @@ public class EnemyBurst extends Enemy{
             }
         }
         if(burstTimer == 0 && shooting > 0) {
-            new Shot(viewController, programController, x + 60, y + 60, 500, true);
+            new Shot(viewController, programController, enemyX , enemyY + 60, 500, true);
             SoundController.playSound("shootPlayer");
             burstTimer = 0.2;
             shooting -= 1;

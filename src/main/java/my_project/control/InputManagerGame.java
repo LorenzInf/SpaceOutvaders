@@ -28,7 +28,7 @@ public class InputManagerGame extends InputManager {
         if(key == KeyEvent.VK_SPACE){
             if(programController.getPlayer().getShootCooldown() == 0){
                 SoundController.playSound("shootPlayer");
-                new Shot(viewController, programController, programController.getPlayer().getX()+60, programController.getPlayer().getY()-100,1300,false);
+                new Shot(viewController, programController, programController.getPlayer().getX() - 28, programController.getPlayer().getY() - 120,1300,false);
                 programController.getPlayer().setShootCooldown(programController.getPlayer().isRapidFire() ? 0.1 : 0.5);
             }
         }

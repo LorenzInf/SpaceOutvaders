@@ -22,17 +22,36 @@ public abstract class Enemy extends Entity {
     };
 
     //other stuff
-    protected int hp = 1; //1 oder 2
-    protected int speed = 1; //in felder/sekunde
-    protected double shootChance = 5;
-    protected boolean instantShot = false;
-    protected double shootTimer = 0;
+    protected double enemyX;
+    protected double enemyY;
+    protected int hp;
+    protected int speed;
+    protected double shootChance;
+    protected boolean instantShot;
+    protected double shootTimer;
     protected double shootDelay;
+    protected boolean movingRight;
+    protected boolean movingDown;
+    protected double previousY;
+    protected boolean moving;
+    protected double timer;
 
-    public Enemy(ViewController viewController, ProgramController programController){
+    public Enemy(ViewController viewController, ProgramController programController, boolean movingRight, int posX, int posY){
         super(viewController, programController);
-        shootDelay = 0.75;
-        radius = 50;
+        x = posX * 175;
+        y = posY * 175;
+        enemyX = x;
+        enemyY = y;
+        hp = 1;
+        speed = 150;
+        shootChance = 2.5;
+        instantShot = false;
+        shootTimer = 0;
+        shootDelay = 0.25;
+        movingDown = false;
+        previousY = enemyY;
+        timer = 5;
+        this.movingRight = movingRight;
         viewController.draw(this);
     }
 
@@ -41,11 +60,13 @@ public abstract class Enemy extends Entity {
      * When called there is a chance of {@code shootChance}% for the Enemy to shoot
      */
     public boolean tryToShoot(double chance){
-        int help = new Random().nextInt(100 + 1);
-        if(chance >= help && y > -50){
-            new Shot(viewController, programController, x + 60, y + 60, 500, true);
-            SoundController.playSound("shootPlayer");
-            return true;
+        if(timer <= 0) {
+            int help = new Random().nextInt(100 + 1);
+            if (chance >= help && y > -50) {
+                new Shot(viewController, programController, enemyX , enemyY + 60, 500, true);
+                SoundController.playSound("shootPlayer");
+                return true;
+            }
         }
         return false;
     }
@@ -73,5 +94,39 @@ public abstract class Enemy extends Entity {
             tryToShoot(shootChance);
             shootTimer = 0;
         }
+        if(moving) {
+            timer -= dt;
+        }
+        if(timer <= 0) {
+            double incr = speed * dt;
+            if (movingRight && !movingDown) {
+                x += incr;
+                enemyX += incr;
+                if (enemyX >= 1750) {
+                    movingDown = true;
+                    previousY = enemyY;
+                }
+            }
+            if (!movingRight && !movingDown) {
+                x -= incr;
+                enemyX -= incr;
+                if (enemyX <= 0) {
+                    movingDown = true;
+                    previousY = enemyY;
+                }
+            }
+            if (movingDown) {
+                y += incr;
+                enemyY += incr;
+                if (enemyY >= previousY + 175) {
+                    movingDown = false;
+                    movingRight = !movingRight;
+                }
+            }
+        }
+    }
+
+    public void setMoving(boolean moving){
+        this.moving = moving;
     }
 }

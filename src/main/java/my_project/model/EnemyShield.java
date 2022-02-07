@@ -5,19 +5,19 @@ import KAGO_framework.view.DrawTool;
 import my_project.control.ProgramController;
 
 public class EnemyShield extends Enemy {
-    public EnemyShield(ViewController viewController, ProgramController programController){
-        super(viewController,programController);
+
+    public EnemyShield(ViewController viewController, ProgramController programController, boolean movingRight, int posX, int posY){
+        super(viewController,programController,movingRight,posX,posY);
         hp = 2;
+        x += 18;
+        y += 19.5;
+        width = 139;
+        height = 136;
     }
 
     @Override
     public void draw(DrawTool drawTool){
-        drawTool.drawTransformedImage(images[3],x - 180,y - 170,0,0.2);
-        if(hp > 1) drawTool.drawTransformedImage(images[6],x - 180,y - 170,0,0.2);
-    }
-
-    @Override
-    public void update(double dt){
-
+        drawTool.drawImage(images[3], x, y);
+        if(hp > 1) drawTool.drawImage(images[6], x, y);
     }
 }

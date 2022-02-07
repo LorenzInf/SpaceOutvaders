@@ -19,7 +19,7 @@ public class ProgramController {
     private final ViewController viewController;
     private final SoundManager soundManager;
     private GraphicalWindow window;
-    private Visual2DArray<Entity> array;
+    private Enemy[][] array;
     private VisualStack<PlayerLife> playerLifesStack;
     private VisualList<PlayerName> nameList;
     private Player player;
@@ -48,7 +48,7 @@ public class ProgramController {
      * Sie erstellt die leeren Datenstrukturen, zu Beginn nur eine Queue
      */
     public void startProgram() {
-        array = new Visual2DArray<>(12, 8, 0 , 0, new Visual2DArray.VisualizationConfig(-173,-350, 173, 175, 0, false, false, false, null, Color.WHITE, new Color(29, 173, 11, 0)));
+        array = new Enemy[11][6];
         playerLifesStack = new VisualStack<>(viewController);
         window = new GraphicalWindow(viewController, this);
         nameList = new VisualList<>(0,0,0,0);
@@ -58,7 +58,7 @@ public class ProgramController {
         new InputManagerGame(this, viewController, soundManager);
         new InputManagerEnterName(this, viewController, soundManager);
         new InputManagerLeaderboard(this,viewController,soundManager);
-        new InputMangerGuide(this, viewController, soundManager);
+        new InputManagerGuide(this, viewController, soundManager);
 
         player = new Player(6, viewController, getWindow().programController);
 
@@ -72,9 +72,6 @@ public class ProgramController {
 
         buff = new Buff(915, 0, viewController, this);
         enemyWave = new EnemyWave(viewController,this, window.getGame());
-
-        viewController.draw(array, GraphicalWindow.GAME_INDEX);
-        viewController.register(array);
 
         SoundController.playSound("mainMenuTheme");
     }
@@ -104,7 +101,7 @@ public class ProgramController {
         return player;
     }
 
-    public Visual2DArray<Entity> getArray() {
+    public Enemy[][] getArray() {
         return array;
     }
 

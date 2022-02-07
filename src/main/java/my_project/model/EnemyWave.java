@@ -7,20 +7,18 @@ import my_project.view.Visual2DArray;
 
 import java.util.Random;
 
-public class EnemyWave{
+public class EnemyWave {
 
     private final ViewController viewController;
     private final ProgramController programController;
     private final double difficultyN22, difficultyM11, difficultyF6, difficultyM22;
     private double difficultyCurrent;
-    private final Visual2DArray<Entity> array;
-    private final Game game;
+    private final Enemy[][] array;
 
-    public EnemyWave(ViewController viewController, ProgramController programController, Game game){
+    public EnemyWave(ViewController viewController, ProgramController programController, Game game) {
         this.viewController = viewController;
         this.programController = programController;
         array = programController.getArray();
-        this.game = game;
         difficultyCurrent = 1.0;
         difficultyM11 = 1.33;
         difficultyN22 = 1.66;
@@ -28,47 +26,43 @@ public class EnemyWave{
         difficultyM22 = 2.5;
     }
 
-    public void summonAWave(){
+    public void summonAWave() {
         double random = new Random().nextDouble() * difficultyCurrent;
-
-        game.doEnemyMovement();
     }
 
-    public void summon(){
-        for(int i = 1; i <= 11; i++) {
-            array.set(new EnemyNormal(viewController, programController), i, 1);
+    public void summon() {
+        for (int i = 0; i < 11; i++) {
+            array[i][0] = new EnemyShield(viewController, programController, true, i, 0);
         }
-        for(int i = 1; i <= 11; i++) {
-            array.set(new EnemyShield(viewController, programController), i, 2);
+        for (int i = 0; i < 11; i++) {
+            array[i][0].setMoving(true);
         }
-        game.doEnemyMovement();
-
     }
 
-    private void summonNormal11() {
+    /*private void summonNormal11() {
         for(int i = 1; i <= 11; i++) {
-            array.set(new EnemyNormal(viewController, programController), i, 2);
+            array.set(new EnemyNormal(viewController, programController,true), i, 2);
         }
     }
 
     private void summonFast11() {
         for(int i = 1; i <= 11; i ++) {
-            array.set(new EnemyFast(viewController, programController), i, 2);
+            array.set(new EnemyFast(viewController, programController,true), i, 2);
         }
     }
 
     private void summonShield11() {
         for(int i = 1; i <= 11; i++) {
-            array.set(new EnemyShield(viewController, programController), i, 2);
+            array.set(new EnemyShield(viewController, programController,true), i, 2);
         }
     }
 
     private void summonNormal6Burst6() {
         for(int i = 1; i <= 11; i += 2) {
-            array.set(new EnemyNormal(viewController, programController), i, 2);
+            array.set(new EnemyNormal(viewController, programController,true), i, 2);
         }
         for(int i = 2; i <= 11; i += 2) {
-            array.set(new EnemyBurst(viewController, programController), i, 2);
+            array.set(new EnemyBurst(viewController, programController,true), i, 2);
         }
     }
 
@@ -96,5 +90,5 @@ public class EnemyWave{
         for(int i = 1; i < 11; i++) {
             array.set(new EnemyShield(viewController, programController), i, 1);
         }
-    }
+    }*/
 }

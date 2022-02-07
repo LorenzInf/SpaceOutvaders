@@ -7,12 +7,16 @@ import java.util.Random;
 
 public class EnemyNormal extends Enemy {
 
-    public EnemyNormal(ViewController viewController, ProgramController programController) {
-        super(viewController, programController);
+    public EnemyNormal(ViewController viewController, ProgramController programController, boolean movingRight, int posX, int posY) {
+        super(viewController, programController,movingRight,posX,posY);
+        x += 27.5;
+        y += 44;
+        width = 120;
+        height = 87;
     }
 
     @Override
     public void draw(DrawTool drawTool){
-        drawTool.drawTransformedImage(images[2],x-22,y-15, 0 , 0.6);
+        drawTool.drawImage(images[2], x, y);
     }
 }

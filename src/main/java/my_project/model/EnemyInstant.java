@@ -5,8 +5,8 @@ import KAGO_framework.view.DrawTool;
 import my_project.control.ProgramController;
 
 public class EnemyInstant extends Enemy {
-    public EnemyInstant(ViewController viewController, ProgramController programController){
-        super(viewController,programController);
+    public EnemyInstant(ViewController viewController, ProgramController programController, boolean movingRight, int posX, int posY){
+        super(viewController,programController,movingRight,posX,posY);
         instantShot = true; //TODO make instant shots actually be a thing
     }
 

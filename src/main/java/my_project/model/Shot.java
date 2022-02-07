@@ -16,18 +16,20 @@ public class Shot extends Entity {
     private boolean hasHit;
     private final BufferedImage[] images;
     private final ProgramController programController;
+    private Enemy[][] array;
 
     public Shot(ViewController viewController, ProgramController programController, double x, double y, double speed, boolean enemyShot){
         super(viewController, programController);
         this.viewController = viewController;
         this.programController = programController;
-        this.x = x;
-        this.y = y;
+        this.x = x + 78.5;
+        this.y = y + 55.5;
         this.speed = speed;
         this.enemyShot = enemyShot;
         hasHit = false;
-        width = 10;
-        height = 100;
+        width = 18;
+        height = 64;
+        array = programController.getArray();
         images = new BufferedImage[]{
                 createImage("src/main/resources/graphic/laser_shot_player.png"),
                 createImage("src/main/resources/graphic/laser_shot_enemy.png")
@@ -37,9 +39,9 @@ public class Shot extends Entity {
 
     public void draw(DrawTool drawTool){
         if(!enemyShot){
-            drawTool.drawTransformedImage(images[0], x, y, 0 ,0.25);
+            drawTool.drawImage(images[0], x, y);
         }else{
-            drawTool.drawTransformedImage(images[1], x, y, 0 ,0.25);
+            drawTool.drawImage(images[1], x, y);
         }
     }
 
@@ -49,44 +51,33 @@ public class Shot extends Entity {
         if(y < -120 || y > Config.WINDOW_HEIGHT){
             viewController.removeDrawable(this);
         }
-        for(int x = 0; x <= 12; x++){
-            for(int y = 0; y <= 8; y++){
-                if(programController.getArray().get(x,y) != null && !enemyShot && y > 1 && this.collidesWith(programController.getArray().get(x,y))){
-                    if(programController.getArray().get(x,y) instanceof EnemyShield){
-                        ((EnemyShield) programController.getArray().get(x,y)).setHp(((EnemyShield) programController.getArray().get(x,y)).getHp() - 1);
+        for(int x = 0; x < 11; x++){
+            for(int y = 0; y < 6; y++){
+                if(array[x][y] != null && !enemyShot && this.y > 1 && this.collidesWith(array[x][y])) {
+                    if(array[x][y].getHp() > 1) {
+                        array[x][y].setHp(array[x][y].getHp() - 1);
                         SoundController.playSound("enemyDeath");
-                        if(((EnemyShield) programController.getArray().get(x,y)).getHp() == 0) {
-                            viewController.removeDrawable(programController.getArray().get(x, y));
-                            programController.getArray().set(null, x, y);
-                        }
-                        if(!programController.getPlayer().isPiercing()){
-                            viewController.removeDrawable(this);
-                        }
+                        viewController.removeDrawable(this);
                     } else {
-                        viewController.removeDrawable(programController.getArray().get(x, y));
-                        programController.getArray().set(null, x, y);
-                        if(!programController.getPlayer().isPiercing()){
+                        viewController.removeDrawable(array[x][y]);
+                        array[x][y] = null;
+                        SoundController.playSound("enemyDeath");
+                        if(true /* TODO @Alex !programController.getPlayer.isPiercing() */) {
                             viewController.removeDrawable(this);
                         }
-                        SoundController.playSound("enemyDeath");
                     }
                 }
-                if(enemyShot && this.y < Config.WINDOW_HEIGHT - 120 && this.collidesWith(programController.getPlayer())){
-                    viewController.removeDrawable(this);
-                    if(programController.getPlayer().isExtraLife() && !programController.getPlayer().isShield()){
-                        viewController.removeDrawable(programController.getExtraLife());
-                        programController.getPlayer().setExtraLife(false);
-                        setHasHit(true);
-                        SoundController.playSound("enemyDeath");
-                    }else if(!hasHit && !programController.getPlayer().isShield()){
-                        programController.getStack().popVisual();
-                        setHasHit(true);
-                        SoundController.playSound("enemyDeath");
-                        if(programController.getStack().top() == null){
-                            programController.getWindow().switchScene(6);
-                        }
-                    }
+            }
+        }
+        if(enemyShot && this.y < Config.WINDOW_HEIGHT - 120 && this.collidesWith(programController.getPlayer())){
+            if(!hasHit){
+                programController.getStack().popVisual();
+                setHasHit(true);
+                SoundController.playSound("enemyDeath");
+                if(programController.getStack().top() == null){
+                    programController.getWindow().switchScene(6);
                 }
+                viewController.removeDrawable(this);
             }
         }
     }
