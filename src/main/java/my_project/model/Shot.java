@@ -10,13 +10,12 @@ import java.awt.image.BufferedImage;
 
 public class Shot extends Entity {
 
-    private final ViewController viewController;
+    protected final ViewController viewController;
     private final double speed;
     private final boolean enemyShot;
-    private boolean hasHit;
-    private final BufferedImage[] images;
-    private final ProgramController programController;
-    private Enemy[][] array;
+    protected final BufferedImage[] images;
+    protected final ProgramController programController;
+    protected Enemy[][] array;
 
     public Shot(ViewController viewController, ProgramController programController, double x, double y, double speed, boolean enemyShot){
         super(viewController, programController);
@@ -26,17 +25,18 @@ public class Shot extends Entity {
         this.y = y + 55.5;
         this.speed = speed;
         this.enemyShot = enemyShot;
-        hasHit = false;
         width = 18;
         height = 64;
         array = programController.getArray();
+        String path = "src/main/resources/graphic/";
         images = new BufferedImage[]{
-                createImage("src/main/resources/graphic/laser_shot_player.png"),
-                createImage("src/main/resources/graphic/laser_shot_enemy.png")
+                createImage(path + "laser_shot_player.png"),
+                createImage(path + "laser_shot_enemy.png")
         };
         viewController.draw(this, GraphicalWindow.GAME_INDEX);
     }
 
+    @Override
     public void draw(DrawTool drawTool){
         if(!enemyShot){
             drawTool.drawImage(images[0], x, y);
@@ -71,20 +71,13 @@ public class Shot extends Entity {
             }
         }
         if(enemyShot && this.y < Config.WINDOW_HEIGHT - 120 && this.collidesWith(programController.getPlayer()) && programController.getPlayer().getiCooldown() == 0){
-            if(!hasHit){
-                programController.getPlayer().setiCooldown(2.0);
-                programController.getStack().popVisual();
-                setHasHit(true);
-                SoundController.playSound("enemyDeath");
-                if(programController.getStack().top() == null){
-                    programController.getWindow().switchScene(6);
-                }
-                viewController.removeDrawable(this);
+            programController.getPlayer().setiCooldown(2.0);
+            programController.getStack().popVisual();
+            SoundController.playSound("enemyDeath");
+            if(programController.getStack().top() == null){
+                programController.getWindow().switchScene(6);
             }
+            viewController.removeDrawable(this);
         }
-    }
-
-    public void setHasHit(boolean hasHit) {
-        this.hasHit = hasHit;
     }
 }
