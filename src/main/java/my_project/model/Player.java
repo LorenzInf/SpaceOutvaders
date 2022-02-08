@@ -9,35 +9,42 @@ import java.awt.image.BufferedImage;
 
 public class Player extends Entity {
 
-    private int arrayX;
-    private int speed;
-    private boolean shield;
-    private int buff;
     private final BufferedImage[] images;
 
+    private int speed;
+    private boolean shield;
+
+    private boolean healBoost;
     private boolean extraLife;
     private boolean piercing;
     private boolean rapidFire;
     private boolean speedBoost;
+    private boolean isShieldBubble;
 
+    private double healTimer;
     private double rapidTimer;
     private double shieldTimer;
     private double speedTimer;
+    private double pierceTimer;
     private double shootCooldown;
     private double iCooldown;
 
     private int move;
 
-    public Player(int arrayX, ViewController viewController, ProgramController programController){
+    public Player(ViewController viewController, ProgramController programController){
         super(viewController, programController);
-        this.arrayX = arrayX;
         extraLife = false;
         piercing = false;
         shield = false;
         rapidFire = false;
+        healBoost = false;
         speedBoost = false;
+        isShieldBubble = false;
         speed = 400;
-        shieldTimer = 10;
+
+        healTimer = 2;
+        pierceTimer = 5;
+        shieldTimer = 5;
         rapidTimer = 5;
         speedTimer = 5;
         shootCooldown = 0;
@@ -49,7 +56,10 @@ public class Player extends Entity {
         viewController.draw(this, GraphicalWindow.GAME_INDEX);
         images = new BufferedImage[]{
                 createImage("src/main/resources/graphic/Spaceship.png"),
-                createImage("src/main/resources/graphic/Spaceship_hurt.png")
+                createImage("src/main/resources/graphic/Spaceship_hurt.png"),
+                createImage("src/main/resources/graphic/buffs/shield_bubble.png"),
+                createImage("src/main/resources/graphic/buffs/speed_spaceship.png"),
+                createImage("src/main/resources/graphic/buffs/heal_spaceship.png")
         };
     }
 
@@ -57,6 +67,15 @@ public class Player extends Entity {
     public void draw(DrawTool drawTool){
         if(iCooldown == 0) drawTool.drawImage(images[0], x, y);
         else drawTool.drawImage(images[1], x, y);
+        if(isShieldBubble){
+            drawTool.drawImage(images[2], programController.getPlayer().getX()-30, programController.getPlayer().getY()-10);
+        }
+        if(speedBoost){
+            drawTool.drawImage(images[3], x, y);
+        }
+        if(healBoost){
+            drawTool.drawImage(images[4], x, y);
+        }
     }
 
     @Override
@@ -66,29 +85,46 @@ public class Player extends Entity {
         if(move == 0) x -= dt*speed;
         if(move == 2) x += dt*speed;
         if(shield){
+            setShieldBubble(true);
             shieldTimer = Math.max (shieldTimer - dt, 0);
             if(shieldTimer == 0){
                 setShield(false);
+                setShieldBubble(false);
+                shieldTimer = 5;
             }
         }
         if(rapidFire){
             rapidTimer = Math.max (rapidTimer - dt, 0);
             if(rapidTimer == 0){
                 setRapidFire(false);
+                rapidTimer = 5;
             }
         }
         if(speedBoost){
             speedTimer = Math.max (speedTimer - dt, 0);
             setSpeed(900);
             if(speedTimer == 0){
+                setSpeedBoost(false);
                 setSpeed(300);
+                speedTimer = 5;
+            }
+        }
+        if(piercing){
+            pierceTimer = Math.max (pierceTimer - dt, 0);
+            if(pierceTimer == 0){
+                piercing = false;
+                pierceTimer = 5;
+            }
+        }
+        if(healBoost){
+            healTimer = Math.max (healTimer - dt, 0);
+            if(healTimer == 0){
+                healBoost = false;
+                healTimer = 5;
             }
         }
     }
 
-    public int getArrayX() {
-        return arrayX;
-    }
 
     public void setMove(int move){
         this.move = move;
@@ -142,12 +178,16 @@ public class Player extends Entity {
         this.speed = speed;
     }
 
-    public double getiCooldown() {
-        return iCooldown;
-    }
-
     public void setiCooldown(double iCooldown) {
         this.iCooldown = iCooldown;
+    }
+
+    public void setShieldBubble(boolean shieldBubble) {
+        isShieldBubble = shieldBubble;
+    }
+
+    public void setHealBoost(boolean healBoost) {
+        this.healBoost = healBoost;
     }
 }
 

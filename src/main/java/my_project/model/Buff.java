@@ -3,67 +3,109 @@ package my_project.model;
 import KAGO_framework.control.ViewController;
 import KAGO_framework.view.DrawTool;
 import my_project.control.ProgramController;
-
+import my_project.view.VisualQueue;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
-public class Buff extends Entity {
+public class Buff extends Entity implements VisualQueue.Animatible {
 
     private final BufferedImage[] images;
     private final int randomNumber;
+    private boolean isInQueue;
+
 
     public Buff(double x, double y, ViewController viewController, ProgramController programController) {
         super(viewController, programController);
         this.x = x;
         this.y = y;
-        randomNumber = 4; //new Random().nextInt(6);
+        width = 50;
+        height = 85;
+        isInQueue = false;
+        if(programController.getStack().getCounter() == 3){
+            randomNumber = new Random().nextInt(5);
+        }else{
+            randomNumber = new Random().nextInt(6);
+        }
 
         images = new BufferedImage[]{
                 createImage("src/main/resources/graphic/buffs/extralife_buff.png"),
                 createImage("src/main/resources/graphic/buffs/fast_shoot_buff.png"),
-                createImage("src/main/resources/graphic/buffs/life_buff.png"),
+                createImage("src/main/resources/graphic/buffs/speed_buff.png"),
                 createImage("src/main/resources/graphic/buffs/pierce_buff.png"),
                 createImage("src/main/resources/graphic/buffs/shield_buff.png"),
-                createImage("src/main/resources/graphic/buffs/speed_buff.png")
+                createImage("src/main/resources/graphic/buffs/life_buff.png"),
+
         };
-        viewController.draw(this,3);
+        viewController.draw(this, 3);
     }
 
     @Override
     public void draw(DrawTool drawTool){
         switch(randomNumber){
-            case 0 -> drawTool.drawTransformedImage(images[0], x, y, 0, 0.85);
-            case 1 -> drawTool.drawTransformedImage(images[1], x-200, y, 0, 0.2);
-            case 2 -> drawTool.drawTransformedImage(images[2], x, y, 0, 1);
-            case 3 -> drawTool.drawTransformedImage(images[3], x-10, y, 0, 0.8);
-            case 4 -> drawTool.drawTransformedImage(images[4], x-65, y, 0, 0.15);
-            case 5 -> drawTool.drawTransformedImage(images[5], x-72, y, 0, 0.1);
+            case 0 -> drawTool.drawImage(images[0], x, y); // Extra life
+            case 1 -> drawTool.drawImage(images[1], x, y); // Fast Shoot
+            case 2 -> drawTool.drawImage(images[2], x, y); // Speed - Buff
+            case 3 -> drawTool.drawImage(images[3], x, y); // Pierce
+            case 4 -> drawTool.drawImage(images[4], x, y); // Shield
+            case 5 -> drawTool.drawImage(images[5], x, y); // Life Buff
         }
+
     }
 
     @Override
     public void update(double dt){
-        y += 250*dt;
+        if(!isInQueue){
+            y += 250*dt;
+        }
         if(this.collidesWith(programController.getPlayer())){
-            viewController.removeDrawable(this);
-            switch(randomNumber){
-                case 0 -> {
-                    programController.createExtraLife();
-                    programController.getPlayer().setExtraLife(true);
+            if(randomNumber == 5 && programController.getStack().getCounter() != 3){
+                viewController.removeDrawable(this);
+                programController.getPlayer().setHealBoost(true);
+                switch (programController.getStack().getCounter()) {
+                    case 1 -> new PlayerLife(1810, 880, viewController, programController, 0);
+                    case 2 -> new PlayerLife(1810, 950, viewController, programController, 0);
                 }
-                case 1 -> programController.getPlayer().setRapidFire(true);
-                case 2 -> {
-                    if(programController.getStack().getCounter() != 3){
-                        switch (programController.getStack().getCounter()){
-                            case 1 -> new PlayerLife(30, 100, viewController, programController , 0);
-                            case 2 -> new PlayerLife(30, 170, viewController, programController, 0);
-                        }
-                    }
-                }
-                case 3 -> programController.getPlayer().setPiercing(true);
-                case 4 -> programController.getPlayer().setShield(true);
-                case 5 -> programController.getPlayer().setSpeedBoost(true);
+            }
+            if(programController.getBuffVisualQueue().getCounter() != 3 && randomNumber != 5){
+                programController.getBuffVisualQueue().enqueue(this);
+                isInQueue = true;
             }
         }
     }
+
+    @Override
+    public void fadeOut(boolean fadeOut) {
+
+    }
+
+    @Override
+    public void setTx(double tx) {
+
+    }
+
+    @Override
+    public void setTy(double ty) {
+
+    }
+
+    @Override
+    public double getTx() {
+        return 0;
+    }
+
+    @Override
+    public double getTy() {
+        return 0;
+    }
+
+    @Override
+    public boolean isArrived() {
+        return false;
+    }
+
+    public int getRandomNumber() {
+        return randomNumber;
+    }
+
+
 }

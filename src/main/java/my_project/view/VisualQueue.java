@@ -4,6 +4,7 @@ import KAGO_framework.control.ViewController;
 import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.model.abitur.datenstrukturen.List;
 import KAGO_framework.model.abitur.datenstrukturen.Queue;
+import my_project.model.Buff;
 
 public class VisualQueue<T extends GraphicalObject & VisualQueue.Animatible> {
 
@@ -18,7 +19,7 @@ public class VisualQueue<T extends GraphicalObject & VisualQueue.Animatible> {
      * Außerdem sollten eure Objekte mit den parametern x,y,width,height und radius welche sie von der
      * Klasse GraphicalObject erben arbeiten. Andernfalls wirds hier und da problematisch.
      */
-    interface Animatible {
+    public interface Animatible {
 
         void fadeIn();
 
@@ -43,12 +44,12 @@ public class VisualQueue<T extends GraphicalObject & VisualQueue.Animatible> {
     private double posX;
     private double posY;
     private String direction;
+    private int counter;
     /**
      * Parameter unter dem Kommentar noch unwichtig
      */
     private double frontX, frontY;
     private boolean movable;
-    private boolean allowed;
     private final List<Double> helpX;
     private final List<Double> helpY;
     /**
@@ -66,6 +67,7 @@ public class VisualQueue<T extends GraphicalObject & VisualQueue.Animatible> {
         this.posY = posY;
         frontX = posX;
         frontY = posY;
+        counter = 0;
         this.direction = direction;
 
         if(direction.equals("movable")) movable = true;
@@ -75,7 +77,6 @@ public class VisualQueue<T extends GraphicalObject & VisualQueue.Animatible> {
         this.viewController = viewController;
         helpX = new List<>();
         helpY = new List<>();
-        allowed = true;
     }
 
     /**
@@ -94,7 +95,7 @@ public class VisualQueue<T extends GraphicalObject & VisualQueue.Animatible> {
      */
 
     public void enqueue(T content){
-        if(content != null & allowed) {
+        if(content != null) {
             queue.enqueue(content);
             if (!queue.isEmpty()) {
                 if(movable) {
@@ -142,10 +143,8 @@ public class VisualQueue<T extends GraphicalObject & VisualQueue.Animatible> {
                     }
                 }
             }
-
-            viewController.draw(content);
             content.fadeIn();
-            allowed = false;
+            counter++;
         }
     }
 
@@ -160,57 +159,54 @@ public class VisualQueue<T extends GraphicalObject & VisualQueue.Animatible> {
 
     public void dequeue(){
         if(!queue.isEmpty()){
-            if(queue.front().isArrived()){
-                viewController.removeDrawable(queue.front());
-                queue.front().fadeOut(true);
-                if(movable){
-                    queue.dequeue();
-                    helpY.toFirst(); helpY.remove();
-                    helpX.toFirst(); helpX.remove();
-                    moveQueue(0,0);
-                }else{
-                    double radius = queue.front().getRadius();
-                    double width = queue.front().getWidth();
-                    double height = queue.front().getHeight();
-                    queue.dequeue();
-                    //Rest bewegen
-                    Queue<T> newQueue = new Queue<>();
-                    //Verzweigung, jenachdem ob deine Queue nach oben hin oder nach rechts hin vergrößert werden soll
-                    if (direction.equals("right")) {
-                        while (!queue.isEmpty()) {
-                            newQueue.enqueue(queue.front());
-                            if (radius == 0) {
-                                queue.front().setTx(queue.front().getTx() - width);
-                            } else {
-                                queue.front().setTx(queue.front().getTx() - radius * 2);
-                            }
-                            queue.dequeue();
-                        }
+            viewController.removeDrawable(queue.front());
+            if(movable){
+                queue.dequeue();
+                helpY.toFirst(); helpY.remove();
+                helpX.toFirst(); helpX.remove();
+                moveQueue(0,0);
+            }else{
+                double radius = queue.front().getRadius();
+                double width = queue.front().getWidth();
+                double height = queue.front().getHeight();
+                queue.dequeue();
+                //Rest bewegen
+                Queue<T> newQueue = new Queue<>();
+                //Verzweigung, jenachdem ob deine Queue nach oben hin oder nach rechts hin vergrößert werden soll
+                if (direction.equals("right")) {
+                    while (!queue.isEmpty()) {
+                        newQueue.enqueue(queue.front());
                         if (radius == 0) {
-                            posX -= width;
+                            queue.front().setTx(queue.front().getTx() - width);
                         } else {
-                            posX -= radius * 2;
+                            queue.front().setTx(queue.front().getTx() - radius * 2);
                         }
-                    } else if (direction.equals("up")) {
-                        while (!queue.isEmpty()) {
-                            newQueue.enqueue(queue.front());
-                            if (radius == 0) {
-                                queue.front().setTy(queue.front().getTy() + height);
-                            } else {
-                                queue.front().setTy(queue.front().getTy() + radius * 2);
-                            }
-                            queue.dequeue();
-                        }
-                        if (radius == 0) {
-                            posY += height;
-                        } else {
-                            posY += radius * 2;
-                        }
+                        queue.dequeue();
                     }
-
-                    queue = newQueue;
+                    if (radius == 0) {
+                        posX -= width;
+                    } else {
+                        posX -= radius * 2;
+                    }
+                } else if (direction.equals("up")) {
+                    while (!queue.isEmpty()) {
+                        newQueue.enqueue(queue.front());
+                        if (radius == 0) {
+                            queue.front().setY(queue.front().getY() + height);
+                        } else {
+                            queue.front().setY(queue.front().getTy() + radius * 2);
+                        }
+                        queue.dequeue();
+                    }
+                    if (radius == 0) {
+                        posY += height;
+                    } else {
+                        posY += radius * 2;
+                    }
                 }
+                queue = newQueue;
             }
+            counter--;
         }
     }
 
@@ -257,12 +253,19 @@ public class VisualQueue<T extends GraphicalObject & VisualQueue.Animatible> {
             posX = helpX.getContent(); posY = helpY.getContent();
 
             queue = tmp;
-            allowed = true;
         }
+    }
 
+    public void rearrangeQueue(){
+        VisualQueue<T> newQueue = new VisualQueue<>(viewController, 10, 900, "up");
+        while(!queue.isEmpty()){
+            newQueue.enqueue(queue.front());
+            queue.dequeue();
+        }
+        viewController.removeDrawable(queue.front());
+    }
 
-
+    public int getCounter() {
+        return counter;
     }
 }
-
-

@@ -31,7 +31,9 @@ public class Shot extends Entity {
         String path = "src/main/resources/graphic/";
         images = new BufferedImage[]{
                 createImage(path + "laser_shot_player.png"),
-                createImage(path + "laser_shot_enemy.png")
+                createImage(path + "laser_shot_enemy.png"),
+                createImage(path + "buffs/rapid_shot.png"),
+                createImage(path + "buffs/pierce_shot.png")
         };
         viewController.draw(this, GraphicalWindow.GAME_INDEX);
     }
@@ -42,6 +44,12 @@ public class Shot extends Entity {
             drawTool.drawImage(images[0], x, y);
         }else{
             drawTool.drawImage(images[1], x, y);
+        }
+        if(programController.getPlayer().isRapidFire() && !this.enemyShot){
+            drawTool.drawImage(images[2], x, y);
+        }
+        if(programController.getPlayer().isPiercing() && !this.enemyShot){
+            drawTool.drawImage(images[3], x, y);
         }
     }
 
@@ -63,21 +71,28 @@ public class Shot extends Entity {
                         viewController.removeDrawable(array[x][y]);
                         array[x][y] = null;
                         SoundController.playSound("enemyDeath");
-                        if(true /* TODO @Alex !programController.getPlayer.isPiercing() */) {
+                        if(!programController.getPlayer().isPiercing()) {
                             viewController.removeDrawable(this);
                         }
                     }
                 }
             }
         }
-        if(enemyShot && this.y < Config.WINDOW_HEIGHT - 120 && this.collidesWith(programController.getPlayer()) && programController.getPlayer().getiCooldown() == 0){
-            programController.getPlayer().setiCooldown(2.0);
-            programController.getStack().popVisual();
-            SoundController.playSound("enemyDeath");
-            if(programController.getStack().top() == null){
-                programController.getWindow().switchScene(6);
-            }
+        if(enemyShot && this.y < Config.WINDOW_HEIGHT - 120 && this.collidesWith(programController.getPlayer())){
             viewController.removeDrawable(this);
+            if(programController.getPlayer().isExtraLife() && !programController.getPlayer().isShield()){
+                viewController.removeDrawable(programController.getExtraLife());
+                programController.getPlayer().setExtraLife(false);
+                programController.getPlayer().setiCooldown(2.0);
+                SoundController.playSound("enemyDeath");
+            }else if(!programController.getPlayer().isShield()){
+                programController.getPlayer().setiCooldown(2.0);
+                programController.getStack().popVisual();
+                SoundController.playSound("enemyDeath");
+                if (programController.getStack().top() == null) {
+                    programController.getWindow().switchScene(6);
+                }
+            }
         }
     }
 }

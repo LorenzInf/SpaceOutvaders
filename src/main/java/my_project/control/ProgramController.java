@@ -1,6 +1,7 @@
 package my_project.control;
 
 import KAGO_framework.control.SoundController;
+import my_project.Config;
 import my_project.model.*;
 import KAGO_framework.control.ViewController;
 import my_project.view.*;
@@ -22,6 +23,7 @@ public class ProgramController {
     private Enemy[][] array;
     private VisualStack<PlayerLife> playerLifesStack;
     private VisualList<PlayerName> nameList;
+    private VisualQueue<Buff> buffVisualQueue;
     private Player player;
     private PlayerLife playerLife;
     private PlayerLife emptyPlayerLife;
@@ -50,6 +52,7 @@ public class ProgramController {
     public void startProgram() {
         array = new Enemy[11][6];
         playerLifesStack = new VisualStack<>(viewController);
+        buffVisualQueue = new VisualQueue<>(viewController, 50, 950, "up");
         window = new GraphicalWindow(viewController, this);
         nameList = new VisualList<>(0,0,0,0);
 
@@ -60,17 +63,16 @@ public class ProgramController {
         new InputManagerLeaderboard(this,viewController,soundManager);
         new InputManagerGuide(this, viewController, soundManager);
 
-        player = new Player(6, viewController, getWindow().programController);
+        player = new Player(viewController, getWindow().programController);
 
-        emptyPlayerLife = new PlayerLife(30, 30, viewController, this, 1);
-        emptyPlayerLife = new PlayerLife(30, 100, viewController, this, 1);
-        emptyPlayerLife = new PlayerLife(30, 170, viewController, this, 1);
+        emptyPlayerLife = new PlayerLife(1810, 810, viewController, this, 1);
+        emptyPlayerLife = new PlayerLife(1810, 880, viewController, this, 1);
+        emptyPlayerLife = new PlayerLife(1810, 950, viewController, this, 1);
 
-        playerLife = new PlayerLife(30, 30, viewController, this, 0);
-        playerLife = new PlayerLife(30, 100, viewController, this, 0);
-        playerLife = new PlayerLife(30, 170, viewController, this, 0);
+        playerLife = new PlayerLife(1810, 810, viewController, this, 0);
+        playerLife = new PlayerLife(1810, 880, viewController, this, 0);
+        playerLife = new PlayerLife(1810, 950, viewController, this, 0);
 
-        buff = new Buff(915, 0, viewController, this);
         enemyWave = new EnemyWave(viewController,this, window.getGame());
 
         SoundController.playSound("mainMenuTheme");
@@ -84,14 +86,17 @@ public class ProgramController {
 
     }
 
+    public void createBuff(){
+        buff = new Buff(935, 0, viewController, this);
+    }
+
     public void createExtraLife(){
-        extraLife = new PlayerLife(30, 240, viewController, this, 2);
+        extraLife = new PlayerLife(1810, 740, viewController, this, 2);
     }
 
     public PlayerLife getExtraLife() {
         return extraLife;
     }
-
 
     public GraphicalWindow getWindow(){
         return window;
@@ -109,11 +114,19 @@ public class ProgramController {
         return enemyWave;
     }
 
+    public Buff getBuff() {
+        return buff;
+    }
+
     public VisualStack<PlayerLife> getStack(){
         return playerLifesStack;
     }
 
     public void setMoveTimerActive(boolean moveTimerActive) {
         this.moveTimerActive = moveTimerActive;
+    }
+
+    public VisualQueue<Buff> getBuffVisualQueue() {
+        return buffVisualQueue;
     }
 }

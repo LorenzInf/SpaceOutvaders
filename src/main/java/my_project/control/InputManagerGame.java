@@ -3,6 +3,7 @@ package my_project.control;
 import KAGO_framework.control.SoundController;
 import KAGO_framework.control.ViewController;
 import my_project.model.Buff;
+import my_project.model.PlayerLife;
 import my_project.model.Shot;
 
 import java.awt.event.KeyEvent;
@@ -24,16 +25,17 @@ public class InputManagerGame extends InputManager {
     }
 
     @Override
+
     public void keyPressed(int key){
         if(key == KeyEvent.VK_SPACE){
             if(programController.getPlayer().getShootCooldown() == 0){
                 SoundController.playSound("shootPlayer");
-                new Shot(viewController, programController, programController.getPlayer().getX() - 28, programController.getPlayer().getY() - 120,1300,false);
+                new Shot(viewController, programController, programController.getPlayer().getX()-28, programController.getPlayer().getY() - 120,1300,false);
                 programController.getPlayer().setShootCooldown(programController.getPlayer().isRapidFire() ? 0.1 : 0.5);
             }
         }
 
-        if(key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) {
+        if (key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) {
             /*if (programController.getPlayer().getArrayX() != 1 && programController.getPlayer().getMoveCooldown() == 0){
                 programController.getArray().set(null, programController.getPlayer().getArrayX(), 7);
                 programController.getArray().set(programController.getPlayer(), programController.getPlayer().getArrayX() - 1, 7);
@@ -43,7 +45,7 @@ public class InputManagerGame extends InputManager {
             programController.getPlayer().setMove(0);
         }
 
-        if(key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT){
+        if (key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) {
             /*if (programController.getPlayer().getArrayX() != 11 && programController.getPlayer().getMoveCooldown() == 0) {
                 programController.getArray().set(null, programController.getPlayer().getArrayX(), 7);
                 programController.getArray().set(programController.getPlayer(), programController.getPlayer().getArrayX() + 1, 7);
@@ -61,8 +63,24 @@ public class InputManagerGame extends InputManager {
             programController.getEnemyWave().summon();
         }
 
-        if(key == KeyEvent.VK_B){ // Für Test-Zwecke
-            new Buff(915, 0, viewController, programController);
+        if (key == KeyEvent.VK_B) { // Für Test-Zwecke
+            programController.createBuff();
+        }
+
+        if (key == KeyEvent.VK_H) { // Verwenden der Buffs, Taste kann noch geändert werden
+            if (programController.getBuffVisualQueue().getFront() != null) {
+                switch (programController.getBuffVisualQueue().getFront().getRandomNumber()) {
+                    case 0 -> {
+                        programController.createExtraLife();
+                        programController.getPlayer().setExtraLife(true);
+                    }
+                    case 1 -> programController.getPlayer().setRapidFire(true);
+                    case 2 -> programController.getPlayer().setSpeedBoost(true);
+                    case 3 -> programController.getPlayer().setPiercing(true);
+                    case 4 -> programController.getPlayer().setShield(true);
+                }
+                programController.getBuffVisualQueue().dequeue();
+            }
         }
 
         setVolume(key);
