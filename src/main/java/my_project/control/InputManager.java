@@ -3,6 +3,7 @@ package my_project.control;
 import KAGO_framework.control.SoundController;
 import KAGO_framework.control.ViewController;
 import KAGO_framework.model.InteractiveGraphicalObject;
+import KAGO_framework.model.Sound;
 
 import java.awt.event.KeyEvent;
 

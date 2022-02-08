@@ -31,6 +31,8 @@ public class ProgramController {
     private EnemyWave enemyWave;
     private Buff buff;
     private boolean moveTimerActive;
+    private boolean gameOver;
+    private boolean inGame;
 
 
     /**
@@ -83,11 +85,43 @@ public class ProgramController {
      * @param dt Zeit seit letzter Frame
      */
     public void updateProgram(double dt){
-
+        if(viewController.getCurrentSceneIndex() == GraphicalWindow.GAME_INDEX) inGame = true;
+        if(viewController.getCurrentSceneIndex() != GraphicalWindow.GAME_INDEX && inGame){
+            clearGame();
+            gameOver = false;
+        }
     }
 
     public void createBuff(){
         buff = new Buff(935, 0, viewController, this);
+    }
+
+    public void clearGame(){
+        gameOver = true;
+        player.setX(865 + 28);
+        player.setY(875 + 12);
+        while(getBuffVisualQueue().getCounter() != 0){
+            getBuffVisualQueue().dequeue();
+        }
+        switch(getStack().getCounter()){
+            case 0 -> {
+                for(int i = 0; i < 3; i ++) new PlayerLife(1810, 950-i*70, viewController, this, 0);
+            }
+            case 1 -> {
+                for(int i = 0; i < 2; i ++) new PlayerLife(1810, 950-i*70, viewController, this, 0);
+            }
+            case 2 -> {
+                for(int i = 0; i < 1; i ++) new PlayerLife(1810, 950-i*70, viewController, this, 0);
+            }
+        }
+        for (int i = 0; i < 11; i++) {
+            for (int j = 0; j < 6; j++) {
+                if(array[i][j] != null){
+                    viewController.removeDrawable(array[i][j]);
+                    array[i][j] = null;
+                }
+            }
+        }
     }
 
     public void createExtraLife(){
@@ -116,6 +150,10 @@ public class ProgramController {
 
     public Buff getBuff() {
         return buff;
+    }
+
+    public boolean isGameOver() {
+        return gameOver;
     }
 
     public VisualStack<PlayerLife> getStack(){

@@ -36,22 +36,10 @@ public class InputManagerGame extends InputManager {
         }
 
         if (key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) {
-            /*if (programController.getPlayer().getArrayX() != 1 && programController.getPlayer().getMoveCooldown() == 0){
-                programController.getArray().set(null, programController.getPlayer().getArrayX(), 7);
-                programController.getArray().set(programController.getPlayer(), programController.getPlayer().getArrayX() - 1, 7);
-                programController.getPlayer().setArrayX(programController.getPlayer().getArrayX() - 1);
-                programController.getPlayer().setMoveCooldown(0.33);
-            }*/
             programController.getPlayer().setMove(0);
         }
 
         if (key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) {
-            /*if (programController.getPlayer().getArrayX() != 11 && programController.getPlayer().getMoveCooldown() == 0) {
-                programController.getArray().set(null, programController.getPlayer().getArrayX(), 7);
-                programController.getArray().set(programController.getPlayer(), programController.getPlayer().getArrayX() + 1, 7);
-                programController.getPlayer().setArrayX(programController.getPlayer().getArrayX() + 1);
-                programController.getPlayer().setMoveCooldown(0.33);
-            }*/
             programController.getPlayer().setMove(2);
         }
 
@@ -85,6 +73,10 @@ public class InputManagerGame extends InputManager {
 
         setVolume(key);
         forceMainMenu(key);
+
+        if (key == KeyEvent.VK_J) {
+            programController.clearGame();
+        }
     }
 
     @Override

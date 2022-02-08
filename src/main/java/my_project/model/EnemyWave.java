@@ -27,7 +27,19 @@ public class EnemyWave {
     }
 
     public void summonAWave() {
-        double random = new Random().nextDouble() * difficultyCurrent;
+        for(int i = 0; i < 11; i++) {
+            array[i][0] = new EnemyInstant(viewController, programController,false,i,-1);
+        }
+        for(int i = 0; i < 11; i++) {
+            array[i][1] = new EnemyShield(viewController, programController,true,i,0);
+        }
+        for (int i = 0; i < 11; i ++) {
+            for (int j = 0; j < 6; j++) {
+                if (array[i][j] != null) {
+                    array[i][j].setMoving(true);
+                }
+            }
+        }
     }
 
     /*private void summonNormal11() {

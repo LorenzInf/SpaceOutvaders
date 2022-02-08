@@ -78,25 +78,27 @@ public class Shot extends Entity {
         if(y < -120 || y > Config.WINDOW_HEIGHT){
             viewController.removeDrawable(this);
         }
-        for(int x = 0; x < 11; x++){
-            for(int y = 0; y < 6; y++){
-                if(array[x][y] != null && !enemyShot && this.y > 1 && this.collidesWith(array[x][y])) {
-                    if(array[x][y].getHp() > 1) {
-                        array[x][y].setHp(array[x][y].getHp() - 1);
-                        if(array[x][y] instanceof EnemyShield) SoundController.playSound("shieldHit");
-                        else SoundController.playSound("enemyDeath");
-                        viewController.removeDrawable(this);
-                    } else {
-                        viewController.removeDrawable(array[x][y]);
-                        array[x][y] = null;
-                        SoundController.playSound("enemyDeath");
-                        if(!programController.getPlayer().isPiercing()) {
+        if(!programController.isGameOver()){
+            for(int x = 0; x < 11; x++){
+                for(int y = 0; y < 6; y++){
+                    if(array[x][y] != null && !enemyShot && this.y > 1 && this.collidesWith(array[x][y])) {
+                        if(array[x][y].getHp() > 1) {
+                            array[x][y].setHp(array[x][y].getHp() - 1);
+                            if(array[x][y] instanceof EnemyShield) SoundController.playSound("shieldHit");
+                            else SoundController.playSound("enemyDeath");
                             viewController.removeDrawable(this);
+                        } else {
+                            viewController.removeDrawable(array[x][y]);
+                            array[x][y] = null;
+                            SoundController.playSound("enemyDeath");
+                            if(!programController.getPlayer().isPiercing()) {
+                                viewController.removeDrawable(this);
+                            }
                         }
                     }
                 }
             }
+            checkPlayerCollision();
         }
-        checkPlayerCollision();
     }
 }
