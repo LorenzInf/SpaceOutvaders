@@ -13,8 +13,8 @@ public class SoundManager {
         String path = "src/main/resources/sound/";
         mySoundController.loadSound(path + "select.mp3","select",false);
         mySoundController.loadSound(path + "exit.mp3","exit",false);
-     //   mySoundController.loadSound(path + "Joshua McLean - Mountain Trials.mp3","mainMenuTheme",true);
-    //    mySoundController.loadSound(path + "AdhesiveWombat - Night Shade.mp3","gameTheme1",true);
+        mySoundController.loadSound(path + "Joshua McLean - Mountain Trials.mp3","mainMenuTheme",true);
+        mySoundController.loadSound(path + "AdhesiveWombat - Night Shade.mp3","gameTheme1",true);
         mySoundController.loadSound(path + "shoot.mp3","shootPlayer",false);
         mySoundController.loadSound(path + "enemy_death.mp3","enemyDeath",false);
         mySoundController.loadSound(path + "Undertale Game Over.mp3", "gameover", true);
