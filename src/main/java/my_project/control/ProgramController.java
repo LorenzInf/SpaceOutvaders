@@ -33,6 +33,8 @@ public class ProgramController {
     private boolean moveTimerActive;
     private boolean gameOver;
     private boolean inGame;
+    private PlayerName playerName;
+    private int score;
 
 
     /**
@@ -56,7 +58,8 @@ public class ProgramController {
         playerLifesStack = new VisualStack<>(viewController);
         buffVisualQueue = new VisualQueue<>(viewController, 50, 950, "up");
         window = new GraphicalWindow(viewController, this);
-        nameList = new VisualList<>(0,0,0,0);
+        playerName = new PlayerName(viewController,this);
+
 
         new InputManagerMainMenu(this, viewController, soundManager);
         new InputManagerOptions(this, viewController, window.getOptions(), soundManager);
@@ -75,7 +78,6 @@ public class ProgramController {
         playerLife = new PlayerLife(1810, 880, viewController, this, 0);
         playerLife = new PlayerLife(1810, 950, viewController, this, 0);
 
-        enemyWave = new EnemyWave(viewController,this, window.getGame());
 
         SoundController.playSound("mainMenuTheme");
     }
@@ -166,5 +168,16 @@ public class ProgramController {
 
     public VisualQueue<Buff> getBuffVisualQueue() {
         return buffVisualQueue;
+    }
+    public VisualList<PlayerName> getNameList() {
+        return nameList;
+    }
+
+    public void setNameList(VisualList<PlayerName> nameList) {
+        this.nameList = nameList;
+    }
+
+    public PlayerName getPlayerName() {
+        return playerName;
     }
 }

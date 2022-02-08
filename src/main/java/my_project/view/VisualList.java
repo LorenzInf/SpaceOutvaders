@@ -1,5 +1,6 @@
 package my_project.view;
 
+import KAGO_framework.control.ViewController;
 import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.model.abitur.datenstrukturen.List;
 
@@ -18,6 +19,7 @@ public class VisualList<T extends GraphicalObject & VisualList.AnimableList> {
     private final double x;
     private final double y;
     private T current;
+    private ViewController viewController;
 
     /**
      * @param xAbstand abstand zwischen den Objekten in der List, positiv = rechts negativ = links vom vorherigen Objekt
@@ -26,12 +28,13 @@ public class VisualList<T extends GraphicalObject & VisualList.AnimableList> {
      * @param y koordinate der ersten Objektes
      */
 
-    public VisualList(double xAbstand, double yAbstand, double x, double y){
+    public VisualList(double xAbstand, double yAbstand, double x, double y, ViewController viewController){
         this.xAbstand=xAbstand;
         this.yAbstand=yAbstand;
         this.x=x;
         this.y=y;
         list.toFirst();
+        this.viewController = viewController;
     }
 
     /**
@@ -55,7 +58,7 @@ public class VisualList<T extends GraphicalObject & VisualList.AnimableList> {
      * @param t ist das neue Objekt das angehängt wird
      */
 
-    public void insert(T t){
+    public void insert(T t, int sceneIndex){
         if(!list.isEmpty()) {
             toCurrent();
             list.insert(t);
@@ -71,6 +74,7 @@ public class VisualList<T extends GraphicalObject & VisualList.AnimableList> {
             t.setX(x);
             t.setY(y);
         }
+        viewController.draw(t, sceneIndex);
     }
 
     /**

@@ -1,10 +1,18 @@
 package my_project.control;
 
 import KAGO_framework.control.ViewController;
+import my_project.model.ArrayKeyboard;
+import my_project.model.Player;
+import my_project.view.Visual2DArray;
 
+import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class InputManagerLeaderboard extends InputManager{
+
 
     public InputManagerLeaderboard(ProgramController programController,ViewController viewController, SoundManager soundManager) {
         super(viewController, programController, soundManager);
@@ -14,13 +22,10 @@ public class InputManagerLeaderboard extends InputManager{
 
     @Override
     public void keyPressed(int key){
-        if(key == KeyEvent.VK_UP){
 
-        }
-        if(key == KeyEvent.VK_DOWN){
-
-        }
         forceMainMenu(key);
 
     }
+
+
 }
