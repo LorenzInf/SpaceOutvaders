@@ -1,5 +1,6 @@
 package my_project.model;
 
+import KAGO_framework.control.SoundController;
 import KAGO_framework.control.ViewController;
 import KAGO_framework.view.DrawTool;
 import my_project.control.ProgramController;
@@ -58,6 +59,7 @@ public class Buff extends Entity implements VisualQueue.Animatible {
             y += 250*dt;
         }
         if(this.collidesWith(programController.getPlayer())){
+            SoundController.playSound("pickup");
             if(randomNumber == 5 && programController.getStack().getCounter() != 3){
                 viewController.removeDrawable(this);
                 programController.getPlayer().setHealBoost(true);
