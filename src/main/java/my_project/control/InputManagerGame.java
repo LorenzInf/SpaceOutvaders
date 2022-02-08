@@ -60,7 +60,7 @@ public class InputManagerGame extends InputManager {
         }
 
         if(key == KeyEvent.VK_F){
-            programController.getEnemyWave().summon();
+            programController.getEnemyWave().summonAWave();
         }
 
         if (key == KeyEvent.VK_B) { // Für Test-Zwecke
