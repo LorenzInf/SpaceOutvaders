@@ -56,7 +56,8 @@ public class Shot extends Entity {
                 if(array[x][y] != null && !enemyShot && this.y > 1 && this.collidesWith(array[x][y])) {
                     if(array[x][y].getHp() > 1) {
                         array[x][y].setHp(array[x][y].getHp() - 1);
-                        SoundController.playSound("enemyDeath");
+                        if(array[x][y] instanceof EnemyShield) SoundController.playSound("shieldHit");
+                        else SoundController.playSound("enemyDeath");
                         viewController.removeDrawable(this);
                     } else {
                         viewController.removeDrawable(array[x][y]);
