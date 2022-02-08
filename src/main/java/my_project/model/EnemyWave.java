@@ -31,10 +31,10 @@ public class EnemyWave {
     }
 
     public void summon() {
-        for (int i = 0; i < 11; i++) {
-            array[i][0] = new EnemyShield(viewController, programController, true, i, 0);
+        for (int i = 0; i < 11; i += 3) {
+            array[i][0] = new EnemyInstant(viewController, programController, true, i, 0);
         }
-        for (int i = 0; i < 11; i++) {
+        for (int i = 0; i < 11; i += 3) {
             array[i][0].setMoving(true);
         }
     }

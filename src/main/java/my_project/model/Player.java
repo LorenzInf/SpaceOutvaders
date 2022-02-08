@@ -9,10 +9,8 @@ import java.awt.image.BufferedImage;
 
 public class Player extends Entity {
 
-    private int arrayX;
     private int speed;
     private boolean shield;
-    private int buff;
     private final BufferedImage[] images;
 
     private boolean extraLife;
@@ -30,7 +28,6 @@ public class Player extends Entity {
 
     public Player(int arrayX, ViewController viewController, ProgramController programController){
         super(viewController, programController);
-        this.arrayX = arrayX;
         extraLife = false;
         piercing = false;
         shield = false;
@@ -84,10 +81,6 @@ public class Player extends Entity {
                 setSpeed(300);
             }
         }
-    }
-
-    public int getArrayX() {
-        return arrayX;
     }
 
     public void setMove(int move){

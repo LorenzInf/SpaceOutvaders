@@ -45,6 +45,18 @@ public class Shot extends Entity {
         }
     }
 
+    protected void checkPlayerCollision() {
+        if(enemyShot && this.collidesWith(programController.getPlayer()) && programController.getPlayer().getiCooldown() == 0){
+            programController.getPlayer().setiCooldown(2.0);
+            programController.getStack().popVisual();
+            SoundController.playSound("enemyDeath");
+            if(programController.getStack().top() == null){
+                programController.getWindow().switchScene(6);
+            }
+            viewController.removeDrawable(this);
+        }
+    }
+
     @Override
     public void update(double dt){
         y += (enemyShot ? 1 : -1) * speed*dt;
@@ -70,14 +82,6 @@ public class Shot extends Entity {
                 }
             }
         }
-        if(enemyShot && this.y < Config.WINDOW_HEIGHT - 120 && this.collidesWith(programController.getPlayer()) && programController.getPlayer().getiCooldown() == 0){
-            programController.getPlayer().setiCooldown(2.0);
-            programController.getStack().popVisual();
-            SoundController.playSound("enemyDeath");
-            if(programController.getStack().top() == null){
-                programController.getWindow().switchScene(6);
-            }
-            viewController.removeDrawable(this);
-        }
+        checkPlayerCollision();
     }
 }
