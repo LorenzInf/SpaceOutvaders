@@ -9,10 +9,9 @@ import java.awt.image.BufferedImage;
 
 public class Player extends Entity {
 
-    private final BufferedImage[] images;
-
     private int speed;
     private boolean shield;
+    private final BufferedImage[] images;
 
     private boolean healBoost;
     private boolean extraLife;

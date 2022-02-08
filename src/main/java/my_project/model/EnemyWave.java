@@ -30,15 +30,6 @@ public class EnemyWave {
         double random = new Random().nextDouble() * difficultyCurrent;
     }
 
-    public void summon() {
-        for (int i = 0; i < 11; i++) {
-            array[i][0] = new EnemyBurst(viewController, programController, true, i, 0);
-        }
-        for (int i = 0; i < 11; i++) {
-            array[i][0].setMoving(true);
-        }
-    }
-
     /*private void summonNormal11() {
         for(int i = 1; i <= 11; i++) {
             array.set(new EnemyNormal(viewController, programController,true), i, 2);

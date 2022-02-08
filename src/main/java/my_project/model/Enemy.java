@@ -55,14 +55,13 @@ public abstract class Enemy extends Entity {
         viewController.draw(this);
     }
 
-    //TODO Make tryToShoot a working thing
     /**
      * When called there is a chance of {@code shootChance}% for the Enemy to shoot
      */
     public boolean tryToShoot(double chance){
         if(timer <= 0) {
             int help = new Random().nextInt(100 + 1);
-            if (chance >= help && y > -50) {
+            if (chance >= help && y > 0) {
                 new Shot(viewController, programController, enemyX , enemyY + 60, 500, true);
                 SoundController.playSound("shootPlayer");
                 return true;

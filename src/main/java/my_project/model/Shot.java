@@ -53,6 +53,25 @@ public class Shot extends Entity {
         }
     }
 
+    protected void checkPlayerCollision() {
+        if(enemyShot && this.y < Config.WINDOW_HEIGHT - 120 && this.collidesWith(programController.getPlayer())){
+            viewController.removeDrawable(this);
+            if(programController.getPlayer().isExtraLife() && !programController.getPlayer().isShield()){
+                viewController.removeDrawable(programController.getExtraLife());
+                programController.getPlayer().setExtraLife(false);
+                programController.getPlayer().setiCooldown(2.0);
+                SoundController.playSound("enemyDeath");
+            }else if(!programController.getPlayer().isShield()){
+                programController.getPlayer().setiCooldown(2.0);
+                programController.getStack().popVisual();
+                SoundController.playSound("enemyDeath");
+                if (programController.getStack().top() == null) {
+                    programController.getWindow().switchScene(6);
+                }
+            }
+        }
+    }
+
     @Override
     public void update(double dt){
         y += (enemyShot ? 1 : -1) * speed*dt;
@@ -78,21 +97,6 @@ public class Shot extends Entity {
                 }
             }
         }
-        if(enemyShot && this.y < Config.WINDOW_HEIGHT - 120 && this.collidesWith(programController.getPlayer())){
-            viewController.removeDrawable(this);
-            if(programController.getPlayer().isExtraLife() && !programController.getPlayer().isShield()){
-                viewController.removeDrawable(programController.getExtraLife());
-                programController.getPlayer().setExtraLife(false);
-                programController.getPlayer().setiCooldown(2.0);
-                SoundController.playSound("enemyDeath");
-            }else if(!programController.getPlayer().isShield()){
-                programController.getPlayer().setiCooldown(2.0);
-                programController.getStack().popVisual();
-                SoundController.playSound("enemyDeath");
-                if (programController.getStack().top() == null) {
-                    programController.getWindow().switchScene(6);
-                }
-            }
-        }
+        checkPlayerCollision();
     }
 }
