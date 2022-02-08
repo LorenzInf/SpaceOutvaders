@@ -55,7 +55,7 @@ public class InputManagerGame extends InputManager {
             programController.createBuff();
         }
 
-        if (key == KeyEvent.VK_H) { // Verwenden der Buffs, Taste kann noch geändert werden
+        if (key == KeyEvent.VK_SHIFT) { // Verwenden der Buffs, Taste kann noch geändert werden
             if (programController.getBuffVisualQueue().getFront() != null) {
                 switch (programController.getBuffVisualQueue().getFront().getRandomNumber()) {
                     case 0 -> {
@@ -67,6 +67,7 @@ public class InputManagerGame extends InputManager {
                     case 3 -> programController.getPlayer().setPiercing(true);
                     case 4 -> programController.getPlayer().setShield(true);
                 }
+                SoundController.playSound("powerup");
                 programController.getBuffVisualQueue().dequeue();
             }
         }

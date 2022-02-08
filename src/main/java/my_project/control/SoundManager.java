@@ -22,6 +22,7 @@ public class SoundManager {
         mySoundController.loadSound(path + "pickup.mp3","pickup",false);
         mySoundController.loadSound(path + "shield_hit.mp3","shieldHit",false);
         mySoundController.loadSound(path + "shot_charge.mp3","shotCharge",false);
+        mySoundController.loadSound(path + "powerup.mp3", "powerup", false);
         soundOff = false;
         soundOn = false;
         vol = 1;
