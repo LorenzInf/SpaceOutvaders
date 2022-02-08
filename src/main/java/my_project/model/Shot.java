@@ -68,6 +68,8 @@ public class Shot extends Entity {
                 if (programController.getStack().top() == null) {
                     programController.getWindow().switchScene(6);
                 }
+            }else{
+                SoundController.playSound("shieldHit");
             }
         }
     }

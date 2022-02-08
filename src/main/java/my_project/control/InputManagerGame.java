@@ -56,6 +56,7 @@ public class InputManagerGame extends InputManager {
 
         if (key == KeyEvent.VK_H) { // Verwenden der Buffs, Taste kann noch geändert werden
             if (programController.getBuffVisualQueue().getFront() != null) {
+                SoundController.playSound("powerup");
                 switch (programController.getBuffVisualQueue().getFront().getRandomNumber()) {
                     case 0 -> {
                         programController.createExtraLife();
