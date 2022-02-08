@@ -73,10 +73,6 @@ public class InputManagerGame extends InputManager {
 
         setVolume(key);
         forceMainMenu(key);
-
-        if (key == KeyEvent.VK_J) {
-            programController.clearGame();
-        }
     }
 
     @Override
