@@ -1,8 +1,8 @@
 package my_project.model;
 import KAGO_framework.control.SoundController;
 import KAGO_framework.control.ViewController;
-import KAGO_framework.model.GraphicalObject;
 import my_project.control.ProgramController;
+
 
 import javax.swing.text.View;
 import java.awt.image.BufferedImage;
