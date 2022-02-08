@@ -24,6 +24,7 @@ public class Player extends Entity {
     private double shieldTimer;
     private double speedTimer;
     private double shootCooldown;
+    private double iCooldown;
 
     private int move;
 
@@ -47,17 +48,20 @@ public class Player extends Entity {
         move = 1;
         viewController.draw(this, GraphicalWindow.GAME_INDEX);
         images = new BufferedImage[]{
-                createImage("src/main/resources/graphic/Spaceship.png")
+                createImage("src/main/resources/graphic/Spaceship.png"),
+                createImage("src/main/resources/graphic/Spaceship_hurt.png")
         };
     }
 
     @Override
     public void draw(DrawTool drawTool){
-        drawTool.drawImage(images[0], x, y);
+        if(iCooldown == 0) drawTool.drawImage(images[0], x, y);
+        else drawTool.drawImage(images[1], x, y);
     }
 
     @Override
     public void update(double dt){
+        iCooldown = Math.max(iCooldown - dt, 0);
         shootCooldown = Math.max(0, shootCooldown -dt);
         if(move == 0) x -= dt*speed;
         if(move == 2) x += dt*speed;
@@ -136,6 +140,14 @@ public class Player extends Entity {
 
     public void setSpeed(int speed) {
         this.speed = speed;
+    }
+
+    public double getiCooldown() {
+        return iCooldown;
+    }
+
+    public void setiCooldown(double iCooldown) {
+        this.iCooldown = iCooldown;
     }
 }
 

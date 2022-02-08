@@ -69,8 +69,9 @@ public class Shot extends Entity {
                 }
             }
         }
-        if(enemyShot && this.y < Config.WINDOW_HEIGHT - 120 && this.collidesWith(programController.getPlayer())){
+        if(enemyShot && this.y < Config.WINDOW_HEIGHT - 120 && this.collidesWith(programController.getPlayer()) && programController.getPlayer().getiCooldown() == 0){
             if(!hasHit){
+                programController.getPlayer().setiCooldown(2.0);
                 programController.getStack().popVisual();
                 setHasHit(true);
                 SoundController.playSound("enemyDeath");
