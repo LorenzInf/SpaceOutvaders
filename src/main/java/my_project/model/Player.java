@@ -1,6 +1,7 @@
 package my_project.model;
 import KAGO_framework.control.ViewController;
 import KAGO_framework.view.DrawTool;
+import my_project.Config;
 import my_project.control.GraphicalWindow;
 import my_project.control.ProgramController;
 
@@ -79,6 +80,8 @@ public class Player extends Entity {
 
     @Override
     public void update(double dt){
+        if(x < 0) x = 0;
+        if(x > Config.WINDOW_WIDTH - width) x = Config.WINDOW_WIDTH - width;
         iCooldown = Math.max(iCooldown - dt, 0);
         shootCooldown = Math.max(0, shootCooldown -dt);
         if(move == 0) x -= dt*speed;

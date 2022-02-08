@@ -1,8 +1,9 @@
 package my_project.model;
 import KAGO_framework.control.SoundController;
 import KAGO_framework.control.ViewController;
+import KAGO_framework.model.GraphicalObject;
+import my_project.control.GraphicalWindow;
 import my_project.control.ProgramController;
-
 
 import javax.swing.text.View;
 import java.awt.image.BufferedImage;
@@ -27,7 +28,6 @@ public abstract class Enemy extends Entity {
     protected int hp;
     protected int speed;
     protected double shootChance;
-    protected boolean instantShot;
     protected double shootTimer;
     protected double shootDelay;
     protected boolean movingRight;
@@ -45,7 +45,6 @@ public abstract class Enemy extends Entity {
         hp = 1;
         speed = 150;
         shootChance = 2.5;
-        instantShot = false;
         shootTimer = 0;
         shootDelay = 0.25;
         movingDown = false;
@@ -122,6 +121,10 @@ public abstract class Enemy extends Entity {
                     movingRight = !movingRight;
                 }
             }
+        }
+
+        if(this.collidesWith(programController.getPlayer())) {
+            programController.getWindow().switchScene(GraphicalWindow.ENTER_NAME_INDEX);
         }
     }
 

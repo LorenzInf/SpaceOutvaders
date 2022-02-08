@@ -15,7 +15,7 @@ public class EnemyWave {
     private double difficultyCurrent;
     private final Enemy[][] array;
 
-    public EnemyWave(ViewController viewController, ProgramController programController, Game game) {
+    public EnemyWave(ViewController viewController, ProgramController programController) {
         this.viewController = viewController;
         this.programController = programController;
         array = programController.getArray();
@@ -27,12 +27,8 @@ public class EnemyWave {
     }
 
     public void summonAWave() {
-        for(int i = 0; i < 11; i++) {
-            array[i][0] = new EnemyInstant(viewController, programController,false,i,-1);
-        }
-        for(int i = 0; i < 11; i++) {
-            array[i][1] = new EnemyShield(viewController, programController,true,i,0);
-        }
+        double random = new Random().nextDouble() * difficultyCurrent;
+        summonBurst11Fast11();
         for (int i = 0; i < 11; i ++) {
             for (int j = 0; j < 6; j++) {
                 if (array[i][j] != null) {
@@ -42,56 +38,96 @@ public class EnemyWave {
         }
     }
 
-    /*private void summonNormal11() {
-        for(int i = 1; i <= 11; i++) {
-            array.set(new EnemyNormal(viewController, programController,true), i, 2);
+    private void summonNormal11() {
+        for(int i = 0; i < 11; i++) {
+            array[i][0] = new EnemyNormal(viewController, programController,true,i,0);
         }
     }
 
     private void summonFast11() {
-        for(int i = 1; i <= 11; i ++) {
-            array.set(new EnemyFast(viewController, programController,true), i, 2);
+        for(int i = 0; i < 11; i ++) {
+            array[i][0] = new EnemyFast(viewController, programController,true,i,0);
         }
     }
 
     private void summonShield11() {
-        for(int i = 1; i <= 11; i++) {
-            array.set(new EnemyShield(viewController, programController,true), i, 2);
+        for(int i = 0; i < 11; i++) {
+            array[i][0] = new EnemyShield(viewController, programController,true,i,0);
         }
     }
 
-    private void summonNormal6Burst6() {
-        for(int i = 1; i <= 11; i += 2) {
-            array.set(new EnemyNormal(viewController, programController,true), i, 2);
+    private void summonNormal6Burst5() {
+        for(int i = 0; i < 11; i += 2) {
+            array[i][0] = new EnemyNormal(viewController, programController,true,i,0);
         }
-        for(int i = 2; i <= 11; i += 2) {
-            array.set(new EnemyBurst(viewController, programController,true), i, 2);
+        for(int i = 1; i < 11; i += 2) {
+            array[i][0] = new EnemyBurst(viewController, programController,true,i,0);
         }
     }
 
     private void summonNormal22() {
-        for (int i = 1; i <= 11; i++) {
-            array.set(new EnemyNormal(viewController, programController), i, 1);
+        for (int i = 0; i < 11; i++) {
+            array[i][1] = new EnemyNormal(viewController, programController,false,i,-1);
         }
         summonNormal11();
     }
 
-    private void summonNormal11Burst11() {
-        summonNormal6Burst6();
-        for(int i = 2; i <= 11; i += 2) {
-            array.set(new EnemyNormal(viewController, programController), i, 1);
+    private void summonNormal6Instant5(){
+        for(int i = 1; i < 11; i += 2) {
+            array[i][0] = new EnemyInstant(viewController, programController,true,i,0);
         }
-        for(int i = 1; i <= 11; i += 2) {
-            array.set(new EnemyBurst(viewController, programController), i, 1);
+        for(int i = 0; i < 11; i += 2) {
+            array[i][0] = new EnemyNormal(viewController, programController,true,i,0);
+        }
+    }
+
+    private void summonNormal11Burst11() {
+        summonNormal6Burst5();
+        for(int i = 1; i < 11; i += 2) {
+            array[i][1] = new EnemyNormal(viewController, programController,false,i,-1);
+        }
+        for(int i = 0; i < 11; i += 2) {
+            array[i][1] = new EnemyBurst(viewController, programController,false,i,-1);
         }
     }
 
     private void summonShield11Normal11(){
-        for(int i = 1; i < 11; i++) {
-            array.set(new EnemyNormal(viewController, programController), i, 0);
+        for(int i = 0; i < 11; i++) {
+            array[i][0] = new EnemyNormal(viewController, programController,false,i,-1);
         }
-        for(int i = 1; i < 11; i++) {
-            array.set(new EnemyShield(viewController, programController), i, 1);
+        for(int i = 0; i < 11; i++) {
+            array[i][1] = new EnemyShield(viewController, programController,true,i,0);
         }
-    }*/
+    }
+
+    private void summonInstant11() {
+        for(int i = 0; i < 11; i++) {
+            array[i][0] = new EnemyInstant(viewController, programController,true,i,0);
+        }
+    }
+
+    private void summonShield11Instant11(){
+        for(int i = 0; i < 11; i++) {
+            array[i][0] = new EnemyInstant(viewController, programController,false,i,-1);
+        }
+        for(int i = 0; i < 11; i++) {
+            array[i][1] = new EnemyShield(viewController, programController,true,i,0);
+        }
+    }
+
+    private void summonBurst11Fast11(){
+        for(int i = 0; i < 11; i++) {
+            array[i][0] = new EnemyBurst(viewController, programController,false,i,-1);
+        }
+        for(int i = 0; i < 11; i++) {
+            array[i][1] = new EnemyFast(viewController, programController,true,i,0);
+        }
+    }
+
+    public void summonShield11Normal22(){
+        summonShield11Normal11();
+        for(int i = 0; i < 11; i++) {
+            array[i][3] = new EnemyNormal(viewController, programController,false,i,-2);
+        }
+    }
 }

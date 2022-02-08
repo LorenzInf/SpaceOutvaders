@@ -60,7 +60,6 @@ public class ProgramController {
         window = new GraphicalWindow(viewController, this);
         playerName = new PlayerName(viewController,this);
 
-
         new InputManagerMainMenu(this, viewController, soundManager);
         new InputManagerOptions(this, viewController, window.getOptions(), soundManager);
         new InputManagerGame(this, viewController, soundManager);
@@ -78,6 +77,7 @@ public class ProgramController {
         playerLife = new PlayerLife(1810, 880, viewController, this, 0);
         playerLife = new PlayerLife(1810, 950, viewController, this, 0);
 
+        enemyWave = new EnemyWave(viewController,this);
 
         SoundController.playSound("mainMenuTheme");
     }

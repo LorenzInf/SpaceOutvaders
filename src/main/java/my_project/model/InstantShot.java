@@ -48,7 +48,7 @@ public class InstantShot extends Shot {
         if(shot) {
             checkPlayerCollision();
         }
-        x = enemy.getX() + offsetX;
+        x = enemy.getX() + offsetX + 15;
         y = enemy.getY() + offsetY;
         chargeTimer = Math.max(chargeTimer - dt, 0);
         if( shootTimer != -1.0 ) {

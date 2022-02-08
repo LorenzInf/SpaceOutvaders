@@ -16,7 +16,6 @@ public class EnemyInstant extends Enemy {
         x += 28;
         y += 28;
         width = height = 119;
-        instantShot = true; //TODO make instant shots actually be a thing
     }
 
     @Override

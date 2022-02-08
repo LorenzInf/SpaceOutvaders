@@ -11,7 +11,7 @@ public class EnemyFast extends Enemy {
         y += 55;
         width = 135;
         height = 65;
-        speed = 300;
+        speed = 400;
     }
 
     @Override
