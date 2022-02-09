@@ -44,9 +44,6 @@ public class InputManagerGame extends InputManager {
             programController.getPlayer().setMove(2);
         }
 
-        if (key == KeyEvent.VK_M) {
-            viewController.showScene(6);
-        }
 
         if (key == KeyEvent.VK_SHIFT) {
             if (programController.getBuffVisualQueue().getFront() != null) {

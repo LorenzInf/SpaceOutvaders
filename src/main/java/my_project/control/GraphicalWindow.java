@@ -29,7 +29,7 @@ public class GraphicalWindow extends GraphicalObject {
         startScreen = new StartScreen(viewController);
         game = new Game(viewController, programController);
         guide = new Guide(viewController);
-        leaderboard = new Leaderboard(viewController);
+        leaderboard = new Leaderboard(viewController,programController);
         mainMenu = new MainMenu(viewController, programController);
         options = new Options(viewController, programController);
         enterName = new EnterName(viewController,programController);

@@ -34,7 +34,7 @@ public class InputManagerEnterName extends InputManager {
             case KeyEvent.VK_W -> array.setPointer(array.getPointerX(), array.getPointerY() - 1);
             case KeyEvent.VK_S-> array.setPointer(array.getPointerX(), array.getPointerY() + 1);
         }
-        if(programController.getWindow().getEnterName().getLetterNumber() == 6){
+        if(programController.getWindow().getEnterName().getLetterNumber() == 5){
             if(key == KeyEvent.VK_ENTER){
                 programController.getWindow().switchScene(GraphicalWindow.LEADERBOARD_INDEX);
             }
