@@ -2,6 +2,7 @@ package my_project.model;
 
 import KAGO_framework.control.ViewController;
 import KAGO_framework.view.DrawTool;
+import my_project.control.GraphicalWindow;
 import my_project.control.ProgramController;
 import my_project.view.Visual2DArray;
 
@@ -12,22 +13,19 @@ public class ArrayKeyboard extends Entity implements Visual2DArray.Animatable {
     private ArrayKeyboard arrayKeyboard;
     private String letter;
 
-
-
-
     public ArrayKeyboard(String letter, ViewController viewController, ProgramController programController){
         super(viewController, programController);
         this.letter = letter;
-        viewController.draw(this);
+        viewController.draw(this, GraphicalWindow.ENTER_NAME_INDEX);
     }
+
     @Override
     public void draw(DrawTool drawTool){
         drawTool.setCurrentColor(Color.WHITE);
         drawTool.formatText("Alagard",Font.PLAIN,50);
         drawTool.drawText(x + 100,y + 60,letter);
-
-
     }
+
     @Override
     public void fadeIn() {
 
