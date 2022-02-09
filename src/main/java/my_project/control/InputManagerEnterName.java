@@ -21,10 +21,11 @@ public class InputManagerEnterName extends InputManager {
         Visual2DArray<ArrayKeyboard> array = programController.getPlayerName().getArray2DKeyboard();
         switch (key) {
             case KeyEvent.VK_ENTER -> {
-                if (array.getPointerX() == 2 && array.getPointerY() == 3) {
+                if (array.getPointerX() == 2 && array.getPointerY() == 3 && array.getPointerX() < 3) {
                     programController.getPlayerName().insert(programController.getWindow().getEnterName());
                     programController.getWindow().switchScene(GraphicalWindow.LEADERBOARD_INDEX);
-                } else {
+                    programController.getWindow().getEnterName().setLetterNumber(0);
+                } else if (array.getPointerX() < 3 || array.getPointerY() < 3){
                     programController.getWindow().getEnterName().attachToName(array.get(array.getPointerX(), array.getPointerY()).getLetter());
                 }
             }
@@ -36,6 +37,7 @@ public class InputManagerEnterName extends InputManager {
         if(programController.getWindow().getEnterName().getLetterNumber() == 19){
             programController.getPlayerName().insert(programController.getWindow().getEnterName());
             programController.getWindow().switchScene(GraphicalWindow.LEADERBOARD_INDEX);
+            programController.getWindow().getEnterName().setLetterNumber(0);
         }
 
 

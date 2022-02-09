@@ -22,7 +22,6 @@ public class ProgramController {
     private GraphicalWindow window;
     private Enemy[][] array;
     private VisualStack<PlayerLife> playerLifesStack;
-    private VisualList<PlayerName> nameList;
     private VisualQueue<Buff> buffVisualQueue;
     private Player player;
     private PlayerLife playerLife;
@@ -98,6 +97,7 @@ public class ProgramController {
         if(viewController.getCurrentSceneIndex() == GraphicalWindow.MAIN_MENU_INDEX) {
             playerName.reset();
             SoundController.stopSound("gameover");
+            score = 0;
         }
     }
 
@@ -165,14 +165,6 @@ public class ProgramController {
 
     public VisualQueue<Buff> getBuffVisualQueue() {
         return buffVisualQueue;
-    }
-
-    public VisualList<PlayerName> getNameList() {
-        return nameList;
-    }
-
-    public void setNameList(VisualList<PlayerName> nameList) {
-        this.nameList = nameList;
     }
 
     public PlayerName getPlayerName() {

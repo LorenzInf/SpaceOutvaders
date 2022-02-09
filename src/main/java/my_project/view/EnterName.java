@@ -10,7 +10,7 @@ import my_project.model.PlayerLife;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class EnterName extends GraphicalWindow implements VisualList.AnimableList {
+public class EnterName extends GraphicalWindow {
 
     private ProgramController programController;
     private BufferedImage[] images;
@@ -73,10 +73,5 @@ public class EnterName extends GraphicalWindow implements VisualList.AnimableLis
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    @Override
-    public boolean tryToDelete() {
-        return false;
     }
 }

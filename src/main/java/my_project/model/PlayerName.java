@@ -2,23 +2,22 @@ package my_project.model;
 
 import KAGO_framework.control.ViewController;
 import KAGO_framework.model.GraphicalObject;
+import KAGO_framework.model.abitur.datenstrukturen.List;
 import KAGO_framework.view.DrawTool;
 import my_project.control.GraphicalWindow;
 import my_project.control.ProgramController;
 import my_project.view.EnterName;
 import my_project.view.Leaderboard;
 import my_project.view.Visual2DArray;
-import my_project.view.VisualList;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.*;
 
 
-public class PlayerName extends Entity implements VisualList.AnimableList{
+public class PlayerName extends Entity {
 
     private Visual2DArray<ArrayKeyboard> array2DKeyboard;
-    private VisualList<EnterName> list;
+    private List<EnterName> list;
     private final ArrayKeyboard keyA,keyB,keyC,keyD,keyE,keyF,keyG,keyH,keyI,keyJ,keyK,keyL,keyM,keyN,keyO,keyP,keyQ,keyR,keyS,keyT,keyU,keyV,keyW,keyX,keyY,keyZ,keyEnter;
 
     public PlayerName(ViewController viewController, ProgramController programController) {
@@ -82,9 +81,8 @@ public class PlayerName extends Entity implements VisualList.AnimableList{
 
         viewController.draw(this, GraphicalWindow.LEADERBOARD_INDEX);
 
-        list = new VisualList<>(10, 30, 200, 400,viewController);
+        list = new List<>();
         list.toFirst();
-        programController.setScore(0);
         programController.getWindow().getEnterName().setName("");
         programController.getWindow().getEnterName().setLetterNumber(0);
 
@@ -93,12 +91,12 @@ public class PlayerName extends Entity implements VisualList.AnimableList{
 
     public void insert(EnterName enterName) {
         list.toFirst();
-        while (list.getCurrent() != null && list.getCurrent().getScore() > enterName.getScore()) {
+        while (list.hasAccess() && list.getContent().getScore() > enterName.getScore()) {
             list.next();
         }
 
-        if (list.getCurrent() != null) {
-            list.insert(new EnterName(enterName.getName(), enterName.getScore(), viewController, programController), GraphicalWindow.LEADERBOARD_INDEX);
+        if (list.hasAccess()) {
+            list.insert(new EnterName(enterName.getName(), enterName.getScore(), viewController, programController));
         } else {
             list.append(new EnterName(enterName.getName(), enterName.getScore(), viewController, programController));
         }
@@ -124,12 +122,8 @@ public class PlayerName extends Entity implements VisualList.AnimableList{
         return array2DKeyboard;
     }
 
-    public VisualList<EnterName> getList() {
+    public List getList() {
         return list;
-    }
-
-    public void setList(VisualList<EnterName> list) {
-        this.list = list;
     }
 
     public boolean tryToDelete() {
@@ -139,8 +133,8 @@ public class PlayerName extends Entity implements VisualList.AnimableList{
     public void write(){
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/java/text/names.txt"))) {
             list.toFirst();
-            while(list.getCurrent() != null){
-                writer.write(list.getCurrent().getName() + "," + list.getCurrent().getScore() + "\n");
+            while(list.hasAccess()){
+                writer.write(list.getContent().getName() + "," + list.getContent().getScore() + "\n");
                 list.next();
             }
         } catch (IOException exception) {
