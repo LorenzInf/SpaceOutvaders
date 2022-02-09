@@ -161,6 +161,7 @@ public class ProgramController {
     public VisualQueue<Buff> getBuffVisualQueue() {
         return buffVisualQueue;
     }
+
     public VisualList<PlayerName> getNameList() {
         return nameList;
     }
