@@ -42,9 +42,13 @@ public class EnemyWave {
         difficultyS22B11I11 = 6.99;
     }
 
+
+    /**
+     * Based on {@code difficultyCurrent} a random wave from one of the methods below is picked. {@code difficultyCurrent} is the same as the amount of waves you have gone through, making the game harder the further you go
+     */
     public void summonAWave() {
         difficultyCurrent = waveController.getWave();
-        double random = new Random().nextDouble() * difficultyCurrent + (difficultyCurrent - 1) / 2;
+        double random = new Random().nextDouble() * difficultyCurrent + (difficultyCurrent) / 20;
         if(difficultyS22B11I11 < random) summonShield22Burst11Instant11();
         else if(difficultyF22I11 < random) summonFast22Instant11();
         else if(difficultyS22B11 < random) summonShield22Burst11();

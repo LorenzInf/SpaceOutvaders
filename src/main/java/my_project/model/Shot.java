@@ -98,23 +98,24 @@ public class Shot extends Entity {
                             }
                             viewController.removeDrawable(array[x][y]);
                             SoundController.playSound("enemyDeath");
+                            double multiplier = (double) programController.getWaveController().getWave() / 10 + 1;
                             if(array[x][y] instanceof EnemyNormal){
-                                programController.setScore(programController.getScore() + 100);
+                                programController.setScore(programController.getScore() + 100 * (int) multiplier);
                             }
                             if(array[x][y] instanceof EnemyBurst){
-                                programController.setScore(programController.getScore() + 150);
+                                programController.setScore(programController.getScore() + 150 * (int) multiplier);
                             }
                             if(array[x][y] instanceof EnemyFast){
-                                programController.setScore(programController.getScore() + 150);
+                                programController.setScore(programController.getScore() + 150 * (int) multiplier);
                             }
                             if(array[x][y] instanceof EnemyInstant){
-                                programController.setScore(programController.getScore() + 175);
+                                programController.setScore(programController.getScore() + 175 * (int) multiplier);
                             }
                             if(array[x][y] instanceof EnemyShield){
-                                programController.setScore(programController.getScore() + 175);
+                                programController.setScore(programController.getScore() + 175 * (int) multiplier);
                             }
                             if(array[x][y] instanceof EnemyBoss){
-                                programController.setScore(programController.getScore() + 750);
+                                programController.setScore(programController.getScore() + 5000 * (int) multiplier);
                             }
                             array[x][y] = null;
                             if(!programController.getPlayer().isPiercing()) {

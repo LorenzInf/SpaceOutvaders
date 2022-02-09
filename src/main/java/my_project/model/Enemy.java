@@ -54,6 +54,15 @@ public abstract class Enemy extends Entity {
         viewController.draw(this);
     }
 
+
+    public double getPosMiddle(int pos, GraphicalObject gO){
+        return pos * 175 + gO.getWidth() / 2;
+    }
+
+    public double getPosMiddle(int pos, double width){
+        return pos * 175 + width / 2;
+    }
+
     /**
      * When called there is a chance of {@code shootChance}% for the Enemy to shoot
      */
