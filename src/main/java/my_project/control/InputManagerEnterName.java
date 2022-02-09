@@ -22,8 +22,7 @@ public class InputManagerEnterName extends InputManager {
         switch (key) {
             case KeyEvent.VK_ENTER -> {
                 if (array.getPointerX() == 2 && array.getPointerY() == 3) {
-                    //programController.getPlayerName().insert(programController.getWindow().getEnterName());
-                    programController.getPlayerName().getList().append(programController.getWindow().getEnterName());
+                    programController.getPlayerName().insert(programController.getWindow().getEnterName());
                     programController.getWindow().switchScene(GraphicalWindow.LEADERBOARD_INDEX);
                 } else {
                     programController.getWindow().getEnterName().attachToName(array.get(array.getPointerX(), array.getPointerY()).getLetter());
@@ -35,8 +34,7 @@ public class InputManagerEnterName extends InputManager {
             case KeyEvent.VK_S-> array.setPointer(array.getPointerX(), array.getPointerY() + 1);
         }
         if(programController.getWindow().getEnterName().getLetterNumber() == 19){
-            //programController.getPlayerName().insert(programController.getWindow().getEnterName());
-            programController.getPlayerName().getList().append(programController.getWindow().getEnterName());
+            programController.getPlayerName().insert(programController.getWindow().getEnterName());
             programController.getWindow().switchScene(GraphicalWindow.LEADERBOARD_INDEX);
         }
 

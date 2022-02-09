@@ -98,9 +98,9 @@ public class PlayerName extends Entity implements VisualList.AnimableList{
         }
 
         if (list.getCurrent() != null) {
-            list.insert(enterName,GraphicalWindow.LEADERBOARD_INDEX);
+            list.insert(new EnterName(enterName.getName(), enterName.getScore(), viewController, programController), GraphicalWindow.LEADERBOARD_INDEX);
         } else {
-            list.append(enterName);
+            list.append(new EnterName(enterName.getName(), enterName.getScore(), viewController, programController));
         }
         write();
     }
@@ -140,7 +140,7 @@ public class PlayerName extends Entity implements VisualList.AnimableList{
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/java/text/names.txt"))) {
             list.toFirst();
             while(list.getCurrent() != null){
-                writer.write(list.getCurrent().getName() + "," + list.getCurrent().getScore());
+                writer.write(list.getCurrent().getName() + "," + list.getCurrent().getScore() + "\n");
                 list.next();
             }
         } catch (IOException exception) {
