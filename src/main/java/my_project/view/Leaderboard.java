@@ -14,7 +14,6 @@ public class Leaderboard extends GraphicalWindow implements VisualList.AnimableL
 
     private ProgramController programController;
     private BufferedImage[] images;
-    //private final File userDataFile;
 
     public Leaderboard(ViewController viewController, ProgramController programController) {
         super();

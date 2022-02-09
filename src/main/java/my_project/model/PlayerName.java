@@ -90,17 +90,6 @@ public class PlayerName extends Entity implements VisualList.AnimableList{
 
         viewController.draw(array2DKeyboard,GraphicalWindow.ENTER_NAME_INDEX);
         viewController.draw(list,GraphicalWindow.LEADERBOARD_INDEX);
-        /*try {
-            fr = new FileReader(inputFile);
-            String line;
-            while ((line = fr.nextLine()) != -1){
-
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
 
     }
 

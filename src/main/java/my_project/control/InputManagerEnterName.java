@@ -20,13 +20,19 @@ public class InputManagerEnterName extends InputManager {
 
         Visual2DArray<ArrayKeyboard> array = programController.getPlayerName().getArray2DKeyboard();
         switch (key) {
-            case KeyEvent.VK_ENTER -> programController.getWindow().getEnterName().attachToName(array.get(array.getPointerX(),array.getPointerY()).getLetter());
+            case KeyEvent.VK_ENTER -> {
+                if (array.getPointerX() == 2 && array.getPointerY() == 3) {
+                    programController.getWindow().switchScene(GraphicalWindow.LEADERBOARD_INDEX);
+                } else {
+                    programController.getWindow().getEnterName().attachToName(array.get(array.getPointerX(), array.getPointerY()).getLetter());
+                }
+            }
             case KeyEvent.VK_D -> array.setPointer(array.getPointerX() + 1,array.getPointerY());
             case KeyEvent.VK_A -> array.setPointer(array.getPointerX() - 1,array.getPointerY());
             case KeyEvent.VK_W -> array.setPointer(array.getPointerX(), array.getPointerY() - 1);
             case KeyEvent.VK_S-> array.setPointer(array.getPointerX(), array.getPointerY() + 1);
         }
-        if(key == KeyEvent.VK_ENTER && programController.getWindow().getEnterName().getLetterNumber() == 19 || array.getPointerX() == 2 && array.getPointerY() == 3 && key == KeyEvent.VK_ENTER){
+        if(programController.getWindow().getEnterName().getLetterNumber() == 19){
             programController.getWindow().switchScene(GraphicalWindow.LEADERBOARD_INDEX);
         }
 
