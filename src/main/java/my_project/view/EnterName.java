@@ -39,6 +39,11 @@ public class EnterName extends GraphicalWindow {
         };
     }
 
+    /**
+     * the string and a space are appended to name
+     * letterNumber increases by one
+     * @param string
+     */
     public void attachToName(String string){
         name += string + "";
         letterNumber++;
