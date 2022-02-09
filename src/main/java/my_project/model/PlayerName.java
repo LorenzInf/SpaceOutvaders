@@ -11,9 +11,7 @@ import my_project.view.VisualList;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 
 
 public class PlayerName extends Entity implements VisualList.AnimableList{
@@ -54,8 +52,6 @@ public class PlayerName extends Entity implements VisualList.AnimableList{
         keyY = new ArrayKeyboard("Y",viewController,programController);
         keyZ = new ArrayKeyboard("Z",viewController,programController);
 
-
-
         viewController.draw(this, GraphicalWindow.ENTER_NAME_INDEX);
         images = new BufferedImage[]{
                 createImage("src/main/resources/graphic/enterYourName_screen.png"),//0
@@ -93,10 +89,23 @@ public class PlayerName extends Entity implements VisualList.AnimableList{
 
         list = new VisualList<>(10, 30, 200, 400,viewController);
         list.append(programController.getWindow().getEnterName());
+        list.toFirst();
 
         viewController.draw(array2DKeyboard,GraphicalWindow.ENTER_NAME_INDEX);
         viewController.draw(list,GraphicalWindow.LEADERBOARD_INDEX);
+        File inputFile = new File("src/main/java/text/names");
+        FileReader fr = null;
+        try {
+            fr = new FileReader(inputFile);
+            int i;
+            while ((i = fr.read()) != -1){
 
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -106,6 +115,14 @@ public class PlayerName extends Entity implements VisualList.AnimableList{
 
     public Visual2DArray<ArrayKeyboard> getArray2DKeyboard() {
         return array2DKeyboard;
+    }
+
+    public VisualList<EnterName> getList() {
+        return list;
+    }
+
+    public void setList(VisualList<EnterName> list) {
+        this.list = list;
     }
 
     public boolean tryToDelete() {

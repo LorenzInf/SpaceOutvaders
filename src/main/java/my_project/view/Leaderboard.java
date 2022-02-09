@@ -33,8 +33,14 @@ public class Leaderboard extends GraphicalWindow implements VisualList.AnimableL
         drawTool.drawImage(images[0], 0 ,0);
         drawTool.setCurrentColor(255,255,255,255);
         drawTool.formatText("Alagard",0,30);
-        drawTool.drawText(100,400,programController.getWindow().getEnterName().getName() + " Score:" + programController.getScore());
+        while(programController.getPlayerName().getList().getCurrent() != null){
+            programController.getPlayerName().getList().toFirst();
+            drawTool.drawText(100,400,programController.getPlayerName().getList().getCurrent().getName() + "Score:" + programController.getPlayerName().getList().getCurrent());
+
+        }
     }
+
+
 
 
     @Override
