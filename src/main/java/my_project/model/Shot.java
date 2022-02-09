@@ -99,6 +99,25 @@ public class Shot extends Entity {
                             viewController.removeDrawable(array[x][y]);
                             array[x][y] = null;
                             SoundController.playSound("enemyDeath");
+                            if(array[x][y] instanceof EnemyNormal){
+                                programController.setScore(programController.getScore() + 100);
+                            }
+                            if(array[x][y] instanceof EnemyBurst){
+                                programController.setScore(programController.getScore() + 150);
+                            }
+                            if(array[x][y] instanceof EnemyFast){
+                                programController.setScore(programController.getScore() + 150);
+                            }
+                            if(array[x][y] instanceof EnemyInstant){
+                                programController.setScore(programController.getScore() + 175);
+                            }
+                            if(array[x][y] instanceof EnemyShield){
+                                programController.setScore(programController.getScore() + 175);
+                            }
+                            if(array[x][y] instanceof EnemyBoss){
+                                programController.setScore(programController.getScore() + 750);
+                            }
+
                             if(!programController.getPlayer().isPiercing()) {
                                 viewController.removeDrawable(this);
                             }

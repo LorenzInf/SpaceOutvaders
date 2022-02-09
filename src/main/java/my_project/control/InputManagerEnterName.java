@@ -36,7 +36,7 @@ public class InputManagerEnterName extends InputManager {
         }
         if(programController.getWindow().getEnterName().getLetterNumber() == 6){
             if(key == KeyEvent.VK_ENTER){
-                viewController.showScene(4);
+                programController.getWindow().switchScene(GraphicalWindow.LEADERBOARD_INDEX);
             }
         }
 

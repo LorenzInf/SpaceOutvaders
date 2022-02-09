@@ -36,7 +36,6 @@ public class ProgramController {
     private int score;
     private WaveController waveController;
 
-
     /**
      * Konstruktor
      * Dieser legt das Objekt der Klasse ProgramController an, das den Programmfluss steuert.
@@ -180,4 +179,14 @@ public class ProgramController {
     public WaveController getWaveController() {
         return waveController;
     }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+
 }

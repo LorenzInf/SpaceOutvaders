@@ -10,12 +10,13 @@ import my_project.model.PlayerLife;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class EnterName extends GraphicalWindow {
+public class EnterName extends GraphicalWindow implements VisualList.AnimableList {
 
     private ProgramController programController;
     private BufferedImage[] images;
     private String name;
     private int letterNumber;
+    private int score;
 
     public EnterName(ViewController viewController, ProgramController programController){
         super();
@@ -30,6 +31,8 @@ public class EnterName extends GraphicalWindow {
     public void attachToName(String string){
         name += string+ "      ";
         letterNumber ++;
+        score = programController.getScore();
+        programController.setScore(0);
     }
     @Override
     public void draw(DrawTool drawTool) {
@@ -48,4 +51,22 @@ public class EnterName extends GraphicalWindow {
     public void setLetterNumber(int letterNumber) {
         this.letterNumber = letterNumber;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public boolean tryToDelete() {
+        return false;
+    }
+
+    /*@Override
+    public boolean tryToDelete() {
+        return false;
+    }*/
 }

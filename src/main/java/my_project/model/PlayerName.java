@@ -4,6 +4,8 @@ import KAGO_framework.control.ViewController;
 import KAGO_framework.view.DrawTool;
 import my_project.control.GraphicalWindow;
 import my_project.control.ProgramController;
+import my_project.view.EnterName;
+import my_project.view.Leaderboard;
 import my_project.view.Visual2DArray;
 import my_project.view.VisualList;
 
@@ -18,7 +20,8 @@ public class PlayerName extends Entity implements VisualList.AnimableList{
 
     private BufferedImage[] images;
     private Visual2DArray<ArrayKeyboard> array2DKeyboard;
-    private VisualList<PlayerName> playerNameList;
+   // private VisualList<EnterName> playerNameList;
+    private VisualList<EnterName> list;
     private ArrayKeyboard keyA,keyB,keyC,keyD,keyE,keyF,keyG,keyH,keyI,keyJ,keyK,keyL,keyM,keyN,keyO,keyP,keyQ,keyR,keyS,keyT,keyU,keyV,keyW,keyX,keyY,keyZ;
 
 
@@ -52,15 +55,15 @@ public class PlayerName extends Entity implements VisualList.AnimableList{
         keyY = new ArrayKeyboard("Y",viewController,programController);
         keyZ = new ArrayKeyboard("Z",viewController,programController);
 
+        //list = new VisualList<>(0, 30, 0, 400,viewController);
+        //list.insert(programController.getWindow().getEnterName(),4);
+
 
         viewController.draw(this, GraphicalWindow.ENTER_NAME_INDEX);
-        //programController.getNameList().insert(,4);
         images = new BufferedImage[]{
                 createImage("src/main/resources/graphic/enterYourName_screen.png"),//0
         };
-        playerNameList = new VisualList<>(60,80,0,200, viewController);
 
-        viewController.draw(this, GraphicalWindow.LEADERBOARD_INDEX);
         array2DKeyboard  = new Visual2DArray<ArrayKeyboard>(8,4,0,0, new Visual2DArray.VisualizationConfig(0,700,237,85,0,true,false,true,new Color(255,0,0,100),Color.WHITE,Color.black));
         array2DKeyboard.set(keyA,0,0);
         array2DKeyboard.set(keyB,1,0);
@@ -91,6 +94,7 @@ public class PlayerName extends Entity implements VisualList.AnimableList{
 
 
         viewController.draw(array2DKeyboard,GraphicalWindow.ENTER_NAME_INDEX);
+
     }
 
     @Override

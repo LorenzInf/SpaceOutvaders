@@ -9,7 +9,7 @@ import my_project.control.ProgramController;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Leaderboard extends GraphicalWindow {
+public class Leaderboard extends GraphicalWindow implements VisualList.AnimableList {
 
     private ProgramController programController;
     private BufferedImage[] images;
@@ -27,5 +27,13 @@ public class Leaderboard extends GraphicalWindow {
     public void draw(DrawTool drawTool) {
         drawTool.drawImage(images[0], 0 ,0);
     }
+    public void beFirst(){
 
+    }
+
+
+    @Override
+    public boolean tryToDelete() {
+        return false;
+    }
 }
