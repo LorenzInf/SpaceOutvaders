@@ -12,7 +12,7 @@ public class EnemyBurst extends Enemy{
 
     public EnemyBurst(ViewController viewController, ProgramController programController, int posX, int posY){
         super(viewController,programController,posX,posY);
-        shootChance = 0.5;
+        shootChance = 1;
         shootDelay = 0.25;
         x += 17.5;
         y += 28;
@@ -27,7 +27,8 @@ public class EnemyBurst extends Enemy{
 
     @Override
     public void update(double dt){
-        super.update(dt);
+        doMovement(dt);
+        if(moving) timer -= dt;
         shootTimer += dt;
         burstTimer = Math.max(burstTimer - dt, 0);
         if(shooting == 0 && shootTimer >= shootDelay) {

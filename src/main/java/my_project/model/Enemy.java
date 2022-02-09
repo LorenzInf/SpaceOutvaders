@@ -49,7 +49,7 @@ public abstract class Enemy extends Entity {
         shootDelay = 0.25;
         movingDown = false;
         previousY = enemyY;
-        timer = 5;
+        timer = 3;
         movingRight = posY % 2 == 0;
         viewController.draw(this);
     }
@@ -86,16 +86,7 @@ public abstract class Enemy extends Entity {
         this.hp = hp;
     }
 
-    @Override
-    public void update(double dt){
-        shootTimer += dt;
-        if(shootTimer >= shootDelay) {
-            tryToShoot(shootChance);
-            shootTimer = 0;
-        }
-        if(moving) {
-            timer -= dt;
-        }
+    protected void doMovement(double dt) {
         if(timer <= 0) {
             programController.getWaveController().setShootLock(false);
             double incr = speed * dt;
@@ -124,6 +115,19 @@ public abstract class Enemy extends Entity {
                 }
             }
         }
+    }
+
+    @Override
+    public void update(double dt){
+        shootTimer += dt;
+        if(shootTimer >= shootDelay) {
+            tryToShoot(shootChance);
+            shootTimer = 0;
+        }
+        if(moving) {
+            timer -= dt;
+        }
+        doMovement(dt);
 
         if(this.collidesWith(programController.getPlayer())) {
             programController.getWindow().switchScene(GraphicalWindow.ENTER_NAME_INDEX);
