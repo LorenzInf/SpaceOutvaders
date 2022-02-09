@@ -27,6 +27,10 @@ public class WaveController extends GraphicalObject /* Macht nicht sonderlich vi
         viewController.draw(this,GraphicalWindow.GAME_INDEX);
     }
 
+    /**
+     * Checks whether the EnemyArray is empty
+     * @return returns true if it is
+     */
     private boolean checkEmpty() {
         for (int x = 0; x < 11; x++) {
             for (int y = 0; y < 6; y++) {
@@ -36,6 +40,9 @@ public class WaveController extends GraphicalObject /* Macht nicht sonderlich vi
         return true;
     }
 
+    /**
+     * Clears the entire EnemyArray, sets {@code wave} and {@code powerupCounter} to 0
+     */
     public void clear() {
         for (int x = 0; x < 11; x++) {
             for (int y = 0; y < 6; y++) {
@@ -49,6 +56,10 @@ public class WaveController extends GraphicalObject /* Macht nicht sonderlich vi
         powerupCounter = 0;
     }
 
+    /**
+     * Spawns a new wave if there are no Enemy left, spawns a buff every 3 waves
+     * @param dt time since the last update
+     */
     @Override
     public void update(double dt) {
         if(checkEmpty() && !clear) {
@@ -65,14 +76,6 @@ public class WaveController extends GraphicalObject /* Macht nicht sonderlich vi
 
     public int getWave() {
         return wave;
-    }
-
-    public void setWave(int wave) {
-        this.wave = wave;
-    }
-
-    public void setPowerupCounter(int powerupCounter) {
-        this.powerupCounter = powerupCounter;
     }
 
     public boolean isShootLock() {
