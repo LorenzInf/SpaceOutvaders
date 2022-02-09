@@ -20,7 +20,6 @@ public class PlayerName extends Entity implements VisualList.AnimableList{
 
     private BufferedImage[] images;
     private Visual2DArray<ArrayKeyboard> array2DKeyboard;
-   // private VisualList<EnterName> playerNameList;
     private VisualList<EnterName> list;
     private ArrayKeyboard keyA,keyB,keyC,keyD,keyE,keyF,keyG,keyH,keyI,keyJ,keyK,keyL,keyM,keyN,keyO,keyP,keyQ,keyR,keyS,keyT,keyU,keyV,keyW,keyX,keyY,keyZ;
 
@@ -55,8 +54,6 @@ public class PlayerName extends Entity implements VisualList.AnimableList{
         keyY = new ArrayKeyboard("Y",viewController,programController);
         keyZ = new ArrayKeyboard("Z",viewController,programController);
 
-        //list = new VisualList<>(0, 30, 0, 400,viewController);
-        //list.insert(programController.getWindow().getEnterName(),4);
 
 
         viewController.draw(this, GraphicalWindow.ENTER_NAME_INDEX);
@@ -92,8 +89,13 @@ public class PlayerName extends Entity implements VisualList.AnimableList{
         array2DKeyboard.set(keyY,0,3);
         array2DKeyboard.set(keyZ,1,3);
 
+        viewController.draw(this, GraphicalWindow.LEADERBOARD_INDEX);
+
+        list = new VisualList<>(10, 30, 200, 400,viewController);
+        list.append(programController.getWindow().getEnterName());
 
         viewController.draw(array2DKeyboard,GraphicalWindow.ENTER_NAME_INDEX);
+        viewController.draw(list,GraphicalWindow.LEADERBOARD_INDEX);
 
     }
 

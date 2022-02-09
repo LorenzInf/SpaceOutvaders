@@ -65,8 +65,5 @@ public class EnterName extends GraphicalWindow implements VisualList.AnimableLis
         return false;
     }
 
-    /*@Override
-    public boolean tryToDelete() {
-        return false;
-    }*/
+
 }
