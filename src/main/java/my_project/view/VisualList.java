@@ -44,8 +44,6 @@ public class VisualList<T extends GraphicalObject & VisualList.AnimableList> ext
     public void append(T t){
         if(!list.isEmpty()) {
             list.append(t);
-            t.setX(getPrevious(t).getX() + xAbstand);
-            t.setY(getPrevious(t).getY() + yAbstand);
         }else{
             list.append(t);
             t.setX(x);
