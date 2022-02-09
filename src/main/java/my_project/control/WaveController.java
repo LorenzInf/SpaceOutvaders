@@ -66,6 +66,14 @@ public class WaveController extends GraphicalObject /* Macht nicht sonderlich vi
         return wave;
     }
 
+    public void setWave(int wave) {
+        this.wave = wave;
+    }
+
+    public void setPowerupCounter(int powerupCounter) {
+        this.powerupCounter = powerupCounter;
+    }
+
     public boolean isShootLock() {
         return shootLock;
     }

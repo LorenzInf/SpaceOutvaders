@@ -29,10 +29,10 @@ public class VisualList<T extends GraphicalObject & VisualList.AnimableList> ext
      */
 
     public VisualList(double xAbstand, double yAbstand, double x, double y, ViewController viewController){
-        this.xAbstand=xAbstand;
-        this.yAbstand=yAbstand;
-        this.x=x;
-        this.y=y;
+        this.xAbstand = xAbstand;
+        this.yAbstand = yAbstand;
+        this.x = x;
+        this.y = y;
         list.toFirst();
         this.viewController = viewController;
     }

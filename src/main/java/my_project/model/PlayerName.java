@@ -16,12 +16,9 @@ import java.io.*;
 
 public class PlayerName extends Entity implements VisualList.AnimableList{
 
-    private BufferedImage[] images;
     private Visual2DArray<ArrayKeyboard> array2DKeyboard;
     private VisualList<EnterName> list;
-    private ArrayKeyboard keyA,keyB,keyC,keyD,keyE,keyF,keyG,keyH,keyI,keyJ,keyK,keyL,keyM,keyN,keyO,keyP,keyQ,keyR,keyS,keyT,keyU,keyV,keyW,keyX,keyY,keyZ;
-
-
+    private final ArrayKeyboard keyA,keyB,keyC,keyD,keyE,keyF,keyG,keyH,keyI,keyJ,keyK,keyL,keyM,keyN,keyO,keyP,keyQ,keyR,keyS,keyT,keyU,keyV,keyW,keyX,keyY,keyZ,keyEnter;
 
     public PlayerName(ViewController viewController, ProgramController programController) {
         super(viewController, programController);
@@ -51,11 +48,7 @@ public class PlayerName extends Entity implements VisualList.AnimableList{
         keyX = new ArrayKeyboard("X",viewController,programController);
         keyY = new ArrayKeyboard("Y",viewController,programController);
         keyZ = new ArrayKeyboard("Z",viewController,programController);
-
-        viewController.draw(this, GraphicalWindow.ENTER_NAME_INDEX);
-        images = new BufferedImage[]{
-                createImage("src/main/resources/graphic/enterYourName_screen.png"),//0
-        };
+        keyEnter = new ArrayKeyboard("ENTER",viewController, programController, 45);
 
         array2DKeyboard  = new Visual2DArray<ArrayKeyboard>(8,4,0,0, new Visual2DArray.VisualizationConfig(0,700,237,85,0,true,false,true,new Color(255,0,0,100),Color.WHITE,Color.black));
         array2DKeyboard.set(keyA,0,0);
@@ -84,28 +77,31 @@ public class PlayerName extends Entity implements VisualList.AnimableList{
         array2DKeyboard.set(keyX,7,2);
         array2DKeyboard.set(keyY,0,3);
         array2DKeyboard.set(keyZ,1,3);
+        array2DKeyboard.set(keyEnter, 2,3);
 
         viewController.draw(this, GraphicalWindow.LEADERBOARD_INDEX);
 
         list = new VisualList<>(10, 30, 200, 400,viewController);
         list.append(programController.getWindow().getEnterName());
         list.toFirst();
+        programController.setScore(0);
+        programController.getWindow().getEnterName().setName("");
+        programController.getWindow().getEnterName().setLetterNumber(0);
 
         viewController.draw(array2DKeyboard,GraphicalWindow.ENTER_NAME_INDEX);
         viewController.draw(list,GraphicalWindow.LEADERBOARD_INDEX);
-        File inputFile = new File("src/main/java/text/names");
-        FileReader fr = null;
-        try {
+        /*try {
             fr = new FileReader(inputFile);
-            int i;
-            while ((i = fr.read()) != -1){
+            String line;
+            while ((line = fr.nextLine()) != -1){
 
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
+
     }
 
     @Override
@@ -127,5 +123,32 @@ public class PlayerName extends Entity implements VisualList.AnimableList{
 
     public boolean tryToDelete() {
         return false;
+    }
+
+    public void write(){
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/java/text/names"))) {
+            list.toFirst();
+            while(list.getCurrent() != null){
+                writer.write(list.getCurrent().getName() + "," + list.getCurrent().getScore());
+                list.next();
+            }
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    public void read(){
+        try {
+            FileInputStream inputStream = new FileInputStream("src/main/java/text/names");
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    String[] lineSplit = line.split(",");
+                    list.append(new EnterName(lineSplit[0], Integer.parseInt(lineSplit[1]), viewController, programController));
+                }
+            }
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
     }
 }

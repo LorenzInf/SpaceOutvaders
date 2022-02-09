@@ -28,12 +28,23 @@ public class EnterName extends GraphicalWindow implements VisualList.AnimableLis
         };
     }
 
-    public void attachToName(String string){
-        name += string+ "      ";
-        letterNumber ++;
-        score = programController.getScore();
-        programController.setScore(0);
+    public EnterName(String name, int score, ViewController viewController, ProgramController programController){
+        super();
+        this.programController = programController;
+        this.name = name;
+        this.score = score;
+        viewController.createScene();
+        images = new BufferedImage[]{
+                createImage("src/main/resources/graphic/enterYourName_screen.png"),//0
+        };
     }
+
+    public void attachToName(String string){
+        name += string + "";
+        letterNumber++;
+        score = programController.getScore();
+    }
+
     @Override
     public void draw(DrawTool drawTool) {
         drawTool.setCurrentColor(0,0,0,255); //Bitte nicht fragen, Backgroundcolour hat mich gemobbt
@@ -41,7 +52,7 @@ public class EnterName extends GraphicalWindow implements VisualList.AnimableLis
         drawTool.drawImage(images[0], 0 ,0);
         drawTool.setCurrentColor(Color.WHITE);
         drawTool.formatText("Alagard",0,80);
-        drawTool.drawText(565,610,name);
+        drawTool.drawText(565,610, name);
     }
 
     public int getLetterNumber() {
@@ -54,6 +65,10 @@ public class EnterName extends GraphicalWindow implements VisualList.AnimableLis
 
     public String getName() {
         return name;
+    }
+
+    public int getScore(){
+        return score;
     }
 
     public void setName(String name) {

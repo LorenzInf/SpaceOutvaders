@@ -23,8 +23,6 @@ public class Leaderboard extends GraphicalWindow implements VisualList.AnimableL
         images = new BufferedImage[]{
                 createImage("src/main/resources/graphic/leaderboard.png")//0
         };
-        //leaderboard = new File("src/database/Users.txt");
-        //String usersString = getFileContent(userDataFile);
     }
 
 
@@ -33,12 +31,7 @@ public class Leaderboard extends GraphicalWindow implements VisualList.AnimableL
         drawTool.drawImage(images[0], 0 ,0);
         drawTool.setCurrentColor(255,255,255,255);
         drawTool.formatText("Alagard",0,30);
-        drawTool.drawText(100,400,programController.getPlayerName().getList().getCurrent().getName() + "Score:" + programController.getPlayerName().getList().getCurrent());
-        /*while(programController.getPlayerName().getList().getCurrent() != null){
-            programController.getPlayerName().getList().toFirst();
-            drawTool.drawText(100,400,programController.getPlayerName().getList().getCurrent().getName() + "Score:" + programController.getPlayerName().getList().getCurrent());
-
-        }*/
+        drawTool.drawText(100,400,programController.getPlayerName().getList().getCurrent().getName() + " Score: " + programController.getPlayerName().getList().getCurrent().getScore());
     }
 
 

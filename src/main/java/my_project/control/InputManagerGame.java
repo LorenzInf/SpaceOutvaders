@@ -2,9 +2,7 @@ package my_project.control;
 
 import KAGO_framework.control.SoundController;
 import KAGO_framework.control.ViewController;
-import my_project.model.Buff;
 import my_project.model.Player;
-import my_project.model.PlayerLife;
 import my_project.model.Shot;
 
 import java.awt.event.KeyEvent;
@@ -14,7 +12,6 @@ import java.awt.event.KeyEvent;
  * im ProgramController aufruft
  */
 public class InputManagerGame extends InputManager {
-
     /**
      * Objekterzeugung
      * @param programController Nötig als Objekt vom Controllerbereich, das informiert wird
@@ -63,6 +60,10 @@ public class InputManagerGame extends InputManager {
         }
         setVolume(key);
         forceMainMenu(key);
+
+        if(key == KeyEvent.VK_U){
+            programController.getWindow().switchScene(6);
+        }
     }
 
     @Override

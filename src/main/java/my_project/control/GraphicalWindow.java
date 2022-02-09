@@ -85,19 +85,7 @@ public class GraphicalWindow extends GraphicalObject {
         return options;
     }
 
-    public Game getGame() {
-        return game;
-    }
-
     public EnterName getEnterName() {
         return enterName;
     }
 }
-
-// sceneIndex 0 = MainMenu
-// sceneIndex 1 = Options
-// sceneIndex 2 = Guide
-// sceneIndex 3 = Game
-// sceneIndex 4 = Leaderboard
-// sceneIndex 5 = guide
-// sceneIndex 6 = enterName

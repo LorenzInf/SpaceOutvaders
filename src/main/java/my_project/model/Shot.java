@@ -97,7 +97,6 @@ public class Shot extends Entity {
                                 ((EnemyInstant) array[x][y]).die();
                             }
                             viewController.removeDrawable(array[x][y]);
-                            array[x][y] = null;
                             SoundController.playSound("enemyDeath");
                             if(array[x][y] instanceof EnemyNormal){
                                 programController.setScore(programController.getScore() + 100);
@@ -117,7 +116,7 @@ public class Shot extends Entity {
                             if(array[x][y] instanceof EnemyBoss){
                                 programController.setScore(programController.getScore() + 750);
                             }
-
+                            array[x][y] = null;
                             if(!programController.getPlayer().isPiercing()) {
                                 viewController.removeDrawable(this);
                             }

@@ -10,11 +10,22 @@ import java.awt.*;
 
 public class ArrayKeyboard extends Entity implements Visual2DArray.Animatable {
 
+    private ProgramController programController;
     private ArrayKeyboard arrayKeyboard;
     private String letter;
+    private double margin;
 
     public ArrayKeyboard(String letter, ViewController viewController, ProgramController programController){
         super(viewController, programController);
+        margin = 100;
+        this.letter = letter;
+        viewController.draw(this, GraphicalWindow.ENTER_NAME_INDEX);
+    }
+
+    public ArrayKeyboard(String letter, ViewController viewController, ProgramController programController, double margin){
+        super(viewController, programController);
+        this.programController = programController;
+        this.margin = margin;
         this.letter = letter;
         viewController.draw(this, GraphicalWindow.ENTER_NAME_INDEX);
     }
@@ -23,7 +34,7 @@ public class ArrayKeyboard extends Entity implements Visual2DArray.Animatable {
     public void draw(DrawTool drawTool){
         drawTool.setCurrentColor(Color.WHITE);
         drawTool.formatText("Alagard",Font.PLAIN,50);
-        drawTool.drawText(x + 100,y + 60,letter);
+        drawTool.drawText(x + margin,y + 60,letter);
     }
 
     @Override
