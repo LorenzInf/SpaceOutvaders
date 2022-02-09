@@ -59,18 +59,20 @@ public class Buff extends Entity implements VisualQueue.Animatible {
             y += 250*dt;
         }
         if(this.collidesWith(programController.getPlayer())){
-            SoundController.playSound("pickup");
-            if(randomNumber == 5 && programController.getStack().getCounter() != 3){
-                viewController.removeDrawable(this);
-                programController.getPlayer().setHealBoost(true);
-                switch (programController.getStack().getCounter()) {
-                    case 1 -> new PlayerLife(1810, 880, viewController, programController, 0);
-                    case 2 -> new PlayerLife(1810, 950, viewController, programController, 0);
+            if(!this.isInQueue){
+                SoundController.playSound("pickup");
+                if(randomNumber == 5 && programController.getStack().getCounter() != 3){
+                    viewController.removeDrawable(this);
+                    programController.getPlayer().setHealBoost(true);
+                    switch (programController.getStack().getCounter()) {
+                        case 1 -> new PlayerLife(1810, 880, viewController, programController, 0);
+                        case 2 -> new PlayerLife(1810, 950, viewController, programController, 0);
+                    }
                 }
-            }
-            if(programController.getBuffVisualQueue().getCounter() != 3 && randomNumber != 5){
-                programController.getBuffVisualQueue().enqueue(this);
-                isInQueue = true;
+                if(programController.getBuffVisualQueue().getCounter() != 3 && randomNumber != 5){
+                    programController.getBuffVisualQueue().enqueue(this);
+                    isInQueue = true;
+                }
             }
         }
     }
