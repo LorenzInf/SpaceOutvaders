@@ -86,7 +86,10 @@ public class ProgramController {
      * @param dt Zeit seit letzter Frame
      */
     public void updateProgram(double dt){
-        if(viewController.getCurrentSceneIndex() == GraphicalWindow.GAME_INDEX) inGame = true;
+        if(viewController.getCurrentSceneIndex() == GraphicalWindow.GAME_INDEX) {
+            inGame = true;
+            waveController.setClear(false);
+        }
         if(viewController.getCurrentSceneIndex() != GraphicalWindow.GAME_INDEX && inGame){
             clearGame();
             gameOver = false;
@@ -98,6 +101,8 @@ public class ProgramController {
     }
 
     public void clearGame(){
+        waveController.setClear(true);
+        waveController.clear();
         gameOver = true;
         player.setX(865 + 28);
         player.setY(875 + 12);
@@ -113,14 +118,6 @@ public class ProgramController {
             }
             case 2 -> {
                 for(int i = 0; i < 1; i ++) new PlayerLife(1810, 950-i*70, viewController, this, 0);
-            }
-        }
-        for (int i = 0; i < 11; i++) {
-            for (int j = 0; j < 6; j++) {
-                if(array[i][j] != null){
-                    viewController.removeDrawable(array[i][j]);
-                    array[i][j] = null;
-                }
             }
         }
     }
