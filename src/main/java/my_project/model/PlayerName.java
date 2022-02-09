@@ -1,6 +1,7 @@
 package my_project.model;
 
 import KAGO_framework.control.ViewController;
+import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
 import my_project.control.GraphicalWindow;
 import my_project.control.ProgramController;
@@ -82,15 +83,36 @@ public class PlayerName extends Entity implements VisualList.AnimableList{
         viewController.draw(this, GraphicalWindow.LEADERBOARD_INDEX);
 
         list = new VisualList<>(10, 30, 200, 400,viewController);
-        list.append(programController.getWindow().getEnterName());
         list.toFirst();
         programController.setScore(0);
         programController.getWindow().getEnterName().setName("");
         programController.getWindow().getEnterName().setLetterNumber(0);
 
-        viewController.draw(array2DKeyboard,GraphicalWindow.ENTER_NAME_INDEX);
-        viewController.draw(list,GraphicalWindow.LEADERBOARD_INDEX);
 
+    }
+
+    public void insert(EnterName enterName) {
+        list.toFirst();
+        while (list.getCurrent() != null && list.getCurrent().getScore() > enterName.getScore()) {
+            list.next();
+        }
+
+        if (list.getCurrent() != null) {
+            list.insert(enterName,GraphicalWindow.LEADERBOARD_INDEX);
+        } else {
+            list.append(enterName);
+        }
+        write();
+    }
+
+    public void drawStuff() {
+        viewController.draw(array2DKeyboard,GraphicalWindow.ENTER_NAME_INDEX);
+    }
+
+    public void reset() {
+        programController.getWindow().getEnterName().setName("");
+        array2DKeyboard.setPointer(0,0);
+        viewController.removeDrawable(array2DKeyboard,GraphicalWindow.ENTER_NAME_INDEX);
     }
 
     @Override
@@ -115,7 +137,7 @@ public class PlayerName extends Entity implements VisualList.AnimableList{
     }
 
     public void write(){
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/java/text/names"))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/java/text/names.txt"))) {
             list.toFirst();
             while(list.getCurrent() != null){
                 writer.write(list.getCurrent().getName() + "," + list.getCurrent().getScore());
@@ -128,7 +150,7 @@ public class PlayerName extends Entity implements VisualList.AnimableList{
 
     public void read(){
         try {
-            FileInputStream inputStream = new FileInputStream("src/main/java/text/names");
+            FileInputStream inputStream = new FileInputStream("src/main/java/text/names.txt");
             try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
                 String line;
                 while ((line = br.readLine()) != null) {

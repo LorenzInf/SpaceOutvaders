@@ -79,6 +79,4 @@ public class EnterName extends GraphicalWindow implements VisualList.AnimableLis
     public boolean tryToDelete() {
         return false;
     }
-
-
 }

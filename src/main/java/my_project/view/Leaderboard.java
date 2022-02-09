@@ -2,13 +2,10 @@ package my_project.view;
 
 import KAGO_framework.control.ViewController;
 import KAGO_framework.view.DrawTool;
-import my_project.Config;
 import my_project.control.GraphicalWindow;
 import my_project.control.ProgramController;
 
-import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 
 public class Leaderboard extends GraphicalWindow implements VisualList.AnimableList {
 
@@ -27,10 +24,17 @@ public class Leaderboard extends GraphicalWindow implements VisualList.AnimableL
 
     @Override
     public void draw(DrawTool drawTool) {
-        drawTool.drawImage(images[0], 0 ,0);
-        drawTool.setCurrentColor(255,255,255,255);
-        drawTool.formatText("Alagard",0,30);
-        drawTool.drawText(100,400,programController.getPlayerName().getList().getCurrent().getName() + " Score: " + programController.getPlayerName().getList().getCurrent().getScore());
+        drawTool.drawImage(images[0], 0, 0);
+        drawTool.setCurrentColor(255, 255, 255, 255);
+        drawTool.formatText("Alagard", 0, 30);
+        VisualList<EnterName> list = programController.getPlayerName().getList();
+        list.toFirst();
+        int i = 0;
+        while (list.getCurrent() != null) {
+            drawTool.drawText(100, 400 + (40 * i), programController.getPlayerName().getList().getCurrent().getName() + " Score: " + programController.getPlayerName().getList().getCurrent().getScore());
+            list.next();
+            i++;
+        }
     }
 
 

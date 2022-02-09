@@ -185,7 +185,7 @@ public class VisualList<T extends GraphicalObject & VisualList.AnimableList> ext
                 i++;
             }
             list.toFirst();
-            for(int j=0;j<i;j++) list.next();
+            for(int j = 0; j < i; j++) list.next();
             return list.getContent();
         }
         toCurrent();

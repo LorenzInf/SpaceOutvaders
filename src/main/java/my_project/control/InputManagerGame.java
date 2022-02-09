@@ -63,6 +63,7 @@ public class InputManagerGame extends InputManager {
 
         if(key == KeyEvent.VK_U){
             programController.getWindow().switchScene(6);
+            programController.getPlayerName().drawStuff();
         }
     }
 

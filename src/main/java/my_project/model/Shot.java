@@ -67,6 +67,7 @@ public class Shot extends Entity {
                 SoundController.playSound("enemyDeath");
                 if (programController.getStack().top() == null) {
                     programController.getWindow().switchScene(6);
+                    programController.getPlayerName().drawStuff();
                 }
             }else{
                 SoundController.playSound("shieldHit");
@@ -100,22 +101,22 @@ public class Shot extends Entity {
                             SoundController.playSound("enemyDeath");
                             double multiplier = (double) programController.getWaveController().getWave() / 10 + 1;
                             if(array[x][y] instanceof EnemyNormal){
-                                programController.setScore(programController.getScore() + 100 * (int) multiplier);
+                                programController.setScore((int) (programController.getScore() + 100 * multiplier));
                             }
                             if(array[x][y] instanceof EnemyBurst){
-                                programController.setScore(programController.getScore() + 150 * (int) multiplier);
+                                programController.setScore((int) (programController.getScore() + 150 * multiplier));
                             }
                             if(array[x][y] instanceof EnemyFast){
-                                programController.setScore(programController.getScore() + 150 * (int) multiplier);
+                                programController.setScore((int) (programController.getScore() + 150 * multiplier));
                             }
                             if(array[x][y] instanceof EnemyInstant){
-                                programController.setScore(programController.getScore() + 175 * (int) multiplier);
+                                programController.setScore((int) (programController.getScore() + 175 * multiplier));
                             }
                             if(array[x][y] instanceof EnemyShield){
-                                programController.setScore(programController.getScore() + 175 * (int) multiplier);
+                                programController.setScore((int) (programController.getScore() + 175 * multiplier));
                             }
                             if(array[x][y] instanceof EnemyBoss){
-                                programController.setScore(programController.getScore() + 5000 * (int) multiplier);
+                                programController.setScore((int) (programController.getScore() + 5000 * multiplier));
                             }
                             array[x][y] = null;
                             if(!programController.getPlayer().isPiercing()) {

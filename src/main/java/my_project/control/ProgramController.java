@@ -58,6 +58,7 @@ public class ProgramController {
         buffVisualQueue = new VisualQueue<>(viewController, 50, 950, "up");
         window = new GraphicalWindow(viewController, this);
         playerName = new PlayerName(viewController,this);
+        playerName.read();
 
         new InputManagerMainMenu(this, viewController, soundManager);
         new InputManagerOptions(this, viewController, window.getOptions(), soundManager);
@@ -93,6 +94,10 @@ public class ProgramController {
         if(viewController.getCurrentSceneIndex() != GraphicalWindow.GAME_INDEX && inGame){
             clearGame();
             gameOver = false;
+        }
+        if(viewController.getCurrentSceneIndex() == GraphicalWindow.MAIN_MENU_INDEX) {
+            playerName.reset();
+            SoundController.stopSound("gameover");
         }
     }
 

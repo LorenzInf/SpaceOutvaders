@@ -43,7 +43,7 @@ public abstract class Enemy extends Entity {
         enemyX = x;
         enemyY = y;
         hp = 1;
-        speed = 150 * (int) ((double) programController.getWaveController().getWave() / 40 + 1);
+        speed = (int) (150 * ((double) programController.getWaveController().getWave() / 40 + 1));
         shootChance = 2.5;
         shootTimer = 0;
         shootDelay = 0.25;

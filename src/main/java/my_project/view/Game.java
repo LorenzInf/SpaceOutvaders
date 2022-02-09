@@ -5,6 +5,7 @@ import KAGO_framework.view.DrawTool;
 import my_project.control.GraphicalWindow;
 import my_project.control.ProgramController;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Game extends GraphicalWindow {
@@ -24,5 +25,8 @@ public class Game extends GraphicalWindow {
     @Override
     public void draw(DrawTool drawTool) {
         drawTool.drawImage(images[0], 0 ,0);
+        drawTool.setCurrentColor(Color.WHITE);
+        drawTool.formatText("Minecraft",0,30);
+        drawTool.drawText(150,1040,"Score: " + programController.getScore());
     }
 }
