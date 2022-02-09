@@ -36,6 +36,7 @@ public class InputManagerOptions extends InputManager {
                 options.setMusicOn(!options.isMusicOn());
                 SoundController.setVolume("mainMenuTheme", options.isMusicOn() ? volRemember : 0.0);
                 SoundController.setVolume("gameTheme1", options.isMusicOn() ? volRemember : 0.0);
+                SoundController.setVolume("gameover", options.isMusicOn() ? volRemember : 0.0);
                 SoundController.playSound("select");
             }
             if (programController.getWindow().getOptionsIndex() == 2) {
@@ -44,6 +45,10 @@ public class InputManagerOptions extends InputManager {
                 SoundController.setVolume("exit",options.isSoundOn() ? volRemember : 0.0);
                 SoundController.setVolume("shootPlayer",options.isSoundOn() ? volRemember : 0.0);
                 SoundController.setVolume("enemyDeath",options.isSoundOn() ? volRemember : 0.0);
+                SoundController.setVolume("shieldHit",options.isSoundOn() ? volRemember : 0.0);
+                SoundController.setVolume("pickup",options.isSoundOn() ? volRemember : 0.0);
+                SoundController.setVolume("powerup",options.isSoundOn() ? volRemember : 0.0);
+                SoundController.setVolume("shotCharge",options.isSoundOn() ? volRemember : 0.0);
                 SoundController.playSound("select");
             }
             if(programController.getWindow().getOptionsIndex() == 3){ // Wenn man auf dem X ist
