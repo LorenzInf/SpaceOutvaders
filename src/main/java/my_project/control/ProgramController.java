@@ -117,7 +117,7 @@ public class ProgramController {
                 for(int i = 0; i < 2; i ++) new PlayerLife(1810, 950-i*70, viewController, this, 0);
             }
             case 2 -> {
-                for(int i = 0; i < 1; i ++) new PlayerLife(1810, 950-i*70, viewController, this, 0);
+                for(int i = 0; i < 1; i ++) new PlayerLife(1810, 950, viewController, this, 0);
             }
         }
     }
