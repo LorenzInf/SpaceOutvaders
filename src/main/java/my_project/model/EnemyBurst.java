@@ -10,8 +10,8 @@ public class EnemyBurst extends Enemy{
     private double burstTimer;
     private int shooting;
 
-    public EnemyBurst(ViewController viewController, ProgramController programController, boolean movingRight, int posX, int posY){
-        super(viewController,programController,movingRight,posX,posY);
+    public EnemyBurst(ViewController viewController, ProgramController programController, int posX, int posY){
+        super(viewController,programController,posX,posY);
         shootChance = 0.5;
         shootDelay = 0.25;
         x += 17.5;

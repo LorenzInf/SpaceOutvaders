@@ -3,6 +3,7 @@ package my_project.control;
 import KAGO_framework.control.SoundController;
 import KAGO_framework.control.ViewController;
 import my_project.model.Buff;
+import my_project.model.Player;
 import my_project.model.PlayerLife;
 import my_project.model.Shot;
 
@@ -27,10 +28,11 @@ public class InputManagerGame extends InputManager {
     @Override
     public void keyPressed(int key){
         if(key == KeyEvent.VK_SPACE){
-            if(programController.getPlayer().getShootCooldown() == 0){
+            Player player = programController.getPlayer();
+            if(player.getShootCooldown() == 0 && !programController.getWaveController().isShootLock()){
                 SoundController.playSound("shootPlayer");
-                new Shot(viewController, programController, programController.getPlayer().getX()-28, programController.getPlayer().getY() - 120,1300,false);
-                programController.getPlayer().setShootCooldown(programController.getPlayer().isRapidFire() ? 0.1 : 0.5);
+                new Shot(viewController, programController, player.getX()-28, player.getY() - 120,1300,false);
+                programController.getPlayer().setShootCooldown(player.isRapidFire() ? 0.1 : 0.5);
             }
         }
 
@@ -46,15 +48,7 @@ public class InputManagerGame extends InputManager {
             viewController.showScene(6);
         }
 
-        if(key == KeyEvent.VK_F){
-            programController.getEnemyWave().summonAWave();
-        }
-
-        if (key == KeyEvent.VK_B) { // Für Test-Zwecke
-            programController.createBuff();
-        }
-
-        if (key == KeyEvent.VK_H) { // Verwenden der Buffs, Taste kann noch geändert werden
+        if (key == KeyEvent.VK_SHIFT) {
             if (programController.getBuffVisualQueue().getFront() != null) {
                 SoundController.playSound("powerup");
                 switch (programController.getBuffVisualQueue().getFront().getRandomNumber()) {
@@ -70,7 +64,6 @@ public class InputManagerGame extends InputManager {
                 programController.getBuffVisualQueue().dequeue();
             }
         }
-
         setVolume(key);
         forceMainMenu(key);
     }

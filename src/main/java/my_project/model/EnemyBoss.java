@@ -5,8 +5,8 @@ import my_project.control.ProgramController;
 
 public class EnemyBoss extends Enemy {
 
-    public EnemyBoss(ViewController viewController, ProgramController programController, boolean movingRight, int posX, int posY){
-        super(viewController, programController,movingRight,posX,posY);
+    public EnemyBoss(ViewController viewController, ProgramController programController, int posX, int posY){
+        super(viewController, programController,posX,posY);
         hp = 5;
     }
 

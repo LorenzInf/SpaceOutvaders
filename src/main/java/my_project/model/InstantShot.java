@@ -15,6 +15,7 @@ public class InstantShot extends Shot {
     private Enemy enemy;
     private boolean shot;
     private double offsetX, offsetY;
+    private boolean hasHit;
 
     public InstantShot(ViewController viewController, ProgramController programController, double x, double y, Enemy enemy, double offsetX, double offsetY) {
         super(viewController, programController, x, y, 0, true);
@@ -29,6 +30,7 @@ public class InstantShot extends Shot {
         chargeTimer = 2.349;
         shootTimer = -1.0;
         alpha = 0;
+        hasHit = false;
         viewController.draw(this);
     }
 
@@ -45,8 +47,9 @@ public class InstantShot extends Shot {
 
     @Override
     public void update(double dt) {
-        if(shot) {
+        if(shot && !hasHit) {
             checkPlayerCollision();
+            hasHit = true;
         }
         x = enemy.getX() + offsetX + 15;
         y = enemy.getY() + offsetY;
@@ -66,5 +69,9 @@ public class InstantShot extends Shot {
         if(shootTimer == 0) {
             viewController.removeDrawable(this);
         }
+    }
+
+    public void setShootTimer(double amount) {
+        shootTimer = amount;
     }
 }

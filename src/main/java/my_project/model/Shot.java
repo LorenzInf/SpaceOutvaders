@@ -11,7 +11,7 @@ import java.awt.image.BufferedImage;
 public class Shot extends Entity {
 
     protected final ViewController viewController;
-    private final double speed;
+    private double speed;
     private final boolean enemyShot;
     protected final BufferedImage[] images;
     protected final ProgramController programController;
@@ -23,7 +23,8 @@ public class Shot extends Entity {
         this.programController = programController;
         this.x = x + 78.5;
         this.y = y + 55.5;
-        this.speed = speed;
+        if(enemyShot) this.speed = speed * ((double) programController.getWaveController().getWave() / 20 + 1);
+        else this.speed = speed;
         this.enemyShot = enemyShot;
         width = 18;
         height = 64;
@@ -55,7 +56,6 @@ public class Shot extends Entity {
 
     protected void checkPlayerCollision() {
         if(enemyShot && this.y < Config.WINDOW_HEIGHT - 120 && this.collidesWith(programController.getPlayer())){
-            viewController.removeDrawable(this);
             if(programController.getPlayer().isExtraLife() && !programController.getPlayer().isShield()){
                 viewController.removeDrawable(programController.getExtraLife());
                 programController.getPlayer().setExtraLife(false);
@@ -70,6 +70,9 @@ public class Shot extends Entity {
                 }
             }else{
                 SoundController.playSound("shieldHit");
+            }
+            if(height != 1000) {
+                viewController.removeDrawable(this);
             }
         }
     }
@@ -90,6 +93,9 @@ public class Shot extends Entity {
                             else SoundController.playSound("enemyDeath");
                             viewController.removeDrawable(this);
                         } else {
+                            if (array[x][y] instanceof EnemyInstant) {
+                                ((EnemyInstant) array[x][y]).die();
+                            }
                             viewController.removeDrawable(array[x][y]);
                             array[x][y] = null;
                             SoundController.playSound("enemyDeath");

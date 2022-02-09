@@ -107,7 +107,7 @@ public class Player extends Entity {
             setSpeed(900);
             if(speedTimer == 0){
                 setSpeedBoost(false);
-                setSpeed(300);
+                setSpeed(400);
                 speedTimer = 5;
             }
         }

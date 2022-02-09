@@ -10,9 +10,10 @@ import java.util.Random;
 public class EnemyInstant extends Enemy {
 
     private double shotCooldown;
+    private InstantShot shot;
 
-    public EnemyInstant(ViewController viewController, ProgramController programController, boolean movingRight, int posX, int posY){
-        super(viewController,programController,movingRight,posX,posY);
+    public EnemyInstant(ViewController viewController, ProgramController programController, int posX, int posY){
+        super(viewController,programController,posX,posY);
         x += 28;
         y += 28;
         width = height = 119;
@@ -28,7 +29,7 @@ public class EnemyInstant extends Enemy {
         if(timer <= 0 && shotCooldown == 0) {
             int help = new Random().nextInt(100 + 1);
             if (chance >= help && y > 0) {
-                new InstantShot(viewController, programController, enemyX, y, this,44,103);
+                shot = new InstantShot(viewController, programController, enemyX, y, this,44,103);
                 shotCooldown = 3.0;
                 return true;
             }
@@ -40,5 +41,9 @@ public class EnemyInstant extends Enemy {
     public void update(double dt) {
         super.update(dt);
         shotCooldown = Math.max(shotCooldown - dt, 0);
+    }
+
+    public void die() {
+        if(shot != null) shot.setShootTimer(0.0);
     }
 }

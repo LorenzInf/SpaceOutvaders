@@ -28,13 +28,13 @@ public class ProgramController {
     private PlayerLife playerLife;
     private PlayerLife emptyPlayerLife;
     private PlayerLife extraLife;
-    private EnemyWave enemyWave;
     private Buff buff;
     private boolean moveTimerActive;
     private boolean gameOver;
     private boolean inGame;
     private PlayerName playerName;
     private int score;
+    private WaveController waveController;
 
 
     /**
@@ -77,7 +77,7 @@ public class ProgramController {
         playerLife = new PlayerLife(1810, 880, viewController, this, 0);
         playerLife = new PlayerLife(1810, 950, viewController, this, 0);
 
-        enemyWave = new EnemyWave(viewController,this);
+        waveController = new WaveController(this,viewController);
 
         SoundController.playSound("mainMenuTheme");
     }
@@ -146,10 +146,6 @@ public class ProgramController {
         return array;
     }
 
-    public EnemyWave getEnemyWave(){
-        return enemyWave;
-    }
-
     public Buff getBuff() {
         return buff;
     }
@@ -179,5 +175,9 @@ public class ProgramController {
 
     public PlayerName getPlayerName() {
         return playerName;
+    }
+
+    public WaveController getWaveController() {
+        return waveController;
     }
 }

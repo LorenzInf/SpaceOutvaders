@@ -5,13 +5,13 @@ import KAGO_framework.view.DrawTool;
 import my_project.control.ProgramController;
 
 public class EnemyFast extends Enemy {
-    public EnemyFast(ViewController viewController, ProgramController programController, boolean movingRight, int posX, int posY) {
-        super(viewController, programController,movingRight,posX,posY);
+    public EnemyFast(ViewController viewController, ProgramController programController, int posX, int posY) {
+        super(viewController, programController,posX,posY);
         x += 20;
         y += 55;
         width = 135;
         height = 65;
-        speed = 400;
+        speed = 400 * (int) ((double) programController.getWaveController().getWave() / 20 + 1);
     }
 
     @Override

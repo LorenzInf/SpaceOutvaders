@@ -6,8 +6,8 @@ import my_project.control.ProgramController;
 
 public class EnemyShield extends Enemy {
 
-    public EnemyShield(ViewController viewController, ProgramController programController, boolean movingRight, int posX, int posY){
-        super(viewController,programController,movingRight,posX,posY);
+    public EnemyShield(ViewController viewController, ProgramController programController, int posX, int posY){
+        super(viewController,programController,posX,posY);
         hp = 2;
         x += 18;
         y += 19.5;

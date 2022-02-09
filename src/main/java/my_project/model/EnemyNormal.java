@@ -7,8 +7,8 @@ import java.util.Random;
 
 public class EnemyNormal extends Enemy {
 
-    public EnemyNormal(ViewController viewController, ProgramController programController, boolean movingRight, int posX, int posY) {
-        super(viewController, programController,movingRight,posX,posY);
+    public EnemyNormal(ViewController viewController, ProgramController programController, int posX, int posY) {
+        super(viewController, programController,posX,posY);
         x += 27.5;
         y += 44;
         width = 120;

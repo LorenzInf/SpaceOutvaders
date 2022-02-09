@@ -36,21 +36,21 @@ public abstract class Enemy extends Entity {
     protected boolean moving;
     protected double timer;
 
-    public Enemy(ViewController viewController, ProgramController programController, boolean movingRight, int posX, int posY){
+    public Enemy(ViewController viewController, ProgramController programController, int posX, int posY){
         super(viewController, programController);
         x = posX * 175;
         y = posY * 175;
         enemyX = x;
         enemyY = y;
         hp = 1;
-        speed = 150;
+        speed = 150 * (int) ((double) programController.getWaveController().getWave() / 30 + 1);
         shootChance = 2.5;
         shootTimer = 0;
         shootDelay = 0.25;
         movingDown = false;
         previousY = enemyY;
         timer = 5;
-        this.movingRight = movingRight;
+        movingRight = posY % 2 == 0;
         viewController.draw(this);
     }
 
@@ -77,14 +77,6 @@ public abstract class Enemy extends Entity {
         this.hp = hp;
     }
 
-    public int getSpeed() {
-        return speed;
-    }
-
-    public void setSpeed(int speed) {
-        this.speed = speed;
-    }
-
     @Override
     public void update(double dt){
         shootTimer += dt;
@@ -96,6 +88,7 @@ public abstract class Enemy extends Entity {
             timer -= dt;
         }
         if(timer <= 0) {
+            programController.getWaveController().setShootLock(false);
             double incr = speed * dt;
             if (movingRight && !movingDown) {
                 x += incr;
