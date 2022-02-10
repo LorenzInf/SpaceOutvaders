@@ -5,6 +5,7 @@ import KAGO_framework.control.ViewController;
 import KAGO_framework.view.DrawTool;
 import my_project.control.ProgramController;
 import my_project.view.VisualQueue;
+
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
@@ -22,6 +23,7 @@ public class Buff extends Entity implements VisualQueue.Animatible {
         width = 50;
         height = 85;
         isInQueue = false;
+
         if(programController.getStack().getCounter() == 3){
             randomNumber = new Random().nextInt(5);
         }else{
@@ -53,6 +55,9 @@ public class Buff extends Entity implements VisualQueue.Animatible {
 
     }
 
+    /** Checks if Buff collides with the Player and checks whether a Life Extra can spawn, or not, and then picks a random Buff
+     * @param dt dt
+     */
     @Override
     public void update(double dt){
         if(!isInQueue){

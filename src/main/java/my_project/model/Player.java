@@ -1,11 +1,11 @@
 package my_project.model;
+
 import KAGO_framework.control.ViewController;
 import KAGO_framework.view.DrawTool;
 import my_project.Config;
 import my_project.control.GraphicalWindow;
 import my_project.control.ProgramController;
 
-import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
 public class Player extends Entity {
@@ -63,6 +63,9 @@ public class Player extends Entity {
         };
     }
 
+    /** Based on the Buff, draws different models of the Player
+     * @param drawTool drawTool
+     */
     @Override
     public void draw(DrawTool drawTool){
         if(iCooldown == 0) drawTool.drawImage(images[0], x, y);
@@ -78,6 +81,10 @@ public class Player extends Entity {
         }
     }
 
+    /**
+     * Runs a Timer, when a certain Buff gets used, which cancels, if the Timers runs out. For every Buff (except HealthExtra), a Timer
+     * @param dt dt
+     */
     @Override
     public void update(double dt){
         if(x < 0) x = 0;

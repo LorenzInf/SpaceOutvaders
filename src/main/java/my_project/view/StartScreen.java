@@ -3,9 +3,7 @@ package my_project.view;
 import KAGO_framework.control.ViewController;
 import KAGO_framework.view.DrawTool;
 import my_project.control.GraphicalWindow;
-import my_project.control.SoundManager;
 
-import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class StartScreen extends GraphicalWindow {

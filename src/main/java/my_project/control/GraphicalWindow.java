@@ -3,7 +3,6 @@ package my_project.control;
 import KAGO_framework.control.SoundController;
 import KAGO_framework.control.ViewController;
 import KAGO_framework.model.GraphicalObject;
-import KAGO_framework.model.Sound;
 import my_project.view.*;
 
 public class GraphicalWindow extends GraphicalObject {

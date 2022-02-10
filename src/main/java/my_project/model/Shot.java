@@ -6,6 +6,7 @@ import KAGO_framework.view.DrawTool;
 import my_project.Config;
 import my_project.control.GraphicalWindow;
 import my_project.control.ProgramController;
+
 import java.awt.image.BufferedImage;
 
 public class Shot extends Entity {
@@ -54,6 +55,9 @@ public class Shot extends Entity {
         }
     }
 
+    /**
+     * Checks Player with EnemyShot collision and whether certain Buff are active, and how much Life the Player still has
+     */
     protected void checkPlayerCollision() {
         if(enemyShot && this.y < Config.WINDOW_HEIGHT - 120 && this.collidesWith(programController.getPlayer())){
             if(programController.getPlayer().isExtraLife() && !programController.getPlayer().isShield()){
@@ -78,6 +82,10 @@ public class Shot extends Entity {
         }
     }
 
+    /**
+     * Checks if an Enemy gets hit and whether he has Shield or not and adds Points to the Score
+     * @param dt dt
+     */
     @Override
     public void update(double dt){
         y += (enemyShot ? 1 : -1) * speed*dt;
@@ -114,9 +122,6 @@ public class Shot extends Entity {
                             }
                             if(array[x][y] instanceof EnemyShield){
                                 programController.setScore((int) (programController.getScore() + 175 * multiplier));
-                            }
-                            if(array[x][y] instanceof EnemyBoss){
-                                programController.setScore((int) (programController.getScore() + 5000 * multiplier));
                             }
                             array[x][y] = null;
                             if(!programController.getPlayer().isPiercing()) {

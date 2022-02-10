@@ -11,7 +11,6 @@ import java.awt.*;
 public class ArrayKeyboard extends Entity implements Visual2DArray.Animatable {
 
     private ProgramController programController;
-    private ArrayKeyboard arrayKeyboard;
     private String letter;
     private double margin;
 
@@ -34,7 +33,7 @@ public class ArrayKeyboard extends Entity implements Visual2DArray.Animatable {
     public void draw(DrawTool drawTool){
         drawTool.setCurrentColor(Color.WHITE);
         drawTool.formatText("Alagard",Font.PLAIN,50);
-        drawTool.drawText(x + margin,y + 60,letter);
+        drawTool.drawText(x + margin,y + 60, letter);
     }
 
     @Override
@@ -46,7 +45,6 @@ public class ArrayKeyboard extends Entity implements Visual2DArray.Animatable {
     public void fadeOut() {
 
     }
-
 
     public String getLetter() {
         return letter;

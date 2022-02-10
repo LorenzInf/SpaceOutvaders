@@ -24,6 +24,7 @@ public class InputManagerGame extends InputManager {
 
     @Override
     public void keyPressed(int key){
+        // Makes the player Shoot
         if(key == KeyEvent.VK_SPACE){
             Player player = programController.getPlayer();
             if(player.getShootCooldown() == 0 && !programController.getWaveController().isShootLock()){
@@ -40,8 +41,11 @@ public class InputManagerGame extends InputManager {
         if(key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT){
             programController.getPlayer().setMove(2);
         }
+        if(key == KeyEvent.VK_B){
+            programController.createBuff();
+        }
 
-
+        // Checks, which Buffs gets activated
         if (key == KeyEvent.VK_SHIFT) {
             if (programController.getBuffVisualQueue().getFront() != null) {
                 SoundController.playSound("powerup");
@@ -60,11 +64,6 @@ public class InputManagerGame extends InputManager {
         }
         setVolume(key);
         forceMainMenu(key);
-
-        if(key == KeyEvent.VK_U){
-            programController.getWindow().switchScene(6);
-            programController.getPlayerName().drawStuff();
-        }
     }
 
     @Override

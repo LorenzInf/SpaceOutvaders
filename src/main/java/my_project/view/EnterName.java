@@ -3,9 +3,7 @@ package my_project.view;
 import KAGO_framework.control.ViewController;
 import KAGO_framework.view.DrawTool;
 import my_project.control.GraphicalWindow;
-import my_project.control.InputManagerEnterName;
 import my_project.control.ProgramController;
-import my_project.model.PlayerLife;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -42,7 +40,7 @@ public class EnterName extends GraphicalWindow {
     /**
      * the string and a space are appended to name
      * letterNumber increases by one
-     * @param string
+     * @param string string
      */
     public void attachToName(String string){
         name += string + "";

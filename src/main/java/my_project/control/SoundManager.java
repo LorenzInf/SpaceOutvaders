@@ -4,10 +4,11 @@ import KAGO_framework.control.SoundController;
 import KAGO_framework.control.ViewController;
 
 public class SoundManager {
-    //private long lastLoop;
-    private boolean soundOff, soundOn;
-    private double vol;
 
+    /**
+     * Loads all Sound and Music used in the Game
+     * @param viewController viewController
+     */
     public SoundManager(ViewController viewController) {
         SoundController mySoundController = viewController.getSoundController();
         String path = "src/main/resources/sound/";
@@ -23,9 +24,6 @@ public class SoundManager {
         mySoundController.loadSound(path + "shield_hit.mp3","shieldHit",false);
         mySoundController.loadSound(path + "shot_charge.mp3","shotCharge",false);
         mySoundController.loadSound(path + "powerup.mp3", "powerup", false);
-        soundOff = false;
-        soundOn = false;
-        vol = 1;
     }
 
     public void modifyVolume(double volume){

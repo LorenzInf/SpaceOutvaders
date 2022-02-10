@@ -15,25 +15,27 @@ public class InputManagerEnterName extends InputManager {
 
     }
 
+    /** Checks which Button gets pressed in EnterName; Moving the Cursor | Pressing the Letter | Checking if LetterNumber is not too high
+     * @param key The pressed key
+     */
     @Override
     public void keyPressed(int key){
-
         Visual2DArray<ArrayKeyboard> array = programController.getPlayerName().getArray2DKeyboard();
-        switch (key) {
-            case KeyEvent.VK_ENTER -> {
-                if (array.getPointerX() == 2 && array.getPointerY() == 3 && array.getPointerX() < 3) {
-                    programController.getPlayerName().insert(programController.getWindow().getEnterName());
-                    programController.getWindow().switchScene(GraphicalWindow.LEADERBOARD_INDEX);
-                    programController.getWindow().getEnterName().setLetterNumber(0);
-                } else if (array.getPointerX() < 3 || array.getPointerY() < 3){
-                    programController.getWindow().getEnterName().attachToName(array.get(array.getPointerX(), array.getPointerY()).getLetter());
-                }
+        if(key == KeyEvent.VK_ENTER || key == KeyEvent.VK_SPACE) {
+            if (array.getPointerX() == 2 && array.getPointerY() == 3 && array.getPointerX() < 3) {
+                programController.getPlayerName().insert(programController.getWindow().getEnterName());
+                programController.getWindow().switchScene(GraphicalWindow.LEADERBOARD_INDEX);
+                programController.getWindow().getEnterName().setLetterNumber(0);
+            } else if (array.getPointerX() < 3 || array.getPointerY() < 3){
+                programController.getWindow().getEnterName().attachToName(array.get(array.getPointerX(), array.getPointerY()).getLetter());
             }
-            case KeyEvent.VK_D -> array.setPointer(array.getPointerX() + 1,array.getPointerY());
-            case KeyEvent.VK_A -> array.setPointer(array.getPointerX() - 1,array.getPointerY());
-            case KeyEvent.VK_W -> array.setPointer(array.getPointerX(), array.getPointerY() - 1);
-            case KeyEvent.VK_S-> array.setPointer(array.getPointerX(), array.getPointerY() + 1);
         }
+
+        if(key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) array.setPointer(array.getPointerX() + 1,array.getPointerY());
+        if(key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) array.setPointer(array.getPointerX() - 1,array.getPointerY());
+        if(key == KeyEvent.VK_W || key == KeyEvent.VK_UP) array.setPointer(array.getPointerX(), array.getPointerY() - 1);
+        if(key == KeyEvent.VK_S || key == KeyEvent.VK_DOWN) array.setPointer(array.getPointerX(), array.getPointerY() + 1);
+
         if(programController.getWindow().getEnterName().getLetterNumber() == 19){
             programController.getPlayerName().insert(programController.getWindow().getEnterName());
             programController.getWindow().switchScene(GraphicalWindow.LEADERBOARD_INDEX);

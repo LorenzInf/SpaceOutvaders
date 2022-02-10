@@ -10,7 +10,7 @@ import java.util.Random;
 public class EnemyBoss extends Enemy {
 
     private double shootCooldown;
-    private boolean attack0, attack1, attack2, attack3;
+    private boolean attack0, attack1, attack2;
     private double timer;
     private int counter;
     double direction;
@@ -42,7 +42,6 @@ public class EnemyBoss extends Enemy {
             case 0 -> attack0 = true;
             case 1 -> attack1 = true;
             case 2 -> attack2 = true;
-            case 3 -> attack3 = true;
         }
         return true;
     }

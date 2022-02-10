@@ -1,10 +1,9 @@
 package my_project.view;
+
 import KAGO_framework.control.ViewController;
 import KAGO_framework.view.DrawTool;
 import my_project.Config;
 import my_project.control.GraphicalWindow;
-
-import java.awt.*;
 
 public class FadeIn extends GraphicalWindow {
     private boolean fadingIn;

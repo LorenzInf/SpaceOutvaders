@@ -25,6 +25,9 @@ public class EnemyBurst extends Enemy{
         drawTool.drawImage(images[1], x, y);
     }
 
+    /** TryToShoot but gets called three Times instead of once
+     * @param dt dt
+     */
     @Override
     public void update(double dt){
         doMovement(dt);

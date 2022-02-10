@@ -33,6 +33,10 @@ public class PlayerLife extends Entity implements VisualStack.Animated {
         };
     }
 
+    /**
+     * Checks, which Life needs to be drawn (Normal, Empty or Extra)
+     * @param drawTool drawTool
+     */
     @Override
     public void draw(DrawTool drawTool){
         switch (whichLife){

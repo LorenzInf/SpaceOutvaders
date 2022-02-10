@@ -25,10 +25,17 @@ public abstract class InputManager extends InteractiveGraphicalObject {
     protected void forceMainMenu(int key){
         if(key == KeyEvent.VK_P) {
             viewController.showScene(1);
+            SoundController.playSound("mainMenuTheme");
+            SoundController.stopSound("gameTheme1");
+            SoundController.stopSound("gameover");
             System.out.println("Main Menu force initialized");
         }
     }
 
+
+    /** Sets the Volume for the Music/Sound
+     * @param key The pressed key
+     */
     protected void setVolume(int key){
         if(key == KeyEvent.VK_MINUS) {
             soundManager.modifyVolume(-0.1);
