@@ -1,13 +1,11 @@
 package my_project.model;
 
 import KAGO_framework.control.ViewController;
-import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.model.abitur.datenstrukturen.List;
 import KAGO_framework.view.DrawTool;
 import my_project.control.GraphicalWindow;
 import my_project.control.ProgramController;
 import my_project.view.EnterName;
-import my_project.view.Leaderboard;
 import my_project.view.Visual2DArray;
 
 import java.awt.*;
@@ -94,7 +92,6 @@ public class PlayerName extends Entity {
         while (list.hasAccess() && list.getContent().getScore() > enterName.getScore()) {
             list.next();
         }
-
         if (list.hasAccess()) {
             list.insert(new EnterName(enterName.getName(), enterName.getScore(), viewController, programController));
         } else {
@@ -113,23 +110,9 @@ public class PlayerName extends Entity {
         viewController.removeDrawable(array2DKeyboard,GraphicalWindow.ENTER_NAME_INDEX);
     }
 
-    @Override
-    public void draw(DrawTool drawTool){
-
-    }
-
-    public Visual2DArray<ArrayKeyboard> getArray2DKeyboard() {
-        return array2DKeyboard;
-    }
-
-    public List getList() {
-        return list;
-    }
-
-    public boolean tryToDelete() {
-        return false;
-    }
-
+    /**
+     * Writes the File for the Score
+     */
     public void write(){
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/java/text/names.txt"))) {
             list.toFirst();
@@ -142,6 +125,9 @@ public class PlayerName extends Entity {
         }
     }
 
+    /**
+     * Reads the File for the Score
+     */
     public void read(){
         try {
             FileInputStream inputStream = new FileInputStream("src/main/java/text/names.txt");
@@ -155,5 +141,18 @@ public class PlayerName extends Entity {
         } catch (IOException exception) {
             exception.printStackTrace();
         }
+    }
+
+    @Override
+    public void draw(DrawTool drawTool){
+
+    }
+
+    public Visual2DArray<ArrayKeyboard> getArray2DKeyboard() {
+        return array2DKeyboard;
+    }
+
+    public List getList() {
+        return list;
     }
 }

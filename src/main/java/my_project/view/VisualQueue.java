@@ -4,7 +4,6 @@ import KAGO_framework.control.ViewController;
 import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.model.abitur.datenstrukturen.List;
 import KAGO_framework.model.abitur.datenstrukturen.Queue;
-import my_project.model.Buff;
 
 public class VisualQueue<T extends GraphicalObject & VisualQueue.Animatible> {
 

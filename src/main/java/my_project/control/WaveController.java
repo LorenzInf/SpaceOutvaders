@@ -3,10 +3,9 @@ package my_project.control;
 import KAGO_framework.control.ViewController;
 import KAGO_framework.model.GraphicalObject;
 import my_project.model.Enemy;
-import my_project.model.EnemyBoss;
 import my_project.model.EnemyWave;
 
-public class WaveController extends GraphicalObject /* Macht nicht sonderlich viel Sinn, aber ich brauche update */ {
+public class WaveController extends GraphicalObject {
     private int wave;
     private Enemy[][] array;
     private final ProgramController programController;

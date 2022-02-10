@@ -5,7 +5,6 @@ import KAGO_framework.control.ViewController;
 import my_project.view.Options;
 
 import java.awt.event.KeyEvent;
-import java.security.Key;
 
 /**
  * Realisiert ein Objekt, dass alle Eingaben empfängt und dann danach passende Methoden
@@ -30,8 +29,8 @@ public class InputManagerOptions extends InputManager {
 
     @Override
     public void keyPressed(int key){
+        // Whether Removes or adds the Sound/Music, depending on which Button you are
         if(key == KeyEvent.VK_ENTER || key == KeyEvent.VK_SPACE){
-            // Checkt Boolean Wert für das ändern des Symbols
             if (programController.getWindow().getOptionsIndex() == 1) {
                 options.setMusicOn(!options.isMusicOn());
                 SoundController.setVolume("mainMenuTheme", options.isMusicOn() ? volRemember : 0.0);
@@ -64,6 +63,8 @@ public class InputManagerOptions extends InputManager {
             programController.getWindow().switchScene(1);
         }
 
+
+        // Moving the Current "Button"
         if(key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT){ // Markiertes Symbol nach links bewegen
             switch (programController.getWindow().getOptionsIndex()){
                 case 4 -> programController.getWindow().setOptionsIndex(5);
@@ -98,7 +99,8 @@ public class InputManagerOptions extends InputManager {
             SoundController.playSound("select");
         }
 
-        // Minus und Plus Buttons
+        // Changes the volume with thew - and + Button
+
         if(key == KeyEvent.VK_SPACE){
             if(programController.getWindow().getOptionsIndex() == 4){
                 soundManager.modifyVolume(0.1);

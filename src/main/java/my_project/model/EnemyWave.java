@@ -3,8 +3,6 @@ package my_project.model;
 import KAGO_framework.control.ViewController;
 import my_project.control.ProgramController;
 import my_project.control.WaveController;
-import my_project.view.Game;
-import my_project.view.Visual2DArray;
 
 import java.util.Random;
 

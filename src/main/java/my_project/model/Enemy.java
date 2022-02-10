@@ -1,11 +1,10 @@
 package my_project.model;
+
 import KAGO_framework.control.SoundController;
 import KAGO_framework.control.ViewController;
-import KAGO_framework.model.GraphicalObject;
 import my_project.control.GraphicalWindow;
 import my_project.control.ProgramController;
 
-import javax.swing.text.View;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
@@ -22,7 +21,7 @@ public abstract class Enemy extends Entity {
             createImage("src/main/resources/graphic/enemy_shield_shield.png") //6
     };
 
-    //other stuff
+    //Other stuff
     protected double enemyX;
     protected double enemyY;
     protected int hp;
@@ -52,11 +51,6 @@ public abstract class Enemy extends Entity {
         timer = 3;
         movingRight = posY % 2 == 0;
         viewController.draw(this);
-    }
-
-
-    public double getPosMiddle(int pos, GraphicalObject gO){
-        return pos * 175 + gO.getWidth() / 2;
     }
 
     public double getPosMiddle(int pos, double width){

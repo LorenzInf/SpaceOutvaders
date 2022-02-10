@@ -22,7 +22,6 @@ public class Leaderboard extends GraphicalWindow {
         };
     }
 
-
     @Override
     public void draw(DrawTool drawTool) {
         drawTool.drawImage(images[0], 0, 0);

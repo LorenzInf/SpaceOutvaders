@@ -14,6 +14,4 @@ public class InputManagerLeaderboard extends InputManager{
     public void keyPressed(int key){
         forceMainMenu(key);
     }
-
-
 }

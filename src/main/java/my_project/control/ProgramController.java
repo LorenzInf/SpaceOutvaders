@@ -1,12 +1,11 @@
 package my_project.control;
 
 import KAGO_framework.control.SoundController;
-import my_project.Config;
-import my_project.model.*;
 import KAGO_framework.control.ViewController;
-import my_project.view.*;
-
-import java.awt.*;
+import KAGO_framework.model.Sound;
+import my_project.model.*;
+import my_project.view.VisualQueue;
+import my_project.view.VisualStack;
 
 /**
  * Ein Objekt der Klasse ProgramController dient dazu das Programm zu steuern. Die updateProgram - Methode wird
@@ -96,8 +95,10 @@ public class ProgramController {
         }
         if(viewController.getCurrentSceneIndex() == GraphicalWindow.MAIN_MENU_INDEX) {
             playerName.reset();
-            SoundController.stopSound("gameover");
             score = 0;
+        }
+        if(viewController.getCurrentSceneIndex() == GraphicalWindow.ENTER_NAME_INDEX) {
+            SoundController.stopSound("mainMenuTheme");
         }
     }
 
