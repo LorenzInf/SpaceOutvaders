@@ -291,7 +291,7 @@ public class ViewController implements ActionListener, KeyListener, MouseListene
         elapsedTime_Drawables = System.nanoTime() - lastLoop_Drawables;
         lastLoop_Drawables = System.nanoTime();
         int dt = (int) ((elapsedTime / 1000000L));
-        double dtSeconds = (double)dt/1000;
+        double dtSeconds = Math.min((double)dt/1000,0.1);
         if ( dtSeconds == 0 ) dtSeconds = 0.01;
         Iterator<Drawable> drawIterator = scenes.get(currentScene).drawables.iterator();
         while (drawIterator.hasNext() && notChangingDrawables){
