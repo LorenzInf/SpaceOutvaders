@@ -41,9 +41,6 @@ public class InputManagerGame extends InputManager {
         if(key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT){
             programController.getPlayer().setMove(2);
         }
-        if(key == KeyEvent.VK_B){
-            programController.createBuff();
-        }
 
         // Checks, which Buffs gets activated
         if (key == KeyEvent.VK_SHIFT) {
